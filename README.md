@@ -1,2 +1,2 @@
 # G6FlightProject
-Made By: Audrey Del Rosario
+Made By: Audrey Del Rosario, Leela Murphy
