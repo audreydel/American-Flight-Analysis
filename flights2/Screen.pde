@@ -1,26 +1,82 @@
+import java.util.Scanner;
 class Screen {
   ArrayList widge;
   ArrayList flightInfo;
-  Screen(ArrayList widgies, ArrayList flightInfos) {
+  Screen(ArrayList widgies, ArrayList flightInfos) 
+  {
     this.widge=widgies;
     this.flightInfo=flightInfos;
   }
-  void draw() {
+  
+  void draw() 
+  {
 
-    background(#ffffe6);
-    if (currentScreen==screen2) {
+    background(255,240,227);
+    if (currentScreen==screen2) 
+    {
       fill(0);
       int x=500;
       int y=30;
+      
+        int janCount = 0;
+        int febCount = 0;
+        int marCount = 0;
+        int aprCount = 0;
+        int mayCount = 0;
+        int junCount = 0;
       for(int i=0; i<flightDates.size()/8; i++)
       {
+        
         String date=flightDates.get(i);
-        String dest=destination.get(i);
-        text(date+", "+dest, x,y );
-        y+=30;
+        Scanner input2 = new Scanner (date);
+        input2.useDelimiter("/");
+        int day = input2.nextInt(); 
+        int month = input2.nextInt();
+        
+        switch (month) 
+        {
+          
+          case 1: 
+          janCount++;
+          break;
+          
+          case 2:
+          febCount++;
+          break;
+          
+          case 3: 
+          marCount++;
+          break;
+         
+          case 4: 
+          aprCount++;
+          break;
+          
+          case 5:
+          mayCount++ ;
+          break; 
+          
+          case 6:
+          junCount++;
+          break;
+          
+          default:    
+        }
+        input2.close();
+ 
       }
+      
+      text("jan count: " + janCount + "\nfeb count: " + febCount + "\nmarch count: " + 
+                  marCount + "\napril count: " + aprCount + "\nmay count: " + 
+                  mayCount + "\njune count: " + junCount, x,y);
+                  
+      println("jan count: " + janCount + "\nfeb count: " + febCount + "\nmarch count: " + 
+                  marCount + "\napril count: " + aprCount + "\nmay count: " + 
+                  mayCount + "\njune count: " + junCount);
     }
-    if (currentScreen==screen3) {
+    
+    if (currentScreen==screen3) 
+    {
       fill(0);
       int x=700;
       int y=30;
@@ -47,7 +103,8 @@ class Screen {
   void mousePressed() {
     int event;
 
-    for (int i = 0; i<widge.size(); i++) {
+    for (int i = 0; i<widge.size(); i++) 
+    {
       Widget widgets = (Widget) widge.get(i);
       event = widgets.getEvent(mouseX, mouseY);
       switch(event) {
@@ -74,9 +131,11 @@ class Screen {
       }
     }
   }
-  void mouseMoved() {
+  void mouseMoved() 
+  {
     int pos;
-    for (int i = 0; i<widge.size(); i++) {
+    for (int i = 0; i<widge.size(); i++) 
+    {
       Widget widgets = (Widget) widge.get(i);
       widgets.hovering=false;
       pos = widgets.getEvent(mouseX, mouseY);

@@ -6,7 +6,8 @@
   ArrayList<String> originCity;
   ArrayList<String> destination;
 
-  void initialiseData() {
+  void initialiseData() 
+  {
     Table table=loadTable("flights2k.csv", "header");
     flightDates=new ArrayList<String>();
     carrier=new ArrayList<String>();
@@ -14,6 +15,7 @@
     origin=new ArrayList<String>();
     originCity=new ArrayList<String>();
     destination=new ArrayList<String>();
+    
     for (int i=0; i<table.getRowCount(); i++)
     {
       TableRow row=table.getRow(i);
