@@ -12,7 +12,8 @@ class Screen {
   {
 
     background(255,240,227);
-    if (currentScreen==screen2) 
+    
+    if (currentScreen==screen2)   // *** graph 1 screen ***
     {
       fill(0);
       int x=500;
@@ -24,6 +25,7 @@ class Screen {
         int aprCount = 0;
         int mayCount = 0;
         int junCount = 0;
+        
       for(int i=0; i<flightDates.size()/8; i++)
       {
         
@@ -66,9 +68,42 @@ class Screen {
  
       }
       
-      text("jan count: " + janCount + "\nfeb count: " + febCount + "\nmarch count: " + 
-                  marCount + "\napril count: " + aprCount + "\nmay count: " + 
-                  mayCount + "\njune count: " + junCount, x,y);
+      fill(201,165,159);
+      textSize(40);
+      text ("months", 200, 400);
+      text("no. scheduled flights", 600, 700);
+
+      
+      textSize(30);
+      text("jan", 400, 100);
+      text("feb", 400, 200);
+      text("mar", 400, 300);
+      text("apr", 400, 400);
+      text("may", 400, 500);
+      text("jun", 400, 600);
+      stroke(15);
+      
+      
+      line(500, 70, 500, 630);
+      stroke(15);
+      
+      line(500, 630, 1200, 630);
+      
+      rect(500, 70, janCount*10, 30);
+      rect(500, 170, febCount*10, 30);
+      rect(500, 270, marCount*10, 30);
+      rect(500, 370, aprCount*10, 30);
+      rect(500, 470, mayCount*10, 30);
+      rect(500, 570, junCount*10, 30);
+      
+      text(janCount, 950, 100);
+      text(febCount, 1070, 200);
+      text(marCount, 1100, 300);
+      text(aprCount, 940, 400);
+      text(mayCount, 950, 500);
+      text(junCount, 780, 600);
+      
+      
                   
       println("jan count: " + janCount + "\nfeb count: " + febCount + "\nmarch count: " + 
                   marCount + "\napril count: " + aprCount + "\nmay count: " + 
