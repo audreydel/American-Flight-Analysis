@@ -2,26 +2,12 @@ import java.util.Scanner;
 class Screen {
   ArrayList widge;
   ArrayList flightInfo;
-  int countOnTime=0;
-  int countEarly=0;
-  int countLate=0;
-  Screen(ArrayList widgies) 
+  Screen(ArrayList widgies, ArrayList flightInfos) 
   {
     this.widge=widgies;
+    this.flightInfo=flightInfos;
   }
-  void countTime(){
-      for(int i=0; i<schDept.size(); i++)
-      {
-        int scheduledTime=schDept.get(i);
-        int actualTime=accDept.get(i);
-        if(scheduledTime==actualTime)
-          countOnTime++;
-        if(scheduledTime<actualTime)
-          countLate++;
-        if(scheduledTime>actualTime)
-          countEarly++;
-      }
-  }
+  
   void draw() 
   {
 
@@ -32,12 +18,36 @@ class Screen {
       fill(0);
       int x=500;
       int y=30;
+      
+      int notCanCount = 0;
+      int cancelledCount = 0;
+      
+      for(int i = 0; i<cancelled.size(); i++) {
+        int isItCancelled = cancelled.get(i);
+        if(isItCancelled == 0) {
+          notCanCount += 1;
+        } else if(isItCancelled == 1) {
+          cancelledCount += 1;
+          }
+      }
+      
+      fill(201, 165, 159);
+      textSize(40);
+      text("# of not cancelled flights: " + notCanCount, 400, 300);
+      text("# of cancelled flights: " + cancelledCount, 400, 400);
     }
     
-    if (currentScreen==screen3) //piechart
+    if (currentScreen==screen3) 
     {
       fill(0);
-      
+      int x=700;
+      int y=30;
+      for(int i=0; i<destination.size()/8; i++)
+      {
+        String dest=destination.get(i);
+        text(dest, x,y );
+        y+=30;
+      }
     }
     if (currentScreen==screen4) {
       fill(0);
