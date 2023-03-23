@@ -21,6 +21,20 @@ class Screen {
     if (currentScreen==screen3) //piechart
     {
       fill(0);
+      text("Key:",950,60);
+      fill(#80ffff);
+      rect(950,80,40,40);
+      fill(0);
+      text("Flights departing on time", 1000,110);
+      fill(#4db8ff);
+      rect(950,140,40,40);
+      fill(0);
+      text("Flights departing early", 1000,170);
+      fill(#1a1aff);
+      rect(950,200,40,40);
+      fill(0);
+      text("Flights departing late", 1000,230);
+
     }
     if (currentScreen==screen4) {
       fill(0);
