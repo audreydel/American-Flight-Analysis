@@ -15,7 +15,24 @@ class Screen {
     if (currentScreen==screen2)   // *** graph 1 screen ***
     {
       fill(0);
-      text("Hello", 400,300);
+      int notCanCount = 0;
+        int cancelledCount = 0;
+        
+      for(int i=0; i<cancelled.size(); i++)
+      {
+        
+        int isItCancelled=cancelled.get(i); 
+        if(isItCancelled == 0) {
+          notCanCount += 1;
+        } else if(isItCancelled == 1) {
+          cancelledCount += 1;
+        }
+      }
+      
+      fill(201,165,159);
+      textSize(40);
+      text ("# of not cancelled flights: " + notCanCount, 400, 300);
+      text("# of cancelled flights: " + cancelledCount, 400, 400);
     }
     
     if (currentScreen==screen3) //piechart
