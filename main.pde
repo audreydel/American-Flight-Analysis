@@ -4,7 +4,6 @@ Flights currFlight;
 PieChart chart1;
 void setup() {
   currFlight = new Flights();
-  //chart1=new PieChart();
   currFlight.initialiseData();
   currFlight.countTime();
   

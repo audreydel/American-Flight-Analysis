@@ -15,7 +15,7 @@ class PieChart{
   }
   
   void setup() {
-    size(640, 360);
+    //size(640, 360);
     noStroke();
   }
   void draw() {
