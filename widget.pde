@@ -20,8 +20,8 @@ class Widget {
   void draw() {
     strokeWeight(5);
     stroke(#c9a59f);
-    line(270, 0, 270, 350);
-    line(0, 350, 270, 350);
+    //line(270, 0, 270, 350);
+    //line(0, 350, 270, 350);
     strokeWeight(0);
     fill(widgetColor);
     rect(x, y, width, height);
@@ -34,4 +34,5 @@ class Widget {
     }
     return EVENT_NULL;
   }
+  
 }
