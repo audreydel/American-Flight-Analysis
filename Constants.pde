@@ -8,6 +8,9 @@ final int tbY= 120;    // ypos
 final int tbW = 217;   // width
 final int tbH = 55;    // height
 
+// stat bar
+final int sbW = 275;   // width
+
 // header values 
 final int hH = 100; // height
 
@@ -17,7 +20,7 @@ final int lH = 50;
 final int lX = (SCREENX/2)-200;
 final int lY = tbY;
 
-final color lCol = color(255,252,241);
+final color lCol =  color(238,213,201);
 
 // task bar events
 final int MAIN_SCREEN = 58;
@@ -27,6 +30,9 @@ final int EVENT_OSTATE = 61;
 final int EVENT_DSTATE = 62;
 final int EVENT_NULL=0;
 
+// stat square eventa
+final int T_LATE = 63;
+final int T_AIRPORT = 64;
 
 // calendar events 
 

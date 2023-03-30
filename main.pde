@@ -8,10 +8,11 @@ Flights currFlight;
 Label lCalendar, lLateness, lAirport, lOState, lDState;
 
 ArrayList widgetList;
-Widget bHomeScreen, butt_lateness, bAirport, bOState, bDState;
+Widget bHomeScreen, bLateness, bAirport, bOState, bDState;
 Widget jan1, jan2, jan3, jan4, jan5, jan6, jan7, jan8, jan9, jan10, jan11, jan12, jan13, jan14,
   jan15, jan16, jan17, jan18, jan19, jan20, jan21, jan22, jan23, jan24, jan25, jan26,
   jan27, jan28, jan29, jan30, jan31;
+Widget tLate, tAirport, tDState, tOState;
 
 ArrayList screenList;
 Screen currentScreen, introScreen, mainScreen, screen1, screen2, screenPt1;
@@ -60,7 +61,7 @@ void setup()
 
   bHomeScreen = new Widget (0, tbY, tbW, tbH, "Home Page", headColor,
     stdFont, MAIN_SCREEN, borderColor);
-  butt_lateness = new Widget (0, tbY+tbH, tbW, tbH, "Lateness", headColor,
+  bLateness = new Widget (0, tbY+tbH, tbW, tbH, "Lateness", headColor,
     stdFont, EVENT_LATE, borderColor);
   bAirport = new Widget (0, tbY+(tbH*2), tbW, tbH, "Airports", headColor,
     stdFont, EVENT_AIRPORT, borderColor);
@@ -69,7 +70,18 @@ void setup()
   bDState = new Widget (0, tbY+(tbH*4), tbW, tbH, "Destination State", headColor,
     stdFont, EVENT_DSTATE, borderColor);
 
-
+  // stat table
+  
+  tLate = new Widget(10, 600, sbW, tbH, "Total lateness",lCol,
+    italicFont, T_LATE, borderColor);
+  tAirport = new Widget(10,600+tbH, sbW, tbH, "Total airports", lCol,
+    italicFont, T_AIRPORT, borderColor);
+  tOState = new Widget(10,600+(tbH*2), sbW, tbH, "Total flights departing",lCol,
+    italicFont, T_AIRPORT, borderColor);
+    
+  tDState = new Widget(10,600+(tbH*3), sbW, tbH, "Total flights arriving",lCol,
+    italicFont, T_AIRPORT, borderColor);
+  
   // labels
   lCalendar = new Label (lX, lY, lW, lH, lCol, "Calendar", stdFont);
   lLateness = new Label (lX, lY, lW, lH, lCol, "Lateness", stdFont);
@@ -155,6 +167,13 @@ void setup()
   mainScreen.addLabel(lCalendar);
 
   mainScreen.addWidget(bHomeScreen);
+  
+  mainScreen.addWidget(tLate);
+  mainScreen.addWidget(tAirport);
+  mainScreen.addWidget(tOState);
+  mainScreen.addWidget(tDState);
+ 
+  
   mainScreen.addWidget(jan1);
   mainScreen.addWidget(jan2);
   mainScreen.addWidget(jan3);
@@ -187,10 +206,11 @@ void setup()
   mainScreen.addWidget(jan30);
   mainScreen.addWidget(jan31);
 
+
   jan1Screen = new Screen(color(247, 197, 173));
   jan1Screen.addHeader(jan1Head);
   jan1Screen.addWidget(bHomeScreen);
-  jan1Screen.addWidget(butt_lateness);
+  jan1Screen.addWidget(bLateness);
   jan1Screen.addWidget(bAirport);
   jan1Screen.addWidget(bOState);
   jan1Screen.addWidget(bDState);
@@ -198,7 +218,7 @@ void setup()
   jan2Screen = new Screen(color(247, 197, 173));
   jan2Screen.addHeader(jan2Head);
   jan2Screen.addWidget(bHomeScreen);
-  jan2Screen.addWidget(butt_lateness);
+  jan2Screen.addWidget(bLateness);
   jan2Screen.addWidget(bAirport);
   jan2Screen.addWidget(bOState);
   jan2Screen.addWidget(bDState);
@@ -206,7 +226,7 @@ void setup()
   jan3Screen = new Screen(color(247, 197, 173));
   jan3Screen.addHeader(jan3Head);
   jan3Screen.addWidget(bHomeScreen);
-  jan3Screen.addWidget(butt_lateness);
+  jan3Screen.addWidget(bLateness);
   jan3Screen.addWidget(bAirport);
   jan3Screen.addWidget(bOState);
   jan3Screen.addWidget(bDState);
@@ -214,7 +234,7 @@ void setup()
   jan4Screen = new Screen(color(247, 197, 173));
   jan4Screen.addHeader(jan4Head);
   jan4Screen.addWidget(bHomeScreen);
-  jan4Screen.addWidget(butt_lateness);
+  jan4Screen.addWidget(bLateness);
   jan4Screen.addWidget(bAirport);
   jan4Screen.addWidget(bOState);
   jan4Screen.addWidget(bDState);
@@ -222,7 +242,7 @@ void setup()
   jan5Screen = new Screen(color(247, 197, 173));
   jan5Screen.addHeader(jan5Head);
   jan5Screen.addWidget(bHomeScreen);
-  jan5Screen.addWidget(butt_lateness);
+  jan5Screen.addWidget(bLateness);
   jan5Screen.addWidget(bAirport);
   jan5Screen.addWidget(bOState);
   jan5Screen.addWidget(bDState);
@@ -230,7 +250,7 @@ void setup()
   jan6Screen = new Screen(color(247, 197, 173));
   jan6Screen.addHeader(jan6Head);
   jan6Screen.addWidget(bHomeScreen);
-  jan6Screen.addWidget(butt_lateness);
+  jan6Screen.addWidget(bLateness);
   jan6Screen.addWidget(bAirport);
   jan6Screen.addWidget(bOState);
   jan6Screen.addWidget(bDState);
@@ -238,7 +258,7 @@ void setup()
   jan7Screen = new Screen(color(247, 197, 173));
   jan7Screen.addHeader(jan7Head);
   jan7Screen.addWidget(bHomeScreen);
-  jan7Screen.addWidget(butt_lateness);
+  jan7Screen.addWidget(bLateness);
   jan7Screen.addWidget(bAirport);
   jan7Screen.addWidget(bOState);
   jan7Screen.addWidget(bDState);
@@ -246,7 +266,7 @@ void setup()
   jan8Screen = new Screen(color(247, 197, 173));
   jan8Screen.addHeader(jan8Head);
   jan8Screen.addWidget(bHomeScreen);
-  jan8Screen.addWidget(butt_lateness);
+  jan8Screen.addWidget(bLateness);
   jan8Screen.addWidget(bAirport);
   jan8Screen.addWidget(bOState);
   jan8Screen.addWidget(bDState);
@@ -254,7 +274,7 @@ void setup()
   jan9Screen = new Screen(color(247, 197, 173));
   jan9Screen.addHeader(jan9Head);
   jan9Screen.addWidget(bHomeScreen);
-  jan9Screen.addWidget(butt_lateness);
+  jan9Screen.addWidget(bLateness);
   jan9Screen.addWidget(bAirport);
   jan9Screen.addWidget(bOState);
   jan9Screen.addWidget(bDState);
@@ -262,7 +282,7 @@ void setup()
   jan10Screen = new Screen(color(247, 197, 173));
   jan10Screen.addHeader(jan10Head);
   jan10Screen.addWidget(bHomeScreen);
-  jan10Screen.addWidget(butt_lateness);
+  jan10Screen.addWidget(bLateness);
   jan10Screen.addWidget(bAirport);
   jan10Screen.addWidget(bOState);
   jan10Screen.addWidget(bDState);
@@ -270,7 +290,7 @@ void setup()
   jan11Screen = new Screen(color(247, 197, 173));
   jan11Screen.addHeader(jan11Head);
   jan11Screen.addWidget(bHomeScreen);
-  jan11Screen.addWidget(butt_lateness);
+  jan11Screen.addWidget(bLateness);
   jan11Screen.addWidget(bAirport);
   jan11Screen.addWidget(bOState);
   jan11Screen.addWidget(bDState);
@@ -278,7 +298,7 @@ void setup()
   jan12Screen = new Screen(color(247, 197, 173));
   jan12Screen.addHeader(jan12Head);
   jan12Screen.addWidget(bHomeScreen);
-  jan12Screen.addWidget(butt_lateness);
+  jan12Screen.addWidget(bLateness);
   jan12Screen.addWidget(bAirport);
   jan12Screen.addWidget(bOState);
   jan12Screen.addWidget(bDState);
@@ -286,7 +306,7 @@ void setup()
   jan13Screen = new Screen(color(247, 197, 173));
   jan13Screen.addHeader(jan13Head);
   jan13Screen.addWidget(bHomeScreen);
-  jan1Screen.addWidget(butt_lateness);
+  jan1Screen.addWidget(bLateness);
   jan13Screen.addWidget(bAirport);
   jan13Screen.addWidget(bOState);
   jan13Screen.addWidget(bDState);
@@ -295,7 +315,7 @@ void setup()
   jan14Screen = new Screen(color(247, 197, 173));
   jan14Screen.addHeader(jan14Head);
   jan14Screen.addWidget(bHomeScreen);
-  jan14Screen.addWidget(butt_lateness);
+  jan14Screen.addWidget(bLateness);
   jan14Screen.addWidget(bAirport);
   jan14Screen.addWidget(bOState);
   jan14Screen.addWidget(bDState);
@@ -303,7 +323,7 @@ void setup()
   jan15Screen = new Screen(color(247, 197, 173));
   jan15Screen.addHeader(jan15Head);
   jan15Screen.addWidget(bHomeScreen);
-  jan15Screen.addWidget(butt_lateness);
+  jan15Screen.addWidget(bLateness);
   jan15Screen.addWidget(bAirport);
   jan15Screen.addWidget(bOState);
   jan15Screen.addWidget(bDState);
@@ -311,7 +331,7 @@ void setup()
   jan16Screen = new Screen(color(247, 197, 173));
   jan16Screen.addHeader(jan16Head);
   jan16Screen.addWidget(bHomeScreen);
-  jan16Screen.addWidget(butt_lateness);
+  jan16Screen.addWidget(bLateness);
   jan16Screen.addWidget(bAirport);
   jan16Screen.addWidget(bOState);
   jan16Screen.addWidget(bDState);
@@ -319,7 +339,7 @@ void setup()
   jan17Screen = new Screen(color(247, 197, 173));
   jan17Screen.addHeader(jan17Head);
   jan17Screen.addWidget(bHomeScreen);
-  jan17Screen.addWidget(butt_lateness);
+  jan17Screen.addWidget(bLateness);
   jan17Screen.addWidget(bAirport);
   jan17Screen.addWidget(bOState);
   jan17Screen.addWidget(bDState);
@@ -327,7 +347,7 @@ void setup()
   jan18Screen = new Screen(color(247, 197, 173));
   jan18Screen.addHeader(jan18Head);
   jan18Screen.addWidget(bHomeScreen);
-  jan18Screen.addWidget(butt_lateness);
+  jan18Screen.addWidget(bLateness);
   jan18Screen.addWidget(bAirport);
   jan18Screen.addWidget(bOState);
   jan18Screen.addWidget(bDState);
@@ -335,7 +355,7 @@ void setup()
   jan19Screen = new Screen(color(247, 197, 173));
   jan19Screen.addHeader(jan19Head);
   jan19Screen.addWidget(bHomeScreen);
-  jan19Screen.addWidget(butt_lateness);
+  jan19Screen.addWidget(bLateness);
   jan19Screen.addWidget(bAirport);
   jan19Screen.addWidget(bOState);
   jan19Screen.addWidget(bDState);
@@ -343,7 +363,7 @@ void setup()
   jan20Screen = new Screen(color(247, 197, 173));
   jan20Screen.addHeader(jan20Head);
   jan20Screen.addWidget(bHomeScreen);
-  jan20Screen.addWidget(butt_lateness);
+  jan20Screen.addWidget(bLateness);
   jan20Screen.addWidget(bAirport);
   jan20Screen.addWidget(bOState);
   jan20Screen.addWidget(bDState);
@@ -351,7 +371,7 @@ void setup()
   jan21Screen = new Screen(color(247, 197, 173));
   jan21Screen.addHeader(jan21Head);
   jan21Screen.addWidget(bHomeScreen);
-  jan21Screen.addWidget(butt_lateness);
+  jan21Screen.addWidget(bLateness);
   jan21Screen.addWidget(bAirport);
   jan21Screen.addWidget(bOState);
   jan21Screen.addWidget(bDState);
@@ -359,7 +379,7 @@ void setup()
   jan22Screen = new Screen(color(247, 197, 173));
   jan22Screen.addHeader(jan22Head);
   jan22Screen.addWidget(bHomeScreen);
-  jan22Screen.addWidget(butt_lateness);
+  jan22Screen.addWidget(bLateness);
   jan22Screen.addWidget(bAirport);
   jan22Screen.addWidget(bOState);
   jan22Screen.addWidget(bDState);
@@ -367,7 +387,7 @@ void setup()
   jan23Screen = new Screen(color(247, 197, 173));
   jan23Screen.addHeader(jan23Head);
   jan23Screen.addWidget(bHomeScreen);
-  jan23Screen.addWidget(butt_lateness);
+  jan23Screen.addWidget(bLateness);
   jan23Screen.addWidget(bAirport);
   jan23Screen.addWidget(bOState);
   jan23Screen.addWidget(bDState);
@@ -375,7 +395,7 @@ void setup()
   jan24Screen = new Screen(color(247, 197, 173));
   jan24Screen.addHeader(jan24Head);
   jan24Screen.addWidget(bHomeScreen);
-  jan24Screen.addWidget(butt_lateness);
+  jan24Screen.addWidget(bLateness);
   jan24Screen.addWidget(bAirport);
   jan24Screen.addWidget(bOState);
   jan24Screen.addWidget(bDState);
@@ -383,7 +403,7 @@ void setup()
   jan25Screen = new Screen(color(247, 197, 173));
   jan25Screen.addHeader(jan25Head);
   jan25Screen.addWidget(bHomeScreen);
-  jan25Screen.addWidget(butt_lateness);
+  jan25Screen.addWidget(bLateness);
   jan25Screen.addWidget(bAirport);
   jan25Screen.addWidget(bOState);
   jan25Screen.addWidget(bDState);
@@ -391,7 +411,7 @@ void setup()
   jan26Screen = new Screen(color(247, 197, 173));
   jan26Screen.addHeader(jan26Head);
   jan26Screen.addWidget(bHomeScreen);
-  jan26Screen.addWidget(butt_lateness);
+  jan26Screen.addWidget(bLateness);
   jan26Screen.addWidget(bAirport);
   jan26Screen.addWidget(bOState);
   jan26Screen.addWidget(bDState);
@@ -399,7 +419,7 @@ void setup()
   jan27Screen = new Screen(color(247, 197, 173));
   jan27Screen.addHeader(jan27Head);
   jan27Screen.addWidget(bHomeScreen);
-  jan27Screen.addWidget(butt_lateness);
+  jan27Screen.addWidget(bLateness);
   jan27Screen.addWidget(bAirport);
   jan27Screen.addWidget(bOState);
   jan27Screen.addWidget(bDState);
@@ -407,7 +427,7 @@ void setup()
   jan28Screen = new Screen(color(247, 197, 173));
   jan28Screen.addHeader(jan28Head);
   jan28Screen.addWidget(bHomeScreen);
-  jan28Screen.addWidget(butt_lateness);
+  jan28Screen.addWidget(bLateness);
   jan28Screen.addWidget(bAirport);
   jan28Screen.addWidget(bOState);
   jan28Screen.addWidget(bDState);
@@ -415,7 +435,7 @@ void setup()
   jan29Screen = new Screen(color(247, 197, 173));
   jan29Screen.addHeader(jan29Head);
   jan29Screen.addWidget(bHomeScreen);
-  jan29Screen.addWidget(butt_lateness);
+  jan29Screen.addWidget(bLateness);
   jan29Screen.addWidget(bAirport);
   jan29Screen.addWidget(bOState);
   jan29Screen.addWidget(bDState);
@@ -423,7 +443,7 @@ void setup()
   jan30Screen = new Screen(color(247, 197, 173));
   jan30Screen.addHeader(jan30Head);
   jan30Screen.addWidget(bHomeScreen);
-  jan30Screen.addWidget(butt_lateness);
+  jan30Screen.addWidget(bLateness);
   jan30Screen.addWidget(bAirport);
   jan30Screen.addWidget(bOState);
   jan30Screen.addWidget(bDState);
@@ -431,16 +451,16 @@ void setup()
   jan31Screen = new Screen(color(247, 197, 173));
   jan31Screen.addHeader(jan31Head);
   jan31Screen.addWidget(bHomeScreen);
-  jan30Screen.addWidget(butt_lateness);
-  jan30Screen.addWidget(bAirport);
-  jan30Screen.addWidget(bOState);
-  jan30Screen.addWidget(bDState);
+  jan31Screen.addWidget(bLateness);
+  jan31Screen.addWidget(bAirport);
+  jan31Screen.addWidget(bOState);
+  jan31Screen.addWidget(bDState);
 
   // * creating Array list
   widgetList = new ArrayList();
 
   widgetList.add(bHomeScreen);
-  widgetList.add(butt_lateness);
+  widgetList.add(bLateness);
   widgetList.add(bAirport);
   widgetList.add(bOState);
   widgetList.add(bDState);
@@ -476,6 +496,12 @@ void setup()
   widgetList.add(jan29);
   widgetList.add(jan30);
   widgetList.add(jan31);
+  widgetList.add(tLate);
+  widgetList.add(tAirport);
+  widgetList.add(tOState);
+  widgetList.add(tDState);
+  
+  
 
   screenList = new ArrayList();
   screenList.add(currentScreen);
