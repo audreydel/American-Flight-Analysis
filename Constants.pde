@@ -1,16 +1,35 @@
+// screen size 
+
 final int SCREENX = 1400;
 final int SCREENY = 900;
 
-final int HOME_BUTTON=1;
-final int HOME_LOGO=1;
-final int BUTTON_PAGE1=2;
-final int BUTTON_PAGE2=3;
-final int BUTTON_PAGE3=4;
-final int PIECHART2RIGHT=33;
-final int PIECHART2LEFT=34;
+// task bar values
+final int tbY= 120;    // ypos 
+final int tbW = 217;   // width
+final int tbH = 55;    // height
+
+// header values 
+final int hH = 100; // height
+
+// label values 
+final int lW = 440;
+final int lH = 50;
+final int lX = (SCREENX/2)-200;
+final int lY = tbY;
+
+final color lCol = color(255,252,241);
+
+// task bar events
+final int MAIN_SCREEN = 58;
+final int EVENT_LATE = 59; 
+final int EVENT_AIRPORT = 60;
+final int EVENT_OSTATE = 61; 
+final int EVENT_DSTATE = 62;
 final int EVENT_NULL=0;
-final int WIDG_POS=70;
-final color widgeCol=color(#ffbf80);
+
+
+// calendar events 
+
 final int JAN1=2;
 final int JAN2=3;
 final int JAN3=4;
@@ -42,3 +61,6 @@ final int JAN28=29;
 final int JAN29=30;
 final int JAN30=31;
 final int JAN31=32;
+
+final color headColor=color(186, 109, 104);
+final color borderColor = color(0);

@@ -31,12 +31,15 @@ class PieChart {
   void setup() {
     noStroke();
   }
-  void draw() {
-    if (currentScreen==screen3) {
-      pieChart(diam, graph1);
-    } else if (currentScreen==screen5) {
-      pieChart(diam, graph2);
-    }
+  void draw() 
+  {
+    //if (currentScreen==screen3) 
+    //{
+    //  pieChart(diam, graph1);
+    //} else if (currentScreen==screen5) 
+    //{
+    //  pieChart(diam, graph2);
+    //}
   }
 
   void pieChart(float diameter, float[] data) {

@@ -1,209 +1,689 @@
-ArrayList widgetList1;
-ArrayList widgetList2;
-ArrayList emptyWidgetList;
-ArrayList calList;
-ArrayList fakeList;
-ArrayList screenList;
+// main
 
-Screen screen1, screen2, screen3, screen4, screen5, currentScreen, introScreen, mainPage;
+PFont stdFont, arrowFont, headFont, italicFont;
+PImage logo, logoHeader;
+
 Flights currFlight;
 
-Header mainHead, head1st, head2nd, head3rd, head4th, head5th, head6th, head7th,
-  head8th, head9th, head10th, head11th, head12th, head13th, head14th, head15th, 
-  head16th, head17th, head18th, head19th, head20th, head21st, head22nd, head23rd, 
-  head24th, head25th, head26th, head27th, head28th, head29th, head30th, head31st,
-  headGraph1, headGraph2, headGraph3, headNull;
+Label lCalendar, lLateness, lAirport, lOState, lDState;
 
-Widget homeScreen, homeLogo, emptyWidget, graph1, pieChart, graph3, rightArrow, leftArrow,
-  jan1,jan2,jan3,jan4,jan5,jan6,jan7,jan8,jan9,jan10,jan11,jan12,
-  jan13,jan14,jan15,jan16,jan17,jan18,jan19,jan20,jan21,jan22,jan23,
-  jan24,jan25,jan26,jan27,jan28,jan29,jan30,jan31;
+ArrayList widgetList;
+Widget bHomeScreen, butt_lateness, bAirport, bOState, bDState;
+Widget jan1, jan2, jan3, jan4, jan5, jan6, jan7, jan8, jan9, jan10, jan11, jan12, jan13, jan14,
+  jan15, jan16, jan17, jan18, jan19, jan20, jan21, jan22, jan23, jan24, jan25, jan26,
+  jan27, jan28, jan29, jan30, jan31;
 
-PImage logo, logoHeader;
-void setup() {
+ArrayList screenList;
+Screen currentScreen, introScreen, mainScreen, screen1, screen2, screenPt1;
+Screen jan1Screen, jan2Screen, jan3Screen, jan4Screen, jan5Screen, jan6Screen, jan7Screen,
+  jan8Screen, jan9Screen, jan10Screen, jan11Screen, jan12Screen, jan13Screen,
+  jan14Screen, jan15Screen, jan16Screen, jan17Screen, jan18Screen, jan19Screen,
+  jan20Screen, jan21Screen, jan22Screen, jan23Screen, jan24Screen, jan25Screen,
+  jan26Screen, jan27Screen, jan28Screen, jan29Screen, jan30Screen, jan31Screen;
+
+Header mainHead, jan1Head, jan2Head, jan3Head, jan4Head, jan5Head, jan6Head, jan7Head, jan8Head,
+  jan9Head, jan10Head, jan11Head, jan12Head, jan13Head, jan14Head, jan15Head, jan16Head,
+  jan17Head, jan18Head, jan19Head, jan20Head, jan21Head, jan22Head, jan23Head, jan24Head,
+  jan25Head, jan26Head, jan27Head, jan28Head, jan29Head, jan30Head, jan31Head;
+
+
+void settings()
+{
+  size(SCREENX, SCREENY);
+}
+
+void setup()
+{
+  // flight info
+
   currFlight = new Flights();
   currFlight.initialiseData();
   currFlight.countTime(0, jan1Count);
   currFlight.cancelledFlights();
-  
-  println(jan1Count, jan2Count, jan3Count, jan4Count, 
-  jan5Count, jan6Count,jan7Count,jan8Count,jan9Count,jan10Count);
-  
-  PFont stdFont, arrowFont, headFont;
-  
-  color backgroundCol=color(247, 197, 173);
-  color headColor=color(186, 109, 104);
-  fill(255);
-  stdFont=loadFont("RockwellNova-30.vlw");
-  arrowFont=loadFont("BellMTBold-15.vlw");
-  headFont=loadFont("AgencyFB-Bold-48.vlw");
+
+  // fonts
+  stdFont = loadFont("BodoniSvtyTwoOSITCTT-BookIt-30.vlw");
   textFont(stdFont);
-  fill(0);
-  
+  arrowFont = loadFont("ArimaMadurai-Light-15.vlw");
+  headFont =loadFont("Georgia-BoldItalic-48.vlw");
+  italicFont = loadFont("Georgia-Italic-30.vlw");
+
+  // logos
   logo = loadImage("airyFairy.png");
   image (logo, 1000, 500);
   logo.resize(SCREENX, SCREENY);
-  
-  homeScreen=new Widget(0, 120, 200, 55,
-    "Home Page", headColor,
-    stdFont, HOME_BUTTON);
-  //graph1=new Widget(40, WIDG_POS*2, 180, 40,
-  //  "Graph 1", headColor,
-  //  stdFont, BUTTON_PAGE1);
-  //pieChart=new Widget(40, WIDG_POS*3, 180, 40,
-  //  "Graph 2", headColor,
-  //  stdFont, BUTTON_PAGE2);
-  //graph3=new Widget(40, WIDG_POS*4, 180, 40,
-  //  "Graph 3", headColor,
-  //  stdFont, BUTTON_PAGE3);
-  //stroke(255);
-  //fill(0); 
-  
-  rightArrow=new Widget(710,700, 50,35,">", headColor,arrowFont,PIECHART2RIGHT);
-  leftArrow=new Widget(650,700, 50,35,"<", headColor,arrowFont,PIECHART2LEFT);
-  //fill(0);
-  
-  jan1=new Widget(820,308,60,50,"1",headColor,arrowFont,JAN1);
-  jan2=new Widget(882,308,60,50,"2",headColor,arrowFont,JAN2);
-  jan3=new Widget(510,360,60,50,"3",headColor,arrowFont,JAN3);
-  jan4=new Widget(572,360,60,50,"4",headColor,arrowFont,JAN4);
-  jan5=new Widget(634,360,60,50,"5",headColor,arrowFont,JAN5);
-  jan6=new Widget(696,360,60,50,"6",headColor,arrowFont,JAN6);
-  jan7=new Widget(758,360,60,50,"7",headColor,arrowFont,JAN7);
-  jan8=new Widget(820,360,60,50,"8",headColor,arrowFont,JAN8);
-  jan9=new Widget(882,360,60,50,"9",headColor,arrowFont,JAN9);
-  jan10=new Widget(510,412,60,50,"10",headColor,arrowFont,JAN10);
-  jan11=new Widget(572,412,60,50,"11",headColor,arrowFont,JAN11);
-  jan12=new Widget(634,412,60,50,"12",headColor,arrowFont,JAN12);
-  jan13=new Widget(696,412,60,50,"13",headColor,arrowFont,JAN13);
-  jan14=new Widget(758,412,60,50,"14",headColor,arrowFont,JAN14);
-  jan15=new Widget(820,412,60,50,"15",headColor,arrowFont,JAN15);
-  jan16=new Widget(882,412,60,50,"16",headColor,arrowFont,JAN16);
-  jan17=new Widget(510,464,60,50,"17",headColor,arrowFont,JAN17);
-  jan18=new Widget(572,464,60,50,"18",headColor,arrowFont,JAN18);
-  jan19=new Widget(634,464,60,50,"19",headColor,arrowFont,JAN19);
-  jan20=new Widget(696,464,60,50,"20",headColor,arrowFont,JAN20);
-  jan21=new Widget(758,464,60,50,"21",headColor,arrowFont,JAN21);
-  jan22=new Widget(820,464,60,50,"22",headColor,arrowFont,JAN22);
-  jan23=new Widget(882,464,60,50,"23",headColor,arrowFont,JAN23);
-  jan24=new Widget(510,516,60,50,"24",headColor,arrowFont,JAN24);
-  jan25=new Widget(572,516,60,50,"25",headColor,arrowFont,JAN25);
-  jan26=new Widget(634,516,60,50,"26",headColor,arrowFont,JAN26);
-  jan27=new Widget(696,516,60,50,"27",headColor,arrowFont,JAN27);
-  jan28=new Widget(758,516,60,50,"28",headColor,arrowFont,JAN28);
-  jan29=new Widget(820,516,60,50,"29",headColor,arrowFont,JAN29);
-  jan30=new Widget(882,516,60,50,"30",headColor,arrowFont,JAN30);
-  jan31=new Widget(510,568,60,50,"31",headColor,arrowFont,JAN31);
-  
-  size(1400, 900);
 
-  widgetList1 = new ArrayList();
-  widgetList2=new ArrayList();
-  calList=new ArrayList();
-  fakeList=new ArrayList();
-  //emptyWidgetList=new ArrayList();
-  
-  widgetList1.add(homeScreen);
-  //widgetList1.add(graph1);
-  //widgetList1.add(pieChart);
-  //widgetList1.add(graph3);
-  
-  widgetList2.add(rightArrow);
-  widgetList2.add(leftArrow);
-  
-  calList.add(jan1);
-  calList.add(jan2);
-  calList.add(jan3);
-  calList.add(jan4);
-  calList.add(jan5);
-  calList.add(jan6);
-  calList.add(jan7);
-  calList.add(jan8);
-  calList.add(jan9);
-  calList.add(jan10);
-  calList.add(jan11);
-  calList.add(jan12);
-  calList.add(jan13);
-  calList.add(jan14);
-  calList.add(jan15);
-  calList.add(jan16);
-  calList.add(jan17);
-  calList.add(jan18);
-  calList.add(jan19);
-  calList.add(jan20);
-  calList.add(jan21);
-  calList.add(jan22);
-  calList.add(jan23);
-  calList.add(jan24);
-  calList.add(jan25);
-  calList.add(jan26);
-  calList.add(jan27);
-  calList.add(jan28);
-  calList.add(jan29);
-  calList.add(jan30);
-  calList.add(jan31);
-  
-  mainHead = new Header (1400, 100, headColor, "Airy Fairy",headFont);
-  head1st = new Header (SCREENX, 100,headColor, "January 1st",headFont);
-  head2nd = new Header (SCREENX, 100,headColor, "January 2nd",headFont);
-  head3rd = new Header (SCREENX, 100, headColor, "January 3rd",headFont);
-  head4th = new Header (SCREENX, 100, headColor, "January 4th",headFont);
-  head5th = new Header (SCREENX, 100, headColor, "January 5th",headFont);
-  head6th = new Header (SCREENX, 100,headColor, "January 6th",headFont);
-  head7th = new Header (SCREENX, 100, headColor, "January 7th",headFont);
-  head8th = new Header (SCREENX, 100, headColor, "January 8th",headFont);
-  head9th = new Header (SCREENX, 100, headColor, "January 9th",headFont);
-  head10th = new Header (SCREENX, 100, headColor, "January 10th",headFont);
-  head11th = new Header (SCREENX, 100,headColor, "January 11th",headFont);
-  head12th = new Header (SCREENX, 100, headColor, "January 12th",headFont);
-  head13th = new Header (SCREENX, 100, headColor, "January 13th",headFont);
-  head14th = new Header (SCREENX, 100, headColor, "January 14th",headFont);
-  head15th = new Header (SCREENX, 100, headColor, "January 15th",headFont);
-  head16th = new Header (SCREENX, 100, headColor, "January 16th",headFont);
-  head17th = new Header (SCREENX, 100, headColor, "January 17th",headFont);
-  head18th = new Header (SCREENX, 100, headColor, "January 18th",headFont);
-  head19th = new Header (SCREENX, 100, headColor, "January 19th",headFont);
-  head20th = new Header (SCREENX, 100, headColor, "January 20th",headFont);
-  head21st = new Header (SCREENX, 100, headColor, "January 21st",headFont);
-  head22nd = new Header (SCREENX, 100, headColor, "January 22nd",headFont);
-  head23rd = new Header (SCREENX, 100, headColor, "January 23rd",headFont);
-  head24th = new Header (SCREENX, 100, headColor, "January 24th",headFont);
-  head25th = new Header (SCREENX, 100, headColor, "January 25th",headFont);
-  head26th = new Header (SCREENX, 100, headColor, "January 26th",headFont);
-  head27th = new Header (SCREENX, 100, headColor, "January 27th",headFont);
-  head28th = new Header (SCREENX, 100, headColor, "January 28th",headFont);
-  head29th = new Header (SCREENX, 100, headColor, "January 29th",headFont);
-  head30th = new Header (SCREENX, 100, headColor, "January 30th",headFont);
-  head31st = new Header (SCREENX, 100, headColor, "January 31st",headFont);
-  
-  headNull = new Header (0,0,0,"",headFont);
   logoHeader = loadImage("AF-header.png");
-  logoHeader.resize(200,100);
-  
-  //emptyWidget = new Widget(0,0,0,0,"",color(0), stdFont, EVENT_NULL);
+  logoHeader.resize(170, 100);
 
-  screen1=new Screen(backgroundCol,calList,widgetList1);
-  screen2=new Screen(backgroundCol,widgetList1,fakeList);
-  screen3=new Screen(backgroundCol,widgetList1,widgetList2);
-  screen4=new Screen(backgroundCol,widgetList1,fakeList);
-  introScreen=new Screen(backgroundCol,fakeList, fakeList);
-  //mainPage=new Screen(widgetList1, fakeList);
-  screen5=new Screen(backgroundCol,widgetList1,widgetList2);
-  
-  screen3.addPieChart(300.0);
-  screen5.addPieChart(300.0);
-  screen2.addBarChart();
-  
-  currentScreen=introScreen;
+  // task bar
+
+  bHomeScreen = new Widget (0, tbY, tbW, tbH, "Home Page", headColor,
+    stdFont, MAIN_SCREEN, borderColor);
+  butt_lateness = new Widget (0, tbY+tbH, tbW, tbH, "Lateness", headColor,
+    stdFont, EVENT_LATE, borderColor);
+  bAirport = new Widget (0, tbY+(tbH*2), tbW, tbH, "Airports", headColor,
+    stdFont, EVENT_AIRPORT, borderColor);
+  bOState = new Widget (0, tbY+(tbH*3), tbW, tbH, "Origin State", headColor,
+    stdFont, EVENT_OSTATE, borderColor);
+  bDState = new Widget (0, tbY+(tbH*4), tbW, tbH, "Destination State", headColor,
+    stdFont, EVENT_DSTATE, borderColor);
+
+
+  // labels
+  lCalendar = new Label (lX, lY, lW, lH, lCol, "Calendar", stdFont);
+  lLateness = new Label (lX, lY, lW, lH, lCol, "Lateness", stdFont);
+  lAirport = new Label (lX, lY, lW, lH, lCol, "Airport", stdFont);
+  lOState = new Label (lX, lY, lW, lH, lCol, "Origin State", stdFont);
+  lDState = new Label (lX, lY, lW, lH, lCol, "Destination State", stdFont);
+
+  // calendar buttons
+  jan1=new Widget(820, 308, 60, 50, "1", headColor, arrowFont, JAN1, borderColor);
+  jan2=new Widget(882, 308, 60, 50, "2", headColor, arrowFont, JAN2, borderColor);
+  jan3=new Widget(510, 360, 60, 50, "3", headColor, arrowFont, JAN3, borderColor);
+  jan4=new Widget(572, 360, 60, 50, "4", headColor, arrowFont, JAN4, borderColor);
+  jan5=new Widget(634, 360, 60, 50, "5", headColor, arrowFont, JAN5, borderColor);
+  jan6=new Widget(696, 360, 60, 50, "6", headColor, arrowFont, JAN6, borderColor);
+  jan7=new Widget(758, 360, 60, 50, "7", headColor, arrowFont, JAN7, borderColor);
+  jan8=new Widget(820, 360, 60, 50, "8", headColor, arrowFont, JAN8, borderColor);
+  jan9=new Widget(882, 360, 60, 50, "9", headColor, arrowFont, JAN9, borderColor);
+  jan10=new Widget(510, 412, 60, 50, "10", headColor, arrowFont, JAN10, borderColor);
+  jan11=new Widget(572, 412, 60, 50, "11", headColor, arrowFont, JAN11, borderColor);
+  jan12=new Widget(634, 412, 60, 50, "12", headColor, arrowFont, JAN12, borderColor);
+  jan13=new Widget(696, 412, 60, 50, "13", headColor, arrowFont, JAN13, borderColor);
+  jan14=new Widget(758, 412, 60, 50, "14", headColor, arrowFont, JAN14, borderColor);
+  jan15=new Widget(820, 412, 60, 50, "15", headColor, arrowFont, JAN15, borderColor);
+  jan16=new Widget(882, 412, 60, 50, "16", headColor, arrowFont, JAN16, borderColor);
+  jan17=new Widget(510, 464, 60, 50, "17", headColor, arrowFont, JAN17, borderColor);
+  jan18=new Widget(572, 464, 60, 50, "18", headColor, arrowFont, JAN18, borderColor);
+  jan19=new Widget(634, 464, 60, 50, "19", headColor, arrowFont, JAN19, borderColor);
+  jan20=new Widget(696, 464, 60, 50, "20", headColor, arrowFont, JAN20, borderColor);
+  jan21=new Widget(758, 464, 60, 50, "21", headColor, arrowFont, JAN21, borderColor);
+  jan22=new Widget(820, 464, 60, 50, "22", headColor, arrowFont, JAN22, borderColor);
+  jan23=new Widget(882, 464, 60, 50, "23", headColor, arrowFont, JAN23, borderColor);
+  jan24=new Widget(510, 516, 60, 50, "24", headColor, arrowFont, JAN24, borderColor);
+  jan25=new Widget(572, 516, 60, 50, "25", headColor, arrowFont, JAN25, borderColor);
+  jan26=new Widget(634, 516, 60, 50, "26", headColor, arrowFont, JAN26, borderColor);
+  jan27=new Widget(696, 516, 60, 50, "27", headColor, arrowFont, JAN27, borderColor);
+  jan28=new Widget(758, 516, 60, 50, "28", headColor, arrowFont, JAN28, borderColor);
+  jan29=new Widget(820, 516, 60, 50, "29", headColor, arrowFont, JAN29, borderColor);
+  jan30=new Widget(882, 516, 60, 50, "30", headColor, arrowFont, JAN30, borderColor);
+  jan31=new Widget(510, 568, 60, 50, "31", headColor, arrowFont, JAN31, borderColor);
+
+
+
+  // screen headers
+  mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont);
+  jan1Head = new Header (SCREENX, hH, headColor, "January 1", headFont);
+  jan2Head = new Header (SCREENX, hH, headColor, "January 2", headFont);
+  jan3Head = new Header (SCREENX, hH, headColor, "January 3", headFont);
+  jan4Head = new Header (SCREENX, hH, headColor, "January 4", headFont);
+  jan5Head = new Header (SCREENX, hH, headColor, "January 5", headFont);
+  jan6Head = new Header (SCREENX, hH, headColor, "January 6", headFont);
+  jan7Head = new Header (SCREENX, hH, headColor, "January 7", headFont);
+  jan8Head = new Header (SCREENX, hH, headColor, "January 8", headFont);
+  jan9Head = new Header (SCREENX, hH, headColor, "January 9", headFont);
+  jan10Head = new Header (SCREENX, hH, headColor, "January 10", headFont);
+  jan11Head = new Header (SCREENX, hH, headColor, "January 11", headFont);
+  jan12Head = new Header (SCREENX, hH, headColor, "January 12", headFont);
+  jan13Head = new Header (SCREENX, hH, headColor, "January 13", headFont);
+  jan14Head = new Header (SCREENX, hH, headColor, "January 14", headFont);
+  jan15Head = new Header (SCREENX, hH, headColor, "January 15", headFont);
+  jan16Head = new Header (SCREENX, hH, headColor, "January 16", headFont);
+  jan17Head = new Header (SCREENX, hH, headColor, "January 17", headFont);
+  jan18Head = new Header (SCREENX, hH, headColor, "January 18", headFont);
+  jan19Head = new Header (SCREENX, hH, headColor, "January 19", headFont);
+  jan20Head = new Header (SCREENX, hH, headColor, "January 20", headFont);
+  jan21Head = new Header (SCREENX, hH, headColor, "January 21", headFont);
+  jan22Head = new Header (SCREENX, hH, headColor, "January 22", headFont);
+  jan23Head = new Header (SCREENX, hH, headColor, "January 23", headFont);
+  jan24Head = new Header (SCREENX, hH, headColor, "January 24", headFont);
+  jan25Head = new Header (SCREENX, hH, headColor, "January 25", headFont);
+  jan26Head = new Header (SCREENX, hH, headColor, "January 26", headFont);
+  jan27Head = new Header (SCREENX, hH, headColor, "January 27", headFont);
+  jan28Head = new Header (SCREENX, hH, headColor, "January 28", headFont);
+  jan29Head = new Header (SCREENX, hH, headColor, "January 29", headFont);
+  jan30Head = new Header (SCREENX, hH, headColor, "January 30", headFont);
+  jan31Head = new Header (SCREENX, hH, headColor, "January 31", headFont);
+
+
+  // screens
+  introScreen = new Screen(color(247, 197, 173));
+
+  mainScreen = new Screen(color(247, 197, 173));
+  mainScreen.addHeader(mainHead);
+  mainScreen.addLabel(lCalendar);
+
+  mainScreen.addWidget(bHomeScreen);
+  mainScreen.addWidget(jan1);
+  mainScreen.addWidget(jan2);
+  mainScreen.addWidget(jan3);
+  mainScreen.addWidget(jan4);
+  mainScreen.addWidget(jan5);
+  mainScreen.addWidget(jan6);
+  mainScreen.addWidget(jan7);
+  mainScreen.addWidget(jan8);
+  mainScreen.addWidget(jan9);
+  mainScreen.addWidget(jan10);
+  mainScreen.addWidget(jan11);
+  mainScreen.addWidget(jan12);
+  mainScreen.addWidget(jan13);
+  mainScreen.addWidget(jan14);
+  mainScreen.addWidget(jan15);
+  mainScreen.addWidget(jan16);
+  mainScreen.addWidget(jan17);
+  mainScreen.addWidget(jan18);
+  mainScreen.addWidget(jan19);
+  mainScreen.addWidget(jan20);
+  mainScreen.addWidget(jan21);
+  mainScreen.addWidget(jan22);
+  mainScreen.addWidget(jan23);
+  mainScreen.addWidget(jan24);
+  mainScreen.addWidget(jan25);
+  mainScreen.addWidget(jan26);
+  mainScreen.addWidget(jan27);
+  mainScreen.addWidget(jan28);
+  mainScreen.addWidget(jan29);
+  mainScreen.addWidget(jan30);
+  mainScreen.addWidget(jan31);
+
+  jan1Screen = new Screen(color(247, 197, 173));
+  jan1Screen.addHeader(jan1Head);
+  jan1Screen.addWidget(bHomeScreen);
+  jan1Screen.addWidget(butt_lateness);
+  jan1Screen.addWidget(bAirport);
+  jan1Screen.addWidget(bOState);
+  jan1Screen.addWidget(bDState);
+
+  jan2Screen = new Screen(color(247, 197, 173));
+  jan2Screen.addHeader(jan2Head);
+  jan2Screen.addWidget(bHomeScreen);
+  jan2Screen.addWidget(butt_lateness);
+  jan2Screen.addWidget(bAirport);
+  jan2Screen.addWidget(bOState);
+  jan2Screen.addWidget(bDState);
+
+  jan3Screen = new Screen(color(247, 197, 173));
+  jan3Screen.addHeader(jan3Head);
+  jan3Screen.addWidget(bHomeScreen);
+  jan3Screen.addWidget(butt_lateness);
+  jan3Screen.addWidget(bAirport);
+  jan3Screen.addWidget(bOState);
+  jan3Screen.addWidget(bDState);
+
+  jan4Screen = new Screen(color(247, 197, 173));
+  jan4Screen.addHeader(jan4Head);
+  jan4Screen.addWidget(bHomeScreen);
+  jan4Screen.addWidget(butt_lateness);
+  jan4Screen.addWidget(bAirport);
+  jan4Screen.addWidget(bOState);
+  jan4Screen.addWidget(bDState);
+
+  jan5Screen = new Screen(color(247, 197, 173));
+  jan5Screen.addHeader(jan5Head);
+  jan5Screen.addWidget(bHomeScreen);
+  jan5Screen.addWidget(butt_lateness);
+  jan5Screen.addWidget(bAirport);
+  jan5Screen.addWidget(bOState);
+  jan5Screen.addWidget(bDState);
+
+  jan6Screen = new Screen(color(247, 197, 173));
+  jan6Screen.addHeader(jan6Head);
+  jan6Screen.addWidget(bHomeScreen);
+  jan6Screen.addWidget(butt_lateness);
+  jan6Screen.addWidget(bAirport);
+  jan6Screen.addWidget(bOState);
+  jan6Screen.addWidget(bDState);
+
+  jan7Screen = new Screen(color(247, 197, 173));
+  jan7Screen.addHeader(jan7Head);
+  jan7Screen.addWidget(bHomeScreen);
+  jan7Screen.addWidget(butt_lateness);
+  jan7Screen.addWidget(bAirport);
+  jan7Screen.addWidget(bOState);
+  jan7Screen.addWidget(bDState);
+
+  jan8Screen = new Screen(color(247, 197, 173));
+  jan8Screen.addHeader(jan8Head);
+  jan8Screen.addWidget(bHomeScreen);
+  jan8Screen.addWidget(butt_lateness);
+  jan8Screen.addWidget(bAirport);
+  jan8Screen.addWidget(bOState);
+  jan8Screen.addWidget(bDState);
+
+  jan9Screen = new Screen(color(247, 197, 173));
+  jan9Screen.addHeader(jan9Head);
+  jan9Screen.addWidget(bHomeScreen);
+  jan9Screen.addWidget(butt_lateness);
+  jan9Screen.addWidget(bAirport);
+  jan9Screen.addWidget(bOState);
+  jan9Screen.addWidget(bDState);
+
+  jan10Screen = new Screen(color(247, 197, 173));
+  jan10Screen.addHeader(jan10Head);
+  jan10Screen.addWidget(bHomeScreen);
+  jan10Screen.addWidget(butt_lateness);
+  jan10Screen.addWidget(bAirport);
+  jan10Screen.addWidget(bOState);
+  jan10Screen.addWidget(bDState);
+
+  jan11Screen = new Screen(color(247, 197, 173));
+  jan11Screen.addHeader(jan11Head);
+  jan11Screen.addWidget(bHomeScreen);
+  jan11Screen.addWidget(butt_lateness);
+  jan11Screen.addWidget(bAirport);
+  jan11Screen.addWidget(bOState);
+  jan11Screen.addWidget(bDState);
+
+  jan12Screen = new Screen(color(247, 197, 173));
+  jan12Screen.addHeader(jan12Head);
+  jan12Screen.addWidget(bHomeScreen);
+  jan12Screen.addWidget(butt_lateness);
+  jan12Screen.addWidget(bAirport);
+  jan12Screen.addWidget(bOState);
+  jan12Screen.addWidget(bDState);
+
+  jan13Screen = new Screen(color(247, 197, 173));
+  jan13Screen.addHeader(jan13Head);
+  jan13Screen.addWidget(bHomeScreen);
+  jan1Screen.addWidget(butt_lateness);
+  jan13Screen.addWidget(bAirport);
+  jan13Screen.addWidget(bOState);
+  jan13Screen.addWidget(bDState);
+
+
+  jan14Screen = new Screen(color(247, 197, 173));
+  jan14Screen.addHeader(jan14Head);
+  jan14Screen.addWidget(bHomeScreen);
+  jan14Screen.addWidget(butt_lateness);
+  jan14Screen.addWidget(bAirport);
+  jan14Screen.addWidget(bOState);
+  jan14Screen.addWidget(bDState);
+
+  jan15Screen = new Screen(color(247, 197, 173));
+  jan15Screen.addHeader(jan15Head);
+  jan15Screen.addWidget(bHomeScreen);
+  jan15Screen.addWidget(butt_lateness);
+  jan15Screen.addWidget(bAirport);
+  jan15Screen.addWidget(bOState);
+  jan15Screen.addWidget(bDState);
+
+  jan16Screen = new Screen(color(247, 197, 173));
+  jan16Screen.addHeader(jan16Head);
+  jan16Screen.addWidget(bHomeScreen);
+  jan16Screen.addWidget(butt_lateness);
+  jan16Screen.addWidget(bAirport);
+  jan16Screen.addWidget(bOState);
+  jan16Screen.addWidget(bDState);
+
+  jan17Screen = new Screen(color(247, 197, 173));
+  jan17Screen.addHeader(jan17Head);
+  jan17Screen.addWidget(bHomeScreen);
+  jan17Screen.addWidget(butt_lateness);
+  jan17Screen.addWidget(bAirport);
+  jan17Screen.addWidget(bOState);
+  jan17Screen.addWidget(bDState);
+
+  jan18Screen = new Screen(color(247, 197, 173));
+  jan18Screen.addHeader(jan18Head);
+  jan18Screen.addWidget(bHomeScreen);
+  jan18Screen.addWidget(butt_lateness);
+  jan18Screen.addWidget(bAirport);
+  jan18Screen.addWidget(bOState);
+  jan18Screen.addWidget(bDState);
+
+  jan19Screen = new Screen(color(247, 197, 173));
+  jan19Screen.addHeader(jan19Head);
+  jan19Screen.addWidget(bHomeScreen);
+  jan19Screen.addWidget(butt_lateness);
+  jan19Screen.addWidget(bAirport);
+  jan19Screen.addWidget(bOState);
+  jan19Screen.addWidget(bDState);
+
+  jan20Screen = new Screen(color(247, 197, 173));
+  jan20Screen.addHeader(jan20Head);
+  jan20Screen.addWidget(bHomeScreen);
+  jan20Screen.addWidget(butt_lateness);
+  jan20Screen.addWidget(bAirport);
+  jan20Screen.addWidget(bOState);
+  jan20Screen.addWidget(bDState);
+
+  jan21Screen = new Screen(color(247, 197, 173));
+  jan21Screen.addHeader(jan21Head);
+  jan21Screen.addWidget(bHomeScreen);
+  jan21Screen.addWidget(butt_lateness);
+  jan21Screen.addWidget(bAirport);
+  jan21Screen.addWidget(bOState);
+  jan21Screen.addWidget(bDState);
+
+  jan22Screen = new Screen(color(247, 197, 173));
+  jan22Screen.addHeader(jan22Head);
+  jan22Screen.addWidget(bHomeScreen);
+  jan22Screen.addWidget(butt_lateness);
+  jan22Screen.addWidget(bAirport);
+  jan22Screen.addWidget(bOState);
+  jan22Screen.addWidget(bDState);
+
+  jan23Screen = new Screen(color(247, 197, 173));
+  jan23Screen.addHeader(jan23Head);
+  jan23Screen.addWidget(bHomeScreen);
+  jan23Screen.addWidget(butt_lateness);
+  jan23Screen.addWidget(bAirport);
+  jan23Screen.addWidget(bOState);
+  jan23Screen.addWidget(bDState);
+
+  jan24Screen = new Screen(color(247, 197, 173));
+  jan24Screen.addHeader(jan24Head);
+  jan24Screen.addWidget(bHomeScreen);
+  jan24Screen.addWidget(butt_lateness);
+  jan24Screen.addWidget(bAirport);
+  jan24Screen.addWidget(bOState);
+  jan24Screen.addWidget(bDState);
+
+  jan25Screen = new Screen(color(247, 197, 173));
+  jan25Screen.addHeader(jan25Head);
+  jan25Screen.addWidget(bHomeScreen);
+  jan25Screen.addWidget(butt_lateness);
+  jan25Screen.addWidget(bAirport);
+  jan25Screen.addWidget(bOState);
+  jan25Screen.addWidget(bDState);
+
+  jan26Screen = new Screen(color(247, 197, 173));
+  jan26Screen.addHeader(jan26Head);
+  jan26Screen.addWidget(bHomeScreen);
+  jan26Screen.addWidget(butt_lateness);
+  jan26Screen.addWidget(bAirport);
+  jan26Screen.addWidget(bOState);
+  jan26Screen.addWidget(bDState);
+
+  jan27Screen = new Screen(color(247, 197, 173));
+  jan27Screen.addHeader(jan27Head);
+  jan27Screen.addWidget(bHomeScreen);
+  jan27Screen.addWidget(butt_lateness);
+  jan27Screen.addWidget(bAirport);
+  jan27Screen.addWidget(bOState);
+  jan27Screen.addWidget(bDState);
+
+  jan28Screen = new Screen(color(247, 197, 173));
+  jan28Screen.addHeader(jan28Head);
+  jan28Screen.addWidget(bHomeScreen);
+  jan28Screen.addWidget(butt_lateness);
+  jan28Screen.addWidget(bAirport);
+  jan28Screen.addWidget(bOState);
+  jan28Screen.addWidget(bDState);
+
+  jan29Screen = new Screen(color(247, 197, 173));
+  jan29Screen.addHeader(jan29Head);
+  jan29Screen.addWidget(bHomeScreen);
+  jan29Screen.addWidget(butt_lateness);
+  jan29Screen.addWidget(bAirport);
+  jan29Screen.addWidget(bOState);
+  jan29Screen.addWidget(bDState);
+
+  jan30Screen = new Screen(color(247, 197, 173));
+  jan30Screen.addHeader(jan30Head);
+  jan30Screen.addWidget(bHomeScreen);
+  jan30Screen.addWidget(butt_lateness);
+  jan30Screen.addWidget(bAirport);
+  jan30Screen.addWidget(bOState);
+  jan30Screen.addWidget(bDState);
+
+  jan31Screen = new Screen(color(247, 197, 173));
+  jan31Screen.addHeader(jan31Head);
+  jan31Screen.addWidget(bHomeScreen);
+  jan30Screen.addWidget(butt_lateness);
+  jan30Screen.addWidget(bAirport);
+  jan30Screen.addWidget(bOState);
+  jan30Screen.addWidget(bDState);
+
+  // * creating Array list
+  widgetList = new ArrayList();
+
+  widgetList.add(bHomeScreen);
+  widgetList.add(butt_lateness);
+  widgetList.add(bAirport);
+  widgetList.add(bOState);
+  widgetList.add(bDState);
+
+  widgetList.add(jan1);
+  widgetList.add(jan2);
+  widgetList.add(jan3);
+  widgetList.add(jan4);
+  widgetList.add(jan5);
+  widgetList.add(jan6);
+  widgetList.add(jan7);
+  widgetList.add(jan8);
+  widgetList.add(jan9);
+  widgetList.add(jan10);
+  widgetList.add(jan11);
+  widgetList.add(jan12);
+  widgetList.add(jan13);
+  widgetList.add(jan14);
+  widgetList.add(jan15);
+  widgetList.add(jan16);
+  widgetList.add(jan17);
+  widgetList.add(jan18);
+  widgetList.add(jan19);
+  widgetList.add(jan20);
+  widgetList.add(jan21);
+  widgetList.add(jan22);
+  widgetList.add(jan23);
+  widgetList.add(jan24);
+  widgetList.add(jan25);
+  widgetList.add(jan26);
+  widgetList.add(jan27);
+  widgetList.add(jan28);
+  widgetList.add(jan29);
+  widgetList.add(jan30);
+  widgetList.add(jan31);
+
+  screenList = new ArrayList();
+  screenList.add(currentScreen);
+  screenList.add(introScreen);
+  screenList.add(mainScreen);
+
+  screenList.add(jan1Screen);
+  screenList.add(jan2Screen);
+  screenList.add(jan3Screen);
+  screenList.add(jan4Screen);
+  screenList.add(jan5Screen);
+  screenList.add(jan6Screen);
+  screenList.add(jan7Screen);
+  screenList.add(jan8Screen);
+  screenList.add(jan9Screen);
+  screenList.add(jan10Screen);
+  screenList.add(jan11Screen);
+  screenList.add(jan12Screen);
+  screenList.add(jan13Screen);
+  screenList.add(jan14Screen);
+  screenList.add(jan15Screen);
+  screenList.add(jan16Screen);
+  screenList.add(jan17Screen);
+  screenList.add(jan18Screen);
+  screenList.add(jan19Screen);
+  screenList.add(jan20Screen);
+  screenList.add(jan21Screen);
+  screenList.add(jan22Screen);
+  screenList.add(jan23Screen);
+  screenList.add(jan24Screen);
+  screenList.add(jan25Screen);
+  screenList.add(jan26Screen);
+  screenList.add(jan27Screen);
+  screenList.add(jan28Screen);
+  screenList.add(jan29Screen);
+  screenList.add(jan30Screen);
+  screenList.add(jan31Screen);
+
+
+  currentScreen = introScreen;
 }
 
-void draw() {
+void draw()
+{
+
   currentScreen.draw();
+
+  for (int i = 0; i<widgetList.size(); i++)
+  {
+    Widget aWidget = (Widget)widgetList.get(i);
+    aWidget.mouseOnButton(mouseX, mouseY);
+  }
 }
 
-void mousePressed() {
-  currentScreen.mousePressed();
-}
-void mouseMoved() {
-  currentScreen.mouseMoved();
+
+void mousePressed()
+{
+  int event = currentScreen.getEvent();
+  switch (event)
+  {
+    case EVENT_LATE:
+      currentScreen.addLabel(lLateness);
+      break;
+  
+    case EVENT_AIRPORT:
+      currentScreen.addLabel(lAirport);
+      break;
+  
+    case EVENT_OSTATE:
+      currentScreen.addLabel(lOState);
+      break;
+  
+    case EVENT_DSTATE:
+      currentScreen.addLabel(lDState);
+      break;
+  
+    default:
+      break;
+  }
+
+  switch(event)
+  {
+  case MAIN_SCREEN:
+    currentScreen = mainScreen;
+    break;
+
+  case JAN1:
+    currentScreen = jan1Screen;
+    break;
+
+  case JAN2:
+    currentScreen = jan2Screen;
+    break;
+
+  case JAN3:
+    currentScreen = jan3Screen;
+    break;
+
+  case JAN4:
+    currentScreen = jan4Screen;
+    break;
+
+  case JAN5:
+    currentScreen = jan5Screen;
+    break;
+
+  case JAN6:
+    currentScreen = jan6Screen;
+    break;
+
+  case JAN7:
+    currentScreen = jan7Screen;
+    break;
+
+  case JAN8:
+    currentScreen = jan8Screen;
+    break;
+
+  case JAN9:
+    currentScreen = jan9Screen;
+    break;
+
+  case JAN10:
+    currentScreen = jan10Screen;
+    break;
+
+  case JAN11:
+    currentScreen = jan11Screen;
+    break;
+
+  case JAN12:
+    currentScreen = jan12Screen;
+    break;
+
+  case JAN13:
+    currentScreen = jan13Screen;
+    break;
+
+  case JAN14:
+    currentScreen = jan14Screen;
+    break;
+
+  case JAN15:
+    currentScreen = jan15Screen;
+    break;
+
+  case JAN16:
+    currentScreen = jan16Screen;
+    break;
+
+  case JAN17:
+    currentScreen = jan17Screen;
+    break;
+
+  case JAN18:
+    currentScreen = jan18Screen;
+    break;
+
+  case JAN19:
+    currentScreen = jan19Screen;
+    break;
+
+  case JAN20:
+    currentScreen = jan20Screen;
+    break;
+
+  case JAN21:
+    currentScreen = jan21Screen;
+    break;
+
+  case JAN22:
+    currentScreen = jan22Screen;
+    break;
+
+  case JAN23:
+    currentScreen = jan23Screen;
+    break;
+
+  case JAN24:
+    currentScreen = jan24Screen;
+    break;
+
+  case JAN25:
+    currentScreen = jan25Screen;
+    break;
+
+  case JAN26:
+    currentScreen = jan26Screen;
+    break;
+
+  case JAN27:
+    currentScreen = jan27Screen;
+    break;
+
+  case JAN28:
+    currentScreen = jan28Screen;
+    break;
+
+  case JAN29:
+    currentScreen = jan29Screen;
+    break;
+
+  case JAN30:
+    currentScreen = jan30Screen;
+    break;
+
+  case JAN31:
+    currentScreen = jan31Screen;
+    break;
+  }
 }

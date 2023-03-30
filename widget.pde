@@ -1,12 +1,17 @@
-class Widget {
+// widget
+class Widget
+{
   int x, y, width, height;
   String label;
   int event;
-  color widgetColor, labelColor;
+  color widgetColor, labelColor, borderColor;
   PFont widgetFont;
-  boolean hovering;
+  boolean isMouseOnButton;
+
+
   Widget(int x, int y, int width, int height, String label,
-    color widgetColor, PFont widgetFont, int event) {
+    color widgetColor, PFont widgetFont, int event, color borderColor)
+  {
     this.x=x;
     this.y=y;
     this.width = width;
@@ -15,24 +20,47 @@ class Widget {
     this.event=event;
     this.widgetColor=widgetColor;
     this.widgetFont=widgetFont;
-    labelColor= color(255);
-  }
-  void draw() {
-    strokeWeight(5);
-    stroke(#c9a59f);
-    //line(270, 0, 270, 350);
-    //line(0, 350, 270, 350);
-    strokeWeight(0);
+    this.borderColor = borderColor;
+  
+}
+
+  void draw()
+  {
+    noStroke();
     fill(widgetColor);
     rect(x, y, width, height);
+
     fill(labelColor);
-    text(label, x+20, y+height-10);
+    textFont(stdFont);
+    text(label, x+15, y+height-20);
   }
-  int getEvent(int mX, int mY) {
-    if (mX>x && mX < x+width && mY >y && mY <y+height) {
+
+  int getEvent(int mouseX, int mouseY)
+  {
+    if (mouseX>x && mouseX < x+width && mouseY >y && mouseY <y+height)
+    {
       return event;
     }
     return EVENT_NULL;
   }
-  
+
+
+  void mouseOnButton(int mouseX, int mouseY)
+  {
+    //stroke(borderColor);
+    if (mouseX > x && mouseX < x + width && mouseY > y && mouseY < y + height)
+    {
+      isMouseOnButton = true;
+      labelColor = color (255);
+      stroke(borderColor);
+    }
+    else
+    {
+      isMouseOnButton = false;
+
+      labelColor = color (0);
+      stroke(borderColor);
+    }
+  }
+
 }

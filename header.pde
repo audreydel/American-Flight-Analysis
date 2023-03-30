@@ -21,7 +21,9 @@ class Header
     fill(headCol);
     rect (0,0, width, height);
     fill(255);
-    text(label, 600, 55);
+    textFont(headFont);
+    textSize(60);
+    text(label, SCREENX/2-150, height-30);
     image(logoHeader, 0, 0);
   }
   

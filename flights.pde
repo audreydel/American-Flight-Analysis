@@ -29,7 +29,10 @@ int jan1Count=0;
   int jan29Count=0;
   int jan30Count=0;
   int jan31Count=0;
-class Flights {
+  
+  
+class Flights 
+{
   ArrayList<String> flightDates;
   ArrayList<Integer> jan1;
   ArrayList<String> carrier;
@@ -57,7 +60,8 @@ class Flights {
   int cancelledCount = 0;
 
 
-  void initialiseData() {
+  void initialiseData() 
+  {
     Table table=loadTable("flights2k.csv", "header");
     flightDates=new ArrayList<String>();
     jan1=new ArrayList<Integer>();
@@ -218,7 +222,9 @@ class Flights {
       distance.add(dist);
     }
   }
-  void countTime(int x, int dateCount) {
+  
+  void countTime(int x, int dateCount) 
+  {
     for (int i=x; i<dateCount; i++)
     {
       int scheduledTime=currFlight.schDept.get(i);
@@ -234,15 +240,20 @@ class Flights {
     println(countLate);
     println(countEarly);
   }
-  void cancelledFlights() {
+  
+  
+  void cancelledFlights() 
+  {
 
     for (int i=0; i<jan1Count; i++)
     {
 
       int isItCancelled=currFlight.cancelled.get(i);
-      if (isItCancelled == 0) {
+      if (isItCancelled == 0) 
+      {
         notCanCount += 1;
-      } else if (isItCancelled == 1) {
+      } else if (isItCancelled == 1) 
+      {
         cancelledCount += 1;
       }
     }
