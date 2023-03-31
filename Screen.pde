@@ -4,6 +4,7 @@ class Screen
 {   
   ArrayList widgets , headerList, labelList;
   color backgroundColor;
+  PieChart latePieChart;
 
   Screen(color backgroundColor) 
   {     
@@ -55,7 +56,39 @@ class Screen
       text("Click on a date to see the stats", 550, 250);
       
     }
+    if (currentScreen==totalLateScreen)
+    {
+      stroke(0);
+      fill(0);
+      text("Key:", 900, 150);
+      fill(#FBE29F);
+      rect(900, 165, 40, 40);
+      fill(0);
+      text("Flights departing on time \n (±5 mins) "+latePieChart.countTimePercent+"%", 950, 190);
+      fill(#E8A09A);
+      rect(900, 250, 40, 40);
+      fill(0);
+      text("Flights departing early \n"+latePieChart.countErlyPercent+"%", 950, 280);
+      fill(#9BBFE0);
+      rect(900, 330, 40, 40);
+      fill(0);
+      text("Flights departing late \n"+latePieChart.countLtePercent+"%", 950, 360);
+    }
     
+    if(currentScreen==totalCanScreen)
+    {
+      stroke(0);
+      fill(0);
+      text("Key:", 900, 150);
+      fill(#FBE29F);
+      rect(900, 165, 40, 40);
+      fill(0);
+      text("Flights not cancelled \n"+latePieChart.notcanPercent+"%", 950, 190);
+      fill(#E8A09A);
+      rect(900, 250, 40, 40);
+      fill(0);
+      text("Flights cancelled \n"+latePieChart.canPercent+"%", 950, 280);
+    }
     for (int i = 0; i<headerList.size(); i++)
     {
       Header header = (Header) headerList.get(i);
@@ -73,6 +106,9 @@ class Screen
       Widget widget = (Widget) widgets.get(i);       
       widget.draw();
     }
+    
+    if (latePieChart!=null)
+      latePieChart.draw();
   }
   
   void addWidget(Widget widget) 
@@ -90,9 +126,8 @@ class Screen
     labelList.add(label);
   }
   
-  
-  
-  
-  
+  void addPieChart(float diam) {
+    latePieChart=new PieChart(diam);
+  }
   
 } 

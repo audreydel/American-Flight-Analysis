@@ -1,38 +1,41 @@
 int jan1Count=0;
-  int jan2Count=0;
-  int jan3Count=0;
-  int jan4Count=0;
-  int jan5Count=0;
-  int jan6Count=0;
-  int jan7Count=0;
-  int jan8Count=0;
-  int jan9Count=0;
-  int jan10Count=0;
-  int jan11Count=0;
-  int jan12Count=0;
-  int jan13Count=0;
-  int jan14Count=0;
-  int jan15Count=0;
-  int jan16Count=0;
-  int jan17Count=0;
-  int jan18Count=0;
-  int jan19Count=0;
-  int jan20Count=0;
-  int jan21Count=0;
-  int jan22Count=0;
-  int jan23Count=0;
-  int jan24Count=0;
-  int jan25Count=0;
-  int jan26Count=0;
-  int jan27Count=0;
-  int jan28Count=0;
-  int jan29Count=0;
-  int jan30Count=0;
-  int jan31Count=0;
-  
-  
-class Flights 
+int jan2Count=0;
+int jan3Count=0;
+int jan4Count=0;
+int jan5Count=0;
+int jan6Count=0;
+int jan7Count=0;
+int jan8Count=0;
+int jan9Count=0;
+int jan10Count=0;
+int jan11Count=0;
+int jan12Count=0;
+int jan13Count=0;
+int jan14Count=0;
+int jan15Count=0;
+int jan16Count=0;
+int jan17Count=0;
+int jan18Count=0;
+int jan19Count=0;
+int jan20Count=0;
+int jan21Count=0;
+int jan22Count=0;
+int jan23Count=0;
+int jan24Count=0;
+int jan25Count=0;
+int jan26Count=0;
+int jan27Count=0;
+int jan28Count=0;
+int jan29Count=0;
+int jan30Count=0;
+int jan31Count=0;
+
+
+class Flights
 {
+
+  ArrayList<String> fullDataSet;
+
   ArrayList<String> flightDates;
   ArrayList<Integer> jan1;
   ArrayList<String> carrier;
@@ -59,10 +62,21 @@ class Flights
   int notCanCount = 0;
   int cancelledCount = 0;
 
+  Table table=loadTable("flights2k.csv", "header");
 
-  void initialiseData() 
+  void fullData()
   {
-    Table table=loadTable("flights2k.csv", "header");
+    fullDataSet=new ArrayList<String>();
+    for (TableRow row: table.rows())
+    {
+      for (int x=0; x<row.getColumnCount(); x++)
+      {
+        fullDataSet.add(row.getString(x));
+      }
+    }
+  }
+  void initialiseData()
+  {
     flightDates=new ArrayList<String>();
     jan1=new ArrayList<Integer>();
     carrier=new ArrayList<String>();
@@ -222,8 +236,8 @@ class Flights
       distance.add(dist);
     }
   }
-  
-  void countTime(int x, int dateCount) 
+
+  void countTime(int x, int dateCount)
   {
     for (int i=x; i<dateCount; i++)
     {
@@ -240,19 +254,19 @@ class Flights
     println(countLate);
     println(countEarly);
   }
-  
-  
-  void cancelledFlights() 
+
+
+  void cancelledFlights()
   {
 
     for (int i=0; i<jan1Count; i++)
     {
 
       int isItCancelled=currFlight.cancelled.get(i);
-      if (isItCancelled == 0) 
+      if (isItCancelled == 0)
       {
         notCanCount += 1;
-      } else if (isItCancelled == 1) 
+      } else if (isItCancelled == 1)
       {
         cancelledCount += 1;
       }

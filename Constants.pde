@@ -32,7 +32,8 @@ final int EVENT_NULL=0;
 
 // stat square eventa
 final int T_LATE = 63;
-final int T_AIRPORT = 64;
+final int T_CAN = 64;
+final int T_AIRPORT=65;
 
 // calendar events 
 

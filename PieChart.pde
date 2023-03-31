@@ -11,7 +11,8 @@ class PieChart {
   float countTimePercent=(countTime*100)/total;
   float countErlyPercent=(countErly*100)/total;
   float countLtePercent=(countLte*100)/total;
-  color[] colors={#80ffff, #4db8ff, #1a1aff};
+  
+  color[] colors={ #FBE29F, #E8A09A, #9BBFE0};
 
   float diam;
   float canNum1=currFlight.notCanCount;
@@ -33,13 +34,10 @@ class PieChart {
   }
   void draw() 
   {
-    //if (currentScreen==screen3) 
-    //{
-    //  pieChart(diam, graph1);
-    //} else if (currentScreen==screen5) 
-    //{
-    //  pieChart(diam, graph2);
-    //}
+    if(currentScreen==totalLateScreen)
+      pieChart(diam,graph1); 
+    if(currentScreen==totalCanScreen)
+      pieChart(diam, graph2);
   }
 
   void pieChart(float diameter, float[] data) {

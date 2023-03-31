@@ -12,10 +12,10 @@ Widget bHomeScreen, bLateness, bAirport, bOState, bDState;
 Widget jan1, jan2, jan3, jan4, jan5, jan6, jan7, jan8, jan9, jan10, jan11, jan12, jan13, jan14,
   jan15, jan16, jan17, jan18, jan19, jan20, jan21, jan22, jan23, jan24, jan25, jan26,
   jan27, jan28, jan29, jan30, jan31;
-Widget tLate, tAirport, tDState, tOState;
+Widget tLate, tAirport, tDState, tOState, fullMonth;
 
 ArrayList screenList;
-Screen currentScreen, introScreen, mainScreen, screen1, screen2, screenPt1;
+Screen currentScreen, introScreen, mainScreen, screen1, screen2, screenPt1, totalLateScreen, totalCanScreen, totalOriginScreen, totalDestScreen;
 Screen jan1Screen, jan2Screen, jan3Screen, jan4Screen, jan5Screen, jan6Screen, jan7Screen,
   jan8Screen, jan9Screen, jan10Screen, jan11Screen, jan12Screen, jan13Screen,
   jan14Screen, jan15Screen, jan16Screen, jan17Screen, jan18Screen, jan19Screen,
@@ -27,6 +27,7 @@ Header mainHead, jan1Head, jan2Head, jan3Head, jan4Head, jan5Head, jan6Head, jan
   jan17Head, jan18Head, jan19Head, jan20Head, jan21Head, jan22Head, jan23Head, jan24Head,
   jan25Head, jan26Head, jan27Head, jan28Head, jan29Head, jan30Head, jan31Head;
 
+Header lateHead, canHead;
 
 void settings()
 {
@@ -38,6 +39,7 @@ void setup()
   // flight info
 
   currFlight = new Flights();
+  currFlight.fullData();
   currFlight.initialiseData();
   currFlight.countTime(0, jan1Count);
   currFlight.cancelledFlights();
@@ -61,26 +63,27 @@ void setup()
 
   bHomeScreen = new Widget (0, tbY, tbW, tbH, "Home Page", headColor,
     stdFont, MAIN_SCREEN, borderColor);
-  bLateness = new Widget (0, tbY+tbH, tbW, tbH, "Lateness", headColor,
+  bLateness = new Widget (0, tbY+tbH, tbW, tbH, "Lateness", lCol,
     stdFont, EVENT_LATE, borderColor);
-  bAirport = new Widget (0, tbY+(tbH*2), tbW, tbH, "Airports", headColor,
+  bAirport = new Widget (0, tbY+(tbH*2), tbW, tbH, "Airports", lCol,
     stdFont, EVENT_AIRPORT, borderColor);
-  bOState = new Widget (0, tbY+(tbH*3), tbW, tbH, "Origin State", headColor,
+  bOState = new Widget (0, tbY+(tbH*3), tbW, tbH, "Origin State", lCol,
     stdFont, EVENT_OSTATE, borderColor);
-  bDState = new Widget (0, tbY+(tbH*4), tbW, tbH, "Destination State", headColor,
+  bDState = new Widget (0, tbY+(tbH*4), tbW, tbH, "Destination State", lCol,
     stdFont, EVENT_DSTATE, borderColor);
 
   // stat table
-  
-  tLate = new Widget(10, 600, sbW, tbH, "Total lateness",lCol,
+  fullMonth=new Widget(10, tbY, sbW, tbH, "Full Month Stats",headColor,
+    italicFont, EVENT_NULL, borderColor);
+  tLate = new Widget(10, tbY+tbH, sbW, tbH, "Flight Departure Stats",lCol,
     italicFont, T_LATE, borderColor);
-  tAirport = new Widget(10,600+tbH, sbW, tbH, "Total airports", lCol,
+  tAirport = new Widget(10,tbY+(tbH*2), sbW, tbH, "Total airports", lCol,
     italicFont, T_AIRPORT, borderColor);
-  tOState = new Widget(10,600+(tbH*2), sbW, tbH, "Total flights departing",lCol,
-    italicFont, T_AIRPORT, borderColor);
+  tOState = new Widget(10,tbY+(tbH*3), sbW, tbH, "Total flights Cancelled",lCol,
+    italicFont, T_CAN, borderColor);
     
-  tDState = new Widget(10,600+(tbH*3), sbW, tbH, "Total flights arriving",lCol,
-    italicFont, T_AIRPORT, borderColor);
+  tDState = new Widget(10,tbY+(tbH*4), sbW, tbH, "Total flights arriving",lCol,
+    italicFont, T_CAN, borderColor);
   
   // labels
   lCalendar = new Label (lX, lY, lW, lH, lCol, "Calendar", stdFont);
@@ -157,7 +160,8 @@ void setup()
   jan29Head = new Header (SCREENX, hH, headColor, "January 29", headFont);
   jan30Head = new Header (SCREENX, hH, headColor, "January 30", headFont);
   jan31Head = new Header (SCREENX, hH, headColor, "January 31", headFont);
-
+  lateHead= new Header (SCREENX, hH, headColor, "Total Late Flights", headFont);
+  canHead=new Header (SCREENX, hH, headColor, "Total Cancelled Flights", headFont);
 
   // screens
   introScreen = new Screen(color(247, 197, 173));
@@ -166,12 +170,12 @@ void setup()
   mainScreen.addHeader(mainHead);
   mainScreen.addLabel(lCalendar);
 
-  mainScreen.addWidget(bHomeScreen);
   
   mainScreen.addWidget(tLate);
   mainScreen.addWidget(tAirport);
   mainScreen.addWidget(tOState);
   mainScreen.addWidget(tDState);
+  mainScreen.addWidget(fullMonth);
  
   
   mainScreen.addWidget(jan1);
@@ -306,7 +310,7 @@ void setup()
   jan13Screen = new Screen(color(247, 197, 173));
   jan13Screen.addHeader(jan13Head);
   jan13Screen.addWidget(bHomeScreen);
-  jan1Screen.addWidget(bLateness);
+  jan13Screen.addWidget(bLateness);
   jan13Screen.addWidget(bAirport);
   jan13Screen.addWidget(bOState);
   jan13Screen.addWidget(bDState);
@@ -455,7 +459,17 @@ void setup()
   jan31Screen.addWidget(bAirport);
   jan31Screen.addWidget(bOState);
   jan31Screen.addWidget(bDState);
-
+  
+  totalLateScreen=new Screen(color(247, 197, 173));
+  totalLateScreen.addHeader(lateHead);
+  totalLateScreen.addWidget(bHomeScreen);
+  totalLateScreen.addPieChart(300.0);
+  
+  totalCanScreen= new Screen(color(247, 197, 173));
+  totalCanScreen.addHeader(canHead);
+  totalCanScreen.addWidget(bHomeScreen);
+  totalCanScreen.addPieChart(300.0);
+  
   // * creating Array list
   widgetList = new ArrayList();
 
@@ -539,7 +553,8 @@ void setup()
   screenList.add(jan29Screen);
   screenList.add(jan30Screen);
   screenList.add(jan31Screen);
-
+  screenList.add(totalLateScreen);
+  screenList.add(totalCanScreen);
 
   currentScreen = introScreen;
 }
@@ -577,7 +592,11 @@ void mousePressed()
     case EVENT_DSTATE:
       currentScreen.addLabel(lDState);
       break;
-  
+    
+    case T_LATE:
+      currentScreen.addPieChart(300.0);
+      break;
+      
     default:
       break;
   }
@@ -710,6 +729,14 @@ void mousePressed()
 
   case JAN31:
     currentScreen = jan31Screen;
+    break;
+    
+  case T_LATE:
+    currentScreen = totalLateScreen;
+    break;
+  
+  case T_CAN:
+    currentScreen=totalCanScreen;
     break;
   }
 }
