@@ -8,6 +8,7 @@ class PieChart {
   float ang2=(countErly/total)*360;
   float ang3=(countLte/total)*360;
   float[] graph1 = {ang1, ang2, ang3};
+  
   float countTimePercent=(countTime*100)/total;
   float countErlyPercent=(countErly*100)/total;
   float countLtePercent=(countLte*100)/total;
@@ -36,7 +37,7 @@ class PieChart {
   {
     if(currentScreen==totalLateScreen)
       pieChart(diam,graph1); 
-    if(currentScreen==totalCanScreen)
+    else if(currentScreen==totalCanScreen)
       pieChart(diam, graph2);
   }
 

@@ -27,7 +27,7 @@ Header mainHead, jan1Head, jan2Head, jan3Head, jan4Head, jan5Head, jan6Head, jan
   jan17Head, jan18Head, jan19Head, jan20Head, jan21Head, jan22Head, jan23Head, jan24Head,
   jan25Head, jan26Head, jan27Head, jan28Head, jan29Head, jan30Head, jan31Head;
 
-Header lateHead, canHead;
+Header lateHead, canHead, orgHead, destHead;
 
 void settings()
 {
@@ -41,7 +41,7 @@ void setup()
   currFlight = new Flights();
   currFlight.fullData();
   currFlight.initialiseData();
-  currFlight.countTime(0, jan1Count);
+  currFlight.countTime();
   currFlight.cancelledFlights();
 
   // fonts
@@ -594,6 +594,10 @@ void mousePressed()
       break;
     
     case T_LATE:
+      currentScreen.addPieChart(300.0);
+      break;
+    
+    case T_CAN:
       currentScreen.addPieChart(300.0);
       break;
       

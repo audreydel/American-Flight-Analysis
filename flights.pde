@@ -237,9 +237,9 @@ class Flights
     }
   }
 
-  void countTime(int x, int dateCount)
+  void countTime()
   {
-    for (int i=x; i<dateCount; i++)
+    for (int i=0; i<destination.size(); i++)
     {
       int scheduledTime=currFlight.schDept.get(i);
       int actualTime=currFlight.accDept.get(i);
@@ -259,7 +259,7 @@ class Flights
   void cancelledFlights()
   {
 
-    for (int i=0; i<jan1Count; i++)
+    for (int i=0; i<destination.size(); i++)
     {
 
       int isItCancelled=currFlight.cancelled.get(i);
