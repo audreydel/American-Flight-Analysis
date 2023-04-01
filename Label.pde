@@ -29,7 +29,7 @@ class Label
     fill(0);
     textFont(italicFont);
     text(label, lX+170, lY+35);
-
+    
     
   }
   
