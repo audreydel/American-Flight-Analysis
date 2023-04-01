@@ -39,10 +39,10 @@ void setup()
   // flight info
 
   currFlight = new Flights();
-  currFlight.fullData();
   currFlight.initialiseData();
   currFlight.countTime();
   currFlight.cancelledFlights();
+  
 
   // fonts
   stdFont = loadFont("BodoniSvtyTwoOSITCTT-BookIt-30.vlw");
