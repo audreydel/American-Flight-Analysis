@@ -3,10 +3,15 @@
 final int SCREENX = 1400;
 final int SCREENY = 900;
 
+// colours
+final color headColor=color(186, 109, 104);
+final color borderColor = color(0);
+final color bgCol = color(247, 197, 173);
 // task bar values
-final int tbY= 120;    // ypos 
+final int tbY= 110;    // ypos 
 final int tbW = 217;   // width
 final int tbH = 55;    // height
+final int margin = 10;
 
 // stat bar
 final int sbW = 275;   // width
@@ -22,6 +27,30 @@ final int lY = tbY;
 
 final color lCol =  color(238,213,201);
 
+// calendar values
+final int calGap = 2;
+final int calW = 60;
+final int calH = 50;
+
+final int row1Y = 308;
+final int row2Y = row1Y+calH+calGap;
+final int row3Y = row2Y+calH+calGap;
+final int row4Y = row3Y+calH+calGap;
+final int row5Y = row4Y+calH+calGap;
+final int row6Y = row5Y+calH+calGap;
+
+final int col1X = 510;
+final int col2X = col1X+calW+calGap;
+final int col3X = col2X+calW+calGap;
+final int col4X = col3X+calW+calGap;
+final int col5X = col4X+calW+calGap;
+final int col6X = col5X+calW+calGap;
+final int col7X = col6X+calW+calGap;
+
+
+
+
+
 // task bar events
 final int MAIN_SCREEN = 58;
 final int EVENT_LATE = 59; 
@@ -30,10 +59,12 @@ final int EVENT_OSTATE = 61;
 final int EVENT_DSTATE = 62;
 final int EVENT_NULL=0;
 
-// stat square eventa
+// stat square events
 final int T_LATE = 63;
 final int T_CAN = 64;
 final int T_AIRPORT=65;
+final int T_DEP = 66;
+final int T_ARR = 67;
 
 // calendar events 
 
@@ -68,6 +99,3 @@ final int JAN28=29;
 final int JAN29=30;
 final int JAN30=31;
 final int JAN31=32;
-
-final color headColor=color(186, 109, 104);
-final color borderColor = color(0);

@@ -26,13 +26,17 @@ class PieChart {
   float canPercent=(canNum2*100)/total2;
   float notcanPercent=(canNum1*100)/total2;
 
-  public PieChart(float diam) {
+  public PieChart(float diam)
+  {
     this.diam = diam;
   }
 
-  void setup() {
+  void setup() 
+  {
     noStroke();
   }
+  
+  
   void draw() 
   {
     if(currentScreen==totalLateScreen)
@@ -41,9 +45,11 @@ class PieChart {
       pieChart(diam, graph2);
   }
 
-  void pieChart(float diameter, float[] data) {
+  void pieChart(float diameter, float[] data) 
+   { 
     float lastAngle = 0;
-    for (int i = 0; i < data.length; i++) {
+    for (int i = 0; i < data.length; i++) 
+    {
       fill(colors[i]);
       stroke(0);
       strokeWeight(3);
