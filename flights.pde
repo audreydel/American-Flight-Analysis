@@ -1,10 +1,10 @@
-
 ArrayList<ArrayList<String>> subListsOrigin = new ArrayList<ArrayList<String>>();
 ArrayList<ArrayList<String>> subListsDestination = new ArrayList<ArrayList<String>>();
 ArrayList<ArrayList<Integer>> subListsSchDept = new ArrayList<ArrayList<Integer>>();
 ArrayList<ArrayList<Integer>> subListsAccDept = new ArrayList<ArrayList<Integer>>();
 ArrayList<ArrayList<Integer>> subListsCancelled = new ArrayList<ArrayList<Integer>>();
 ArrayList<ArrayList<Integer>> subListsDistance = new ArrayList<ArrayList<Integer>>();
+
 class Flights
 {
 

@@ -1,62 +1,35 @@
-class PieChart {
-
-  float countTime=currFlight.countOnTime;
-  float countErly=currFlight.countEarly;
-  float countLte=currFlight.countLate;
-  float total=currFlight.countLate+currFlight.countEarly+currFlight.countOnTime;
-  float ang1=(countTime*360)/total;
-  float ang2=(countErly/total)*360;
-  float ang3=(countLte/total)*360;
-  float[] graph1 = {ang1, ang2, ang3};
+class PieChart 
+{
+  float diam; 
+  float[] data;
+  color[] colors;
   
-  float countTimePercent=(countTime*100)/total;
-  float countErlyPercent=(countErly*100)/total;
-  float countLtePercent=(countLte*100)/total;
-  
-  color[] colors={ #FBE29F, #E8A09A, #9BBFE0};
+  Flights currflight;
 
-  float diam;
-  float canNum1=currFlight.notCanCount;
-  float canNum2=currFlight.cancelledCount;
-  float total2=currFlight.notCanCount+currFlight.cancelledCount;
-  float ang1Graph2=(canNum1*360)/total2;
-  float ang2Graph2=(canNum2*360)/total2;
-  float[] graph2={ang1Graph2, ang2Graph2};
 
-  float canPercent=(canNum2*100)/total2;
-  float notcanPercent=(canNum1*100)/total2;
-
-  public PieChart(float diam)
+  public PieChart(float diam, float[] data, color[] colors)
   {
     this.diam = diam;
+    this.data = data;
+    this.colors = colors;
   }
 
-  void setup() 
-  {
-    noStroke();
-  }
-  
-  
+
   void draw() 
   {
-    if(currentScreen==totalLateScreen)
-      pieChart(diam,graph1); 
-    else if(currentScreen==totalCanScreen)
-      pieChart(diam, graph2);
-  }
-
-  void pieChart(float diameter, float[] data) 
-   { 
     float lastAngle = 0;
     for (int i = 0; i < data.length; i++) 
     {
       fill(colors[i]);
       stroke(0);
       strokeWeight(3);
-      arc(width/2, height/2, diameter, diameter, lastAngle, lastAngle+radians(data[i]));
-      line(width/2, height/2, ((width/2)+((diameter/2)*cos(lastAngle))), ((height/2)+((diameter/2)*sin(lastAngle))));
-      line(width/2, height/2, ((width/2)+((diameter/2)*cos(lastAngle+radians(data[i])))), ((height/2)+((diameter/2)*sin(lastAngle+radians(data[i])))));
+      arc(width/2, height/2, diam, diam, lastAngle, lastAngle+radians(data[i]));
+      line(width/2, height/2, ((width/2)+((diam/2)*cos(lastAngle))), ((height/2)+((diam/2)*sin(lastAngle))));
+      line(width/2, height/2, ((width/2)+((diam/2)*cos(lastAngle+radians(data[i])))), ((height/2)+((diam/2)*sin(lastAngle+radians(data[i])))));
       lastAngle += radians(data[i]);
     }
+  
   }
+
+
 }

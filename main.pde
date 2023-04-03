@@ -26,9 +26,35 @@ Header mainHead, jan1Head, jan2Head, jan3Head, jan4Head, jan5Head, jan6Head, jan
   jan9Head, jan10Head, jan11Head, jan12Head, jan13Head, jan14Head, jan15Head, jan16Head,
   jan17Head, jan18Head, jan19Head, jan20Head, jan21Head, jan22Head, jan23Head, jan24Head,
   jan25Head, jan26Head, jan27Head, jan28Head, jan29Head, jan30Head, jan31Head;
-
 Header lateHead, canHead, orgHead, destHead, airportHead;
 
+BarChart tAirportsBC, tDepBC, tArrBC;
+BarChart j1AirBC,j2AirBC,j3AirBC,j4AirBC,j5AirBC,j6AirBC,j7AirBC,j8AirBC,j9AirBC,
+         j10AirBC,j11AirBC,j12AirBC,j13AirBC,j14AirBC,j15AirBC,j16AirBC,j17AirBC,j18AirBC,j19AirBC,
+         j20AirBC,j21AirBC,j22AirBC,j23AirBC,j24AirBC,j25AirBC,j26AirBC,j27AirBC,j28AirBC,j29AirBC,
+         j30AirBC,j31AirBC,
+         j1DepBC,j2DepBC,j3DepBC,j4DepBC,j5DepBC,j6DepBC,j7DepBC,j8DepBC,j9DepBC,
+         j10DepBC,j11DepBC,j12DepBC,j13DepBC,j14DepBC,j15DepBC,j16DepBC,j17DepBC,j18DepBC,j19DepBC,
+         j20DepBC,j21DepBC,j22DepBC,j23DepBC,j24DepBC,j25DepBC,j26DepBC,j27DepBC,j28DepBC,j29DepBC,
+         j30DepBC,j31DepBC,
+         j1ArrBC,j2ArrBC,j3ArrBC,j4ArrBC,j5ArrBC,j6ArrBC,j7ArrBC,j8ArrBC,j9ArrBC,
+         j10ArrBC,j11ArrBC,j12ArrBC,j13ArrBC,j14ArrBC,j15ArrBC,j16ArrBC,j17ArrBC,j18ArrBC,j19ArrBC,
+         j20ArrBC,j21ArrBC,j22ArrBC,j23ArrBC,j24ArrBC,j25ArrBC,j26ArrBC,j27ArrBC,j28ArrBC,j29ArrBC,
+         j30ArrBC,j31ArrBC;
+         
+ PieChart tCanPie, tLatePie;
+ PieChart j1CanPie,j2CanPie,j3CanPie,j4CanPie,j5CanPie,j6CanPie,j7CanPie,j8CanPie,j9CanPie,
+          j10CanPie,j11CanPie,j12CanPie,j13CanPie,j14CanPie,j15CanPie,j16CanPie,j17CanPie,j18CanPie,j19CanPie,
+          j20CanPie,j21CanPie,j22CanPie,j23CanPie,j24CanPie,j25CanPie,j26CanPie,j27CanPie,j28CanPie,j29CanPie,
+          j30CanPie,j31CanPie,
+          j1LatePie,j2LatePie,j3LatePie,j4LatePie,j5LatePie,j6LatePie,j7LatePie,j8LatePie,j9LatePie,
+          j10LatePie,j11LatePie,j12LatePie,j13LatePie,j14LatePie,j15LatePie,j16LatePie,j17LatePie,j18LatePie,j19LatePie,
+          j20LatePie,j21LatePie,j22LatePie,j23LatePie,j24LatePie,j25LatePie,j26LatePie,j27LatePie,j28LatePie,j29LatePie,
+          j30LatePie,j31LatePie;
+          
+          
+ 
+          
 void settings()
 {
   size(SCREENX, SCREENY);
@@ -43,7 +69,6 @@ void setup()
   currFlight.initialiseData();
   currFlight.countTime();
   currFlight.cancelledFlights();
-  
 
   // fonts
   stdFont = loadFont("BodoniSvtyTwoOSITCTT-BookIt-30.vlw");
@@ -93,6 +118,7 @@ void setup()
   lAirport = new Label (lX, lY, lW, lH, lCol, "Airport", stdFont);
   lOState = new Label (lX, lY, lW, lH, lCol, "Origin State", stdFont);
   lDState = new Label (lX, lY, lW, lH, lCol, "Destination State", stdFont);
+  
 
   // calendar buttons
   jan1=new Widget(col6X, row1Y, calW, calH, "1", headColor, arrowFont, JAN1, borderColor);
@@ -126,8 +152,34 @@ void setup()
   jan29=new Widget(col6X, row5Y, calW, calH, "29", headColor, arrowFont, JAN29, borderColor);
   jan30=new Widget(col7X, row5Y, calW, calH, "30", headColor, arrowFont, JAN30, borderColor);
   jan31=new Widget(col1X, row6Y, calW, calH, "31", headColor, arrowFont, JAN31, borderColor);
+  
+  // pie charts data 
+  float countTime=currFlight.countOnTime;
+  float countErly=currFlight.countEarly;
+  float countLte=currFlight.countLate;
+  float total=currFlight.countLate+currFlight.countEarly+currFlight.countOnTime;
+  float ang1=(countTime*360)/total;
+  float ang2=(countErly/total)*360;
+  float ang3=(countLte/total)*360;
+  float[] graph1 = {ang1, ang2, ang3};
+  
+  float countTimePercent=(countTime*100)/total;
+  float countErlyPercent=(countErly*100)/total;
+  float countLtePercent=(countLte*100)/total;
+  
+  float canNum1=currFlight.notCanCount;
+  float canNum2=currFlight.cancelledCount;
+  float total2=currFlight.notCanCount+currFlight.cancelledCount;
+  float ang1Graph2=(canNum1*360)/total2;
+  float ang2Graph2=(canNum2*360)/total2;
+  float[] graph2={ang1Graph2, ang2Graph2};
 
+  float canPercent=(canNum2*100)/total2;
+  float notcanPercent=(canNum1*100)/total2;
 
+  // pie charts 
+  tLatePie = new PieChart (300, graph1, colsPC);
+  tCanPie = new PieChart (300, graph2, colsPC);
 
   // screen headers
   mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont);
@@ -466,15 +518,16 @@ void setup()
   jan31Screen.addWidget(bOState);
   jan31Screen.addWidget(bDState);
   
-  totalLateScreen=new Screen(bgCol);
+
+  totalLateScreen=new Screen(bgCol, countTimePercent, countErlyPercent, countLtePercent);
   totalLateScreen.addHeader(lateHead);
   totalLateScreen.addWidget(bHomeScreen);
-  totalLateScreen.addPieChart(300.0);
+  totalLateScreen.addPieChart(tLatePie);
   
-  totalCanScreen= new Screen(bgCol);
+  totalCanScreen= new Screen(bgCol, notcanPercent, canPercent);
   totalCanScreen.addHeader(canHead);
   totalCanScreen.addWidget(bHomeScreen);
-  totalCanScreen.addPieChart(300.0);
+  totalCanScreen.addPieChart(tCanPie);
   
   totalOriginScreen=new Screen(bgCol);
   totalOriginScreen.addHeader(orgHead);
@@ -534,14 +587,17 @@ void setup()
   widgetList.add(jan30);
   widgetList.add(jan31);
   
-  
-  
-
   screenList = new ArrayList();
   screenList.add(currentScreen);
   screenList.add(introScreen);
   screenList.add(mainScreen);
 
+  screenList.add(totalLateScreen);
+  screenList.add(totalAirportScreen);
+  screenList.add(totalDestScreen);
+  screenList.add(totalOriginScreen);
+  screenList.add(totalCanScreen);
+  
   screenList.add(jan1Screen);
   screenList.add(jan2Screen);
   screenList.add(jan3Screen);
@@ -573,11 +629,7 @@ void setup()
   screenList.add(jan29Screen);
   screenList.add(jan30Screen);
   screenList.add(jan31Screen);
-  screenList.add(totalLateScreen);
-  screenList.add(totalAirportScreen);
-  screenList.add(totalDestScreen);
-  screenList.add(totalOriginScreen);
-  
+
 
   currentScreen = introScreen;
 }
@@ -616,13 +668,6 @@ void mousePressed()
       currentScreen.addLabel(lDState);
       break;
     
-    case T_LATE:
-      currentScreen.addPieChart(300.0);
-      break;
-    
-    case T_CAN:
-      currentScreen.addPieChart(300.0);
-      break;
       
     default:
       break;

@@ -2,18 +2,47 @@
 
 class Screen 
 {   
-  ArrayList widgets , headerList, labelList;
+  ArrayList widgets , headerList, labelList, pieChartList;
   color backgroundColor;
-  PieChart latePieChart;
-
+  float perc1, perc2, perc3;
+  
+  // normal screeen
   Screen(color backgroundColor) 
   {     
+    this.backgroundColor = backgroundColor;
+
     widgets = new ArrayList();   
     headerList = new ArrayList();
     labelList = new ArrayList();
-    this.backgroundColor = backgroundColor;
+    pieChartList = new ArrayList();
   }
   
+  // screen for lateness pie chart
+  Screen(color backgroundColor, float perc1, float perc2, float perc3)
+  {
+    this.backgroundColor = backgroundColor;
+    this.perc1 = perc1;
+    this.perc2 = perc2; 
+    this.perc3 = perc3;
+    widgets = new ArrayList();   
+    headerList = new ArrayList();
+    labelList = new ArrayList();
+    pieChartList = new ArrayList();
+  }
+  
+  // screen for cancelled pie chart
+  Screen (color backgroundColor, float perc1, float perc2)
+  {
+    this.backgroundColor = backgroundColor;
+    this.perc1 = perc1;
+    this.perc2 = perc2;
+    widgets = new ArrayList();   
+    headerList = new ArrayList();
+    labelList = new ArrayList();
+    pieChartList = new ArrayList();
+  }
+  
+
   int getEvent() 
   {     
     if (currentScreen == introScreen)
@@ -64,15 +93,16 @@ class Screen
       fill(#FBE29F);
       rect(900, 165, 40, 40);
       fill(0);
-      text("Flights departing on time \n (±5 mins) "+latePieChart.countTimePercent+"%", 950, 190);
+      
+      text("Flights departing on time \n (±5 mins) "+ round(perc1) +"%", 950, 190);
       fill(#E8A09A);
       rect(900, 250, 40, 40);
       fill(0);
-      text("Flights departing early \n"+latePieChart.countErlyPercent+"%", 950, 280);
+      text("Flights departing early \n"+ round(perc2) +"%", 950, 280);
       fill(#9BBFE0);
       rect(900, 330, 40, 40);
       fill(0);
-      text("Flights departing late \n"+latePieChart.countLtePercent+"%", 950, 360);
+      text("Flights departing late \n"+ round(perc3) +"%", 950, 360);
     }
     
     if(currentScreen==totalCanScreen)
@@ -83,12 +113,13 @@ class Screen
       fill(#FBE29F);
       rect(900, 165, 40, 40);
       fill(0);
-      text("Flights not cancelled \n"+latePieChart.notcanPercent+"%", 950, 190);
+      text("Flights not cancelled \n"+ round(perc1) +"%", 950, 190);
       fill(#E8A09A);
       rect(900, 250, 40, 40);
       fill(0);
-      text("Flights cancelled \n"+latePieChart.canPercent+"%", 950, 280);
+      text("Flights cancelled \n"+ round(perc2) +"%", 950, 280);
     }
+    
     for (int i = 0; i<headerList.size(); i++)
     {
       Header header = (Header) headerList.get(i);
@@ -100,15 +131,18 @@ class Screen
       Label label = (Label) labelList.get(i);
       label.draw();
     }
+    for (int i = 0; i < pieChartList.size(); i++)
+    {
+      PieChart pieChart = (PieChart) pieChartList.get(i);
+      pieChart.draw();
+    }
     
     for (int i = 0; i < widgets.size(); i++) 
     {       
       Widget widget = (Widget) widgets.get(i);       
       widget.draw();
     }
-    
-    if (latePieChart!=null)
-      latePieChart.draw();
+
   }
   
   void addWidget(Widget widget) 
@@ -126,8 +160,9 @@ class Screen
     labelList.add(label);
   }
   
-  void addPieChart(float diam) {
-    latePieChart=new PieChart(diam);
+  void addPieChart (PieChart pieChart)
+  {
+    pieChartList.add(pieChart);
   }
-  
+
 } 

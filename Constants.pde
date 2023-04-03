@@ -27,6 +27,9 @@ final int lY = tbY;
 
 final color lCol =  color(238,213,201);
 
+// pie chart colours
+final color[] colsPC={ #FBE29F, #E8A09A, #9BBFE0};
+
 // calendar values
 final int calGap = 2;
 final int calW = 60;
