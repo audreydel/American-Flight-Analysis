@@ -668,7 +668,6 @@ void mousePressed()
       currentScreen.addLabel(lDState);
       break;
     
-      
     default:
       break;
   }

@@ -1,9 +1,11 @@
-ArrayList<ArrayList<String>> subListsOrigin = new ArrayList<ArrayList<String>>();
-ArrayList<ArrayList<String>> subListsDestination = new ArrayList<ArrayList<String>>();
+ArrayList<ArrayList<String>> subListsAirO = new ArrayList<ArrayList<String>>();
+ArrayList<ArrayList<String>> subListsAirD = new ArrayList<ArrayList<String>>();
 ArrayList<ArrayList<Integer>> subListsSchDept = new ArrayList<ArrayList<Integer>>();
 ArrayList<ArrayList<Integer>> subListsAccDept = new ArrayList<ArrayList<Integer>>();
 ArrayList<ArrayList<Integer>> subListsCancelled = new ArrayList<ArrayList<Integer>>();
 ArrayList<ArrayList<Integer>> subListsDistance = new ArrayList<ArrayList<Integer>>();
+ArrayList<ArrayList<String>> subListsStateO = new ArrayList<ArrayList<String>>();
+ArrayList<ArrayList<String>> subListsStateD = new ArrayList<ArrayList<String>>();
 
 class Flights
 {
@@ -11,12 +13,15 @@ class Flights
   TreeMap<Integer, Integer> flights;
 
   ArrayList<Integer> flightDates;
-  ArrayList<String> origin;
-  ArrayList<String> destination;
+  ArrayList<String> airO;
+  ArrayList<String> airD;
   ArrayList<Integer> schDept;
   ArrayList<Integer> accDept;
   ArrayList<Integer> cancelled;
   ArrayList<Integer> distance;
+  ArrayList<String> stateO;
+  ArrayList<String> stateD;
+  
   int countOnTime=0;
   int countEarly=0;
   int countLate=0;
@@ -28,32 +33,47 @@ class Flights
   void initialiseData()
   {
     flightDates=new ArrayList<Integer>();
-    origin=new ArrayList<String>();
-    destination=new ArrayList<String>();
+    airO=new ArrayList<String>();
+    airD=new ArrayList<String>();
     schDept=new ArrayList<Integer>();
     accDept=new ArrayList<Integer>();
     cancelled= new ArrayList<Integer>();
     distance=new ArrayList<Integer>();
+    stateO=new ArrayList<String>();
+    stateD=new ArrayList<String>();
 
     for (int i=0; i<table.getRowCount(); i++)
     {
       TableRow row=table.getRow(i);
+      
       String dateTime = row.getString("FL_DATE");
       int[] dateParts=int(dateTime.split("/"));
       int date=dateParts[1];
       flightDates.add(date);
-      String originInfo=row.getString("ORIGIN");
-      origin.add(originInfo);
+      
+      String airOInfo=row.getString("ORIGIN");
+      airO.add(airOInfo);
+      
       String dest=row.getString("DEST");
-      destination.add(dest);
+      airD.add(dest);
+      
       int scheduledDept=row.getInt("CRS_DEP_TIME");
       schDept.add(scheduledDept);
+      
       int actualDept=row.getInt("DEP_TIME");
       accDept.add(actualDept);
+      
       int can=row.getInt("CANCELLED");
       cancelled.add(can);
+      
       int dist=row.getInt("DISTANCE");
       distance.add(dist);
+      
+      String stateOInfo = row.getString("ORIGIN_STATE_ABR");
+      stateO.add(stateOInfo);
+      
+      String stateDInfo = row.getString("DEST_STATE_ABR");
+      stateD.add(stateDInfo);
     }
 
     flights=new TreeMap<Integer, Integer>();
@@ -76,25 +96,30 @@ class Flights
     for(int i=0; i<subListSize.size(); i++)
     {
       endIndex=startIndex+subListSize.get(i);
-      ArrayList<String> subListOrig=new ArrayList<String>(origin.subList(startIndex, endIndex));
-      ArrayList<String> subListDest=new ArrayList<String>(destination.subList(startIndex, endIndex));
+      ArrayList<String> subListAO=new ArrayList<String>(airO.subList(startIndex, endIndex));
+      ArrayList<String> subListAD=new ArrayList<String>(airD.subList(startIndex, endIndex));
       ArrayList<Integer> subListSchD=new ArrayList<Integer>(schDept.subList(startIndex, endIndex));
       ArrayList<Integer> subListAccDept=new ArrayList<Integer>(accDept.subList(startIndex, endIndex));
       ArrayList<Integer> subListDist=new ArrayList<Integer>(distance.subList(startIndex, endIndex));
       ArrayList<Integer> subListCan=new ArrayList<Integer>(cancelled.subList(startIndex, endIndex));
-      subListsOrigin.add(subListOrig);
-      subListsDestination.add(subListDest);
+      ArrayList<String> subListSO=new ArrayList<String>(stateO.subList(startIndex, endIndex));
+      ArrayList<String> subListSD=new ArrayList<String>(stateD.subList(startIndex, endIndex));
+      
+      subListsAirO.add(subListAO);
+      subListsAirD.add(subListAD);
       subListsSchDept.add(subListSchD);
       subListsAccDept.add(subListAccDept);
       subListsDistance.add(subListDist);
       subListsCancelled.add(subListCan);
+      subListsStateO.add(subListSO);
+      subListsStateD.add(subListSD);
       startIndex=endIndex;
     }
   }
   
   void countTime()
   {
-    for (int i=0; i<destination.size(); i++)
+    for (int i=0; i<airD.size(); i++)
     {
       int scheduledTime=currFlight.schDept.get(i);
       int actualTime=currFlight.accDept.get(i);
@@ -111,7 +136,7 @@ class Flights
   void cancelledFlights()
   {
 
-    for (int i=0; i<destination.size(); i++)
+    for (int i=0; i<airD.size(); i++)
     {
 
       int isItCancelled=currFlight.cancelled.get(i);
