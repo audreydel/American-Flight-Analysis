@@ -60,6 +60,7 @@ final int EVENT_LATE = 59;
 final int EVENT_AIRPORT = 60;
 final int EVENT_OSTATE = 61; 
 final int EVENT_DSTATE = 62;
+final int EVENT_CANCEL = 68;
 final int EVENT_NULL=0;
 
 // stat square events

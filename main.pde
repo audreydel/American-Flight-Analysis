@@ -5,10 +5,10 @@ PImage logo, logoHeader;
 
 Flights currFlight;
 
-Label lCalendar, lLateness, lAirport, lOState, lDState;
+Label lCalendar, lLateness, lAirport, lOState, lDState, lCancelled;
 
 ArrayList widgetList;
-Widget bHomeScreen, bLateness, bAirport, bOState, bDState;
+Widget bHomeScreen, bLateness, bAirport, bOState, bDState, bCancelled;
 Widget jan1, jan2, jan3, jan4, jan5, jan6, jan7, jan8, jan9, jan10, jan11, jan12, jan13, jan14,
   jan15, jan16, jan17, jan18, jan19, jan20, jan21, jan22, jan23, jan24, jan25, jan26,
   jan27, jan28, jan29, jan30, jan31;
@@ -29,32 +29,32 @@ Header mainHead, jan1Head, jan2Head, jan3Head, jan4Head, jan5Head, jan6Head, jan
 Header lateHead, canHead, orgHead, destHead, airportHead;
 
 BarChart tAirportsBC, tStateOBC, tStateDBC;
-BarChart j1AirBC,j2AirBC,j3AirBC,j4AirBC,j5AirBC,j6AirBC,j7AirBC,j8AirBC,j9AirBC,
-         j10AirBC,j11AirBC,j12AirBC,j13AirBC,j14AirBC,j15AirBC,j16AirBC,j17AirBC,j18AirBC,j19AirBC,
-         j20AirBC,j21AirBC,j22AirBC,j23AirBC,j24AirBC,j25AirBC,j26AirBC,j27AirBC,j28AirBC,j29AirBC,
-         j30AirBC,j31AirBC,
-         j1StateOBC,j2StateOBC,j3StateOBC,j4StateOBC,j5StateOBC,j6StateOBC,j7StateOBC,j8StateOBC,j9StateOBC,
-         j10StateOBC,j11StateOBC,j12StateOBC,j13StateOBC,j14StateOBC,j15StateOBC,j16StateOBC,j17StateOBC,j18StateOBC,j19StateOBC,
-         j20StateOBC,j21StateOBC,j22StateOBC,j23StateOBC,j24StateOBC,j25StateOBC,j26StateOBC,j27StateOBC,j28StateOBC,j29StateOBC,
-         j30StateOBC,j31StateOBC,
-         j1StateDBC,j2StateDBC,j3StateDBC,j4StateDBC,j5StateDBC,j6StateDBC,j7StateDBC,j8StateDBC,j9StateDBC,
-         j10StateDBC,j11StateDBC,j12StateDBC,j13StateDBC,j14StateDBC,j15StateDBC,j16StateDBC,j17StateDBC,j18StateDBC,j19StateDBC,
-         j20StateDBC,j21StateDBC,j22StateDBC,j23StateDBC,j24StateDBC,j25StateDBC,j26StateDBC,j27StateDBC,j28StateDBC,j29StateDBC,
-         j30StateDBC,j31StateDBC;
-         
- PieChart tCanPie, tLatePie;
- PieChart j1CanPie,j2CanPie,j3CanPie,j4CanPie,j5CanPie,j6CanPie,j7CanPie,j8CanPie,j9CanPie,
-          j10CanPie,j11CanPie,j12CanPie,j13CanPie,j14CanPie,j15CanPie,j16CanPie,j17CanPie,j18CanPie,j19CanPie,
-          j20CanPie,j21CanPie,j22CanPie,j23CanPie,j24CanPie,j25CanPie,j26CanPie,j27CanPie,j28CanPie,j29CanPie,
-          j30CanPie,j31CanPie,
-          j1LatePie,j2LatePie,j3LatePie,j4LatePie,j5LatePie,j6LatePie,j7LatePie,j8LatePie,j9LatePie,
-          j10LatePie,j11LatePie,j12LatePie,j13LatePie,j14LatePie,j15LatePie,j16LatePie,j17LatePie,j18LatePie,j19LatePie,
-          j20LatePie,j21LatePie,j22LatePie,j23LatePie,j24LatePie,j25LatePie,j26LatePie,j27LatePie,j28LatePie,j29LatePie,
-          j30LatePie,j31LatePie;
-          
-          
- 
-          
+BarChart j1AirBC, j2AirBC, j3AirBC, j4AirBC, j5AirBC, j6AirBC, j7AirBC, j8AirBC, j9AirBC,
+  j10AirBC, j11AirBC, j12AirBC, j13AirBC, j14AirBC, j15AirBC, j16AirBC, j17AirBC, j18AirBC, j19AirBC,
+  j20AirBC, j21AirBC, j22AirBC, j23AirBC, j24AirBC, j25AirBC, j26AirBC, j27AirBC, j28AirBC, j29AirBC,
+  j30AirBC, j31AirBC,
+  j1StateOBC, j2StateOBC, j3StateOBC, j4StateOBC, j5StateOBC, j6StateOBC, j7StateOBC, j8StateOBC, j9StateOBC,
+  j10StateOBC, j11StateOBC, j12StateOBC, j13StateOBC, j14StateOBC, j15StateOBC, j16StateOBC, j17StateOBC, j18StateOBC, j19StateOBC,
+  j20StateOBC, j21StateOBC, j22StateOBC, j23StateOBC, j24StateOBC, j25StateOBC, j26StateOBC, j27StateOBC, j28StateOBC, j29StateOBC,
+  j30StateOBC, j31StateOBC,
+  j1StateDBC, j2StateDBC, j3StateDBC, j4StateDBC, j5StateDBC, j6StateDBC, j7StateDBC, j8StateDBC, j9StateDBC,
+  j10StateDBC, j11StateDBC, j12StateDBC, j13StateDBC, j14StateDBC, j15StateDBC, j16StateDBC, j17StateDBC, j18StateDBC, j19StateDBC,
+  j20StateDBC, j21StateDBC, j22StateDBC, j23StateDBC, j24StateDBC, j25StateDBC, j26StateDBC, j27StateDBC, j28StateDBC, j29StateDBC,
+  j30StateDBC, j31StateDBC;
+
+PieChart tCanPie, tLatePie;
+PieChart j1CanPie, j2CanPie, j3CanPie, j4CanPie, j5CanPie, j6CanPie, j7CanPie, j8CanPie, j9CanPie,
+  j10CanPie, j11CanPie, j12CanPie, j13CanPie, j14CanPie, j15CanPie, j16CanPie, j17CanPie, j18CanPie, j19CanPie,
+  j20CanPie, j21CanPie, j22CanPie, j23CanPie, j24CanPie, j25CanPie, j26CanPie, j27CanPie, j28CanPie, j29CanPie,
+  j30CanPie, j31CanPie,
+  j1LatePie, j2LatePie, j3LatePie, j4LatePie, j5LatePie, j6LatePie, j7LatePie, j8LatePie, j9LatePie,
+  j10LatePie, j11LatePie, j12LatePie, j13LatePie, j14LatePie, j15LatePie, j16LatePie, j17LatePie, j18LatePie, j19LatePie,
+  j20LatePie, j21LatePie, j22LatePie, j23LatePie, j24LatePie, j25LatePie, j26LatePie, j27LatePie, j28LatePie, j29LatePie,
+  j30LatePie, j31LatePie;
+
+
+
+
 void settings()
 {
   size(SCREENX, SCREENY);
@@ -62,7 +62,7 @@ void settings()
 
 void setup()
 {
-  
+
   // flight info
 
   currFlight = new Flights();
@@ -97,28 +97,31 @@ void setup()
     stdFont, EVENT_OSTATE, borderColor);
   bDState = new Widget (margin, tbY+(tbH*4), tbW, tbH, "Destination State", lCol,
     stdFont, EVENT_DSTATE, borderColor);
+ bCancelled = new Widget (margin, tbY+(tbH*5), tbW, tbH, "Cancelled Flights", lCol,
+    stdFont, EVENT_CANCEL, borderColor); 
 
   // stat table
-  fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats",headColor,
-                        italicFont, EVENT_NULL, borderColor);
-  tLate = new Widget(margin, tbY+tbH, sbW, tbH, "Flight departure stats",lCol,
-                      italicFont, T_LATE, borderColor);
-  tAirport = new Widget(margin,tbY+(tbH*2), sbW, tbH, "Total airports", lCol,
-                        italicFont, T_AIRPORT, borderColor);
-  tCancelled = new Widget(margin,tbY+(tbH*3), sbW, tbH, "Total flights cancelled",lCol,
-                          italicFont, T_CAN, borderColor);
-  tDState = new Widget(margin,tbY+(tbH*4), sbW, tbH, "Total flights arriving",lCol,
-                       italicFont, T_ARR, borderColor);
-  tOState = new Widget(margin,tbY+(tbH*5), sbW, tbH, "Total flights departing",lCol,
-                        italicFont, T_DEP, borderColor); 
-  
+  fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats", headColor,
+    italicFont, EVENT_NULL, borderColor);
+  tLate = new Widget(margin, tbY+tbH, sbW, tbH, "Flight departure stats", lCol,
+    italicFont, T_LATE, borderColor);
+  tAirport = new Widget(margin, tbY+(tbH*2), sbW, tbH, "Total airports", lCol,
+    italicFont, T_AIRPORT, borderColor);
+  tCancelled = new Widget(margin, tbY+(tbH*3), sbW, tbH, "Total flights cancelled", lCol,
+    italicFont, T_CAN, borderColor);
+  tDState = new Widget(margin, tbY+(tbH*4), sbW, tbH, "Total flights arriving", lCol,
+    italicFont, T_ARR, borderColor);
+  tOState = new Widget(margin, tbY+(tbH*5), sbW, tbH, "Total flights departing", lCol,
+    italicFont, T_DEP, borderColor);
+
   // labels
   lCalendar = new Label (lX, lY, lW, lH, lCol, "Calendar", stdFont);
   lLateness = new Label (lX, lY, lW, lH, lCol, "Lateness", stdFont);
   lAirport = new Label (lX, lY, lW, lH, lCol, "Airport", stdFont);
   lOState = new Label (lX, lY, lW, lH, lCol, "Origin State", stdFont);
   lDState = new Label (lX, lY, lW, lH, lCol, "Destination State", stdFont);
-  
+  lCancelled = new Label (lX, lY, lW, lH, lCol, "Flights cancelled", stdFont);
+
 
   // calendar buttons
   jan1=new Widget(col6X, row1Y, calW, calH, "1", headColor, arrowFont, JAN1, borderColor);
@@ -152,8 +155,8 @@ void setup()
   jan29=new Widget(col6X, row5Y, calW, calH, "29", headColor, arrowFont, JAN29, borderColor);
   jan30=new Widget(col7X, row5Y, calW, calH, "30", headColor, arrowFont, JAN30, borderColor);
   jan31=new Widget(col1X, row6Y, calW, calH, "31", headColor, arrowFont, JAN31, borderColor);
-  
-  // pie charts data 
+
+  // pie charts data
   float countTime=currFlight.countOnTime;
   float countErly=currFlight.countEarly;
   float countLte=currFlight.countLate;
@@ -162,11 +165,11 @@ void setup()
   float ang2=(countErly/total)*360;
   float ang3=(countLte/total)*360;
   float[] graph1 = {ang1, ang2, ang3};
-  
+
   float countTimePercent=(countTime*100)/total;
   float countErlyPercent=(countErly*100)/total;
   float countLtePercent=(countLte*100)/total;
-  
+
   float canNum1=currFlight.notCanCount;
   float canNum2=currFlight.cancelledCount;
   float total2=currFlight.notCanCount+currFlight.cancelledCount;
@@ -177,12 +180,12 @@ void setup()
   float canPercent=(canNum2*100)/total2;
   float notcanPercent=(canNum1*100)/total2;
 
-  // pie charts 
+  // pie charts
   tLatePie = new PieChart (300, graph1, colsPC);
   tCanPie = new PieChart (300, graph2, colsPC);
-  
-  // bar charts 
-  
+
+  // bar charts
+
   tStateDBC = new BarChart(currFlight.stateD);
   tStateOBC = new BarChart(currFlight.stateO);
 
@@ -232,15 +235,15 @@ void setup()
   mainScreen.addHeader(mainHead);
   mainScreen.addLabel(lCalendar);
 
-  
+
   mainScreen.addWidget(tLate);
   mainScreen.addWidget(tAirport);
   mainScreen.addWidget(tOState);
   mainScreen.addWidget(tDState);
   mainScreen.addWidget(fullMonth);
   mainScreen.addWidget(tCancelled);
- 
-  
+
+
   mainScreen.addWidget(jan1);
   mainScreen.addWidget(jan2);
   mainScreen.addWidget(jan3);
@@ -281,6 +284,7 @@ void setup()
   jan1Screen.addWidget(bAirport);
   jan1Screen.addWidget(bOState);
   jan1Screen.addWidget(bDState);
+  jan1Screen.addWidget(bCancelled);
 
   jan2Screen = new Screen(bgCol);
   jan2Screen.addHeader(jan2Head);
@@ -289,6 +293,7 @@ void setup()
   jan2Screen.addWidget(bAirport);
   jan2Screen.addWidget(bOState);
   jan2Screen.addWidget(bDState);
+  jan2Screen.addWidget(bCancelled);
 
   jan3Screen = new Screen(bgCol);
   jan3Screen.addHeader(jan3Head);
@@ -297,6 +302,7 @@ void setup()
   jan3Screen.addWidget(bAirport);
   jan3Screen.addWidget(bOState);
   jan3Screen.addWidget(bDState);
+  jan3Screen.addWidget(bCancelled);
 
   jan4Screen = new Screen(bgCol);
   jan4Screen.addHeader(jan4Head);
@@ -305,6 +311,7 @@ void setup()
   jan4Screen.addWidget(bAirport);
   jan4Screen.addWidget(bOState);
   jan4Screen.addWidget(bDState);
+  jan4Screen.addWidget(bCancelled);
 
   jan5Screen = new Screen(bgCol);
   jan5Screen.addHeader(jan5Head);
@@ -313,6 +320,7 @@ void setup()
   jan5Screen.addWidget(bAirport);
   jan5Screen.addWidget(bOState);
   jan5Screen.addWidget(bDState);
+  jan5Screen.addWidget(bCancelled);
 
   jan6Screen = new Screen(bgCol);
   jan6Screen.addHeader(jan6Head);
@@ -321,6 +329,7 @@ void setup()
   jan6Screen.addWidget(bAirport);
   jan6Screen.addWidget(bOState);
   jan6Screen.addWidget(bDState);
+  jan6Screen.addWidget(bCancelled);
 
   jan7Screen = new Screen(bgCol);
   jan7Screen.addHeader(jan7Head);
@@ -329,6 +338,7 @@ void setup()
   jan7Screen.addWidget(bAirport);
   jan7Screen.addWidget(bOState);
   jan7Screen.addWidget(bDState);
+  jan7Screen.addWidget(bCancelled);
 
   jan8Screen = new Screen(bgCol);
   jan8Screen.addHeader(jan8Head);
@@ -337,6 +347,7 @@ void setup()
   jan8Screen.addWidget(bAirport);
   jan8Screen.addWidget(bOState);
   jan8Screen.addWidget(bDState);
+  jan8Screen.addWidget(bCancelled);
 
   jan9Screen = new Screen(bgCol);
   jan9Screen.addHeader(jan9Head);
@@ -345,6 +356,7 @@ void setup()
   jan9Screen.addWidget(bAirport);
   jan9Screen.addWidget(bOState);
   jan9Screen.addWidget(bDState);
+  jan9Screen.addWidget(bCancelled);
 
   jan10Screen = new Screen(bgCol);
   jan10Screen.addHeader(jan10Head);
@@ -353,6 +365,7 @@ void setup()
   jan10Screen.addWidget(bAirport);
   jan10Screen.addWidget(bOState);
   jan10Screen.addWidget(bDState);
+  jan10Screen.addWidget(bCancelled);
 
   jan11Screen = new Screen(bgCol);
   jan11Screen.addHeader(jan11Head);
@@ -361,6 +374,7 @@ void setup()
   jan11Screen.addWidget(bAirport);
   jan11Screen.addWidget(bOState);
   jan11Screen.addWidget(bDState);
+  jan11Screen.addWidget(bCancelled);
 
   jan12Screen = new Screen(bgCol);
   jan12Screen.addHeader(jan12Head);
@@ -369,6 +383,7 @@ void setup()
   jan12Screen.addWidget(bAirport);
   jan12Screen.addWidget(bOState);
   jan12Screen.addWidget(bDState);
+  jan12Screen.addWidget(bCancelled);
 
   jan13Screen = new Screen(bgCol);
   jan13Screen.addHeader(jan13Head);
@@ -377,7 +392,7 @@ void setup()
   jan13Screen.addWidget(bAirport);
   jan13Screen.addWidget(bOState);
   jan13Screen.addWidget(bDState);
-
+  jan13Screen.addWidget(bCancelled);
 
   jan14Screen = new Screen(bgCol);
   jan14Screen.addHeader(jan14Head);
@@ -386,6 +401,7 @@ void setup()
   jan14Screen.addWidget(bAirport);
   jan14Screen.addWidget(bOState);
   jan14Screen.addWidget(bDState);
+  jan14Screen.addWidget(bCancelled);
 
   jan15Screen = new Screen(bgCol);
   jan15Screen.addHeader(jan15Head);
@@ -394,6 +410,7 @@ void setup()
   jan15Screen.addWidget(bAirport);
   jan15Screen.addWidget(bOState);
   jan15Screen.addWidget(bDState);
+  jan15Screen.addWidget(bCancelled);
 
   jan16Screen = new Screen(bgCol);
   jan16Screen.addHeader(jan16Head);
@@ -402,6 +419,7 @@ void setup()
   jan16Screen.addWidget(bAirport);
   jan16Screen.addWidget(bOState);
   jan16Screen.addWidget(bDState);
+  jan16Screen.addWidget(bCancelled);
 
   jan17Screen = new Screen(bgCol);
   jan17Screen.addHeader(jan17Head);
@@ -410,6 +428,7 @@ void setup()
   jan17Screen.addWidget(bAirport);
   jan17Screen.addWidget(bOState);
   jan17Screen.addWidget(bDState);
+  jan17Screen.addWidget(bCancelled);
 
   jan18Screen = new Screen(bgCol);
   jan18Screen.addHeader(jan18Head);
@@ -418,6 +437,7 @@ void setup()
   jan18Screen.addWidget(bAirport);
   jan18Screen.addWidget(bOState);
   jan18Screen.addWidget(bDState);
+  jan18Screen.addWidget(bCancelled);
 
   jan19Screen = new Screen(bgCol);
   jan19Screen.addHeader(jan19Head);
@@ -426,6 +446,7 @@ void setup()
   jan19Screen.addWidget(bAirport);
   jan19Screen.addWidget(bOState);
   jan19Screen.addWidget(bDState);
+  jan19Screen.addWidget(bCancelled);
 
   jan20Screen = new Screen(bgCol);
   jan20Screen.addHeader(jan20Head);
@@ -434,6 +455,7 @@ void setup()
   jan20Screen.addWidget(bAirport);
   jan20Screen.addWidget(bOState);
   jan20Screen.addWidget(bDState);
+  jan20Screen.addWidget(bCancelled);
 
   jan21Screen = new Screen(bgCol);
   jan21Screen.addHeader(jan21Head);
@@ -442,6 +464,7 @@ void setup()
   jan21Screen.addWidget(bAirport);
   jan21Screen.addWidget(bOState);
   jan21Screen.addWidget(bDState);
+  jan21Screen.addWidget(bCancelled);
 
   jan22Screen = new Screen(bgCol);
   jan22Screen.addHeader(jan22Head);
@@ -450,6 +473,7 @@ void setup()
   jan22Screen.addWidget(bAirport);
   jan22Screen.addWidget(bOState);
   jan22Screen.addWidget(bDState);
+  jan22Screen.addWidget(bCancelled);
 
   jan23Screen = new Screen(bgCol);
   jan23Screen.addHeader(jan23Head);
@@ -458,6 +482,7 @@ void setup()
   jan23Screen.addWidget(bAirport);
   jan23Screen.addWidget(bOState);
   jan23Screen.addWidget(bDState);
+  jan23Screen.addWidget(bCancelled);
 
   jan24Screen = new Screen(bgCol);
   jan24Screen.addHeader(jan24Head);
@@ -466,6 +491,7 @@ void setup()
   jan24Screen.addWidget(bAirport);
   jan24Screen.addWidget(bOState);
   jan24Screen.addWidget(bDState);
+  jan24Screen.addWidget(bCancelled);
 
   jan25Screen = new Screen(bgCol);
   jan25Screen.addHeader(jan25Head);
@@ -474,6 +500,7 @@ void setup()
   jan25Screen.addWidget(bAirport);
   jan25Screen.addWidget(bOState);
   jan25Screen.addWidget(bDState);
+  jan25Screen.addWidget(bCancelled);
 
   jan26Screen = new Screen(bgCol);
   jan26Screen.addHeader(jan26Head);
@@ -482,6 +509,7 @@ void setup()
   jan26Screen.addWidget(bAirport);
   jan26Screen.addWidget(bOState);
   jan26Screen.addWidget(bDState);
+  jan26Screen.addWidget(bCancelled);
 
   jan27Screen = new Screen(bgCol);
   jan27Screen.addHeader(jan27Head);
@@ -490,6 +518,7 @@ void setup()
   jan27Screen.addWidget(bAirport);
   jan27Screen.addWidget(bOState);
   jan27Screen.addWidget(bDState);
+  jan27Screen.addWidget(bCancelled);
 
   jan28Screen = new Screen(bgCol);
   jan28Screen.addHeader(jan28Head);
@@ -498,6 +527,7 @@ void setup()
   jan28Screen.addWidget(bAirport);
   jan28Screen.addWidget(bOState);
   jan28Screen.addWidget(bDState);
+  jan28Screen.addWidget(bCancelled);
 
   jan29Screen = new Screen(bgCol);
   jan29Screen.addHeader(jan29Head);
@@ -506,6 +536,7 @@ void setup()
   jan29Screen.addWidget(bAirport);
   jan29Screen.addWidget(bOState);
   jan29Screen.addWidget(bDState);
+  jan29Screen.addWidget(bCancelled);
 
   jan30Screen = new Screen(bgCol);
   jan30Screen.addHeader(jan30Head);
@@ -514,6 +545,7 @@ void setup()
   jan30Screen.addWidget(bAirport);
   jan30Screen.addWidget(bOState);
   jan30Screen.addWidget(bDState);
+  jan30Screen.addWidget(bCancelled);
 
   jan31Screen = new Screen(bgCol);
   jan31Screen.addHeader(jan31Head);
@@ -522,18 +554,19 @@ void setup()
   jan31Screen.addWidget(bAirport);
   jan31Screen.addWidget(bOState);
   jan31Screen.addWidget(bDState);
-  
+  jan31Screen.addWidget(bCancelled);
+
 
   totalLateScreen=new Screen(bgCol, countTimePercent, countErlyPercent, countLtePercent);
   totalLateScreen.addHeader(lateHead);
   totalLateScreen.addWidget(bHomeScreen);
   totalLateScreen.addPieChart(tLatePie);
-  
+
   totalCanScreen= new Screen(bgCol, notcanPercent, canPercent);
   totalCanScreen.addHeader(canHead);
   totalCanScreen.addWidget(bHomeScreen);
   totalCanScreen.addPieChart(tCanPie);
-  
+
   totalOriginScreen=new Screen(bgCol);
   totalOriginScreen.addHeader(orgHead);
   totalOriginScreen.addWidget(bHomeScreen);
@@ -545,7 +578,7 @@ void setup()
   totalAirportScreen= new Screen(bgCol);
   totalAirportScreen.addHeader(airportHead);
   totalAirportScreen.addWidget(bHomeScreen);
-  
+
   // * creating Array list
   widgetList = new ArrayList();
 
@@ -554,12 +587,14 @@ void setup()
   widgetList.add(bAirport);
   widgetList.add(bOState);
   widgetList.add(bDState);
+  widgetList.add(bCancelled);
+  
   widgetList.add(tLate);
   widgetList.add(tAirport);
   widgetList.add(tOState);
   widgetList.add(tDState);
   widgetList.add(tCancelled);
-  
+
   widgetList.add(jan1);
   widgetList.add(jan2);
   widgetList.add(jan3);
@@ -592,6 +627,7 @@ void setup()
   widgetList.add(jan30);
   widgetList.add(jan31);
   
+
   screenList = new ArrayList();
   screenList.add(currentScreen);
   screenList.add(introScreen);
@@ -602,7 +638,7 @@ void setup()
   screenList.add(totalDestScreen);
   screenList.add(totalOriginScreen);
   screenList.add(totalCanScreen);
-  
+
   screenList.add(jan1Screen);
   screenList.add(jan2Screen);
   screenList.add(jan3Screen);
@@ -657,32 +693,36 @@ void mousePressed()
   int event = currentScreen.getEvent();
   switch (event)
   {
-    case EVENT_LATE:
-      currentScreen.addLabel(lLateness);
-      break;
-  
-    case EVENT_AIRPORT:
-      currentScreen.addLabel(lAirport);
-      break;
-  
-    case EVENT_OSTATE:
-      currentScreen.addLabel(lOState);
-      break;
-  
-    case EVENT_DSTATE:
-      currentScreen.addLabel(lDState);
-      break;
-      
-    case T_ARR:
-      totalDestScreen.addBarChart(tStateDBC);
-      break;
-      
-    case T_DEP:
-      totalOriginScreen.addBarChart(tStateOBC);
-      break;
-      
-    default:
-      break;
+  case EVENT_LATE:
+    currentScreen.addLabel(lLateness);
+    break;
+
+  case EVENT_AIRPORT:
+    currentScreen.addLabel(lAirport);
+    break;
+
+  case EVENT_OSTATE:
+    currentScreen.addLabel(lOState);
+    break;
+
+  case EVENT_DSTATE:
+    currentScreen.addLabel(lDState);
+    break;
+    
+  case EVENT_CANCEL:
+    currentScreen.addLabel(lCancelled);
+    break;
+
+  case T_ARR:
+    totalDestScreen.addBarChart(tStateDBC);
+    break;
+
+  case T_DEP:
+    totalOriginScreen.addBarChart(tStateOBC);
+    break;
+
+  default:
+    break;
   }
 
   switch(event)
@@ -693,6 +733,32 @@ void mousePressed()
 
   case JAN1:
     currentScreen = jan1Screen;
+    switch (event)
+    {
+    case EVENT_LATE:
+      currentScreen.addLabel(lLateness);
+      break;
+
+    case EVENT_AIRPORT:
+      currentScreen.addLabel(lAirport);
+      break;
+
+    case EVENT_OSTATE:
+      currentScreen.addLabel(lOState);
+      break;
+
+    case EVENT_DSTATE:
+      currentScreen.addLabel(lDState);
+      break;
+    
+    case EVENT_CANCEL:
+      currentScreen.addLabel(lCancelled);
+      break;
+
+    default:
+      break;
+    }
+
     break;
 
   case JAN2:
@@ -814,23 +880,23 @@ void mousePressed()
   case JAN31:
     currentScreen = jan31Screen;
     break;
-    
+
   case T_LATE:
     currentScreen = totalLateScreen;
     break;
-  
+
   case T_CAN:
     currentScreen=totalCanScreen;
     break;
-    
+
   case T_AIRPORT:
     currentScreen = totalAirportScreen;
     break;
-    
+
   case T_DEP:
     currentScreen = totalOriginScreen;
     break;
-    
+
   case T_ARR:
     currentScreen = totalDestScreen;
     break;
