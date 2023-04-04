@@ -10,7 +10,7 @@ class BarChart
     this.data = data;
   }
   
-  void countTStateD()
+  void countTState()
   {
 
     for (int i = 0; i < data.size(); i++)
@@ -226,11 +226,15 @@ class BarChart
 
   void draw()
   {
-    countTStateD();
+    countTState();
     stroke(0);
     strokeWeight(2);
     line(60, 180, 60, 850); // y axis
     line(60, 850, 1340, 850); // x axis
+    fill(0);
+    textFont(italicFont);
+    textSize(15.6);
+    text("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY", 60, 870);
     
     fill(0);
     int maxHeight = max(statesCount)/3;
@@ -239,6 +243,7 @@ class BarChart
       fill(colsPC[i% colsPC.length]);
       rect(60+i*26, 850-(statesCount[i]*200/maxHeight), 25, 200*statesCount[i]/maxHeight); // adjust the y-coordinate for each state
     }
+    
 
   }
 }

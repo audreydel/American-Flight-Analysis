@@ -184,6 +184,7 @@ void setup()
   // bar charts 
   
   tStateDBC = new BarChart(currFlight.stateD);
+  tStateOBC = new BarChart(currFlight.stateO);
 
   // screen headers
   mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont);
@@ -675,8 +676,9 @@ void mousePressed()
     case T_ARR:
       totalDestScreen.addBarChart(tStateDBC);
       break;
-
-    
+    case T_DEP:
+      totalOriginScreen.addBarChart(tStateOBC);
+      break;
     default:
       break;
   }
