@@ -27,6 +27,7 @@ class Flights
   int countLate=0;
   int notCanCount = 0;
   int cancelledCount = 0;
+ 
 
   Table table=loadTable("flights2k.csv", "header");
 
@@ -80,10 +81,13 @@ class Flights
 
     for (int date : flightDates)
     {
-      if (flights.containsKey(date)) {
+      if (flights.containsKey(date)) 
+      {
         int count = flights.get(date);
         flights.put(date, count + 1);
-      } else {
+      }
+      else 
+      {
         flights.put(date, 1);
       }
     }
@@ -119,7 +123,7 @@ class Flights
   
   void countTime()
   {
-    for (int i=0; i<airD.size(); i++)
+    for (int i=0; i<airO.size(); i++)
     {
       int scheduledTime=currFlight.schDept.get(i);
       int actualTime=currFlight.accDept.get(i);
@@ -136,17 +140,20 @@ class Flights
   void cancelledFlights()
   {
 
-    for (int i=0; i<airD.size(); i++)
+    for (int i=0; i<airO.size(); i++)
     {
 
       int isItCancelled=currFlight.cancelled.get(i);
       if (isItCancelled == 0)
       {
         notCanCount += 1;
-      } else if (isItCancelled == 1)
+      } 
+      else if (isItCancelled == 1)
       {
         cancelledCount += 1;
       }
     }
   }
+
+  
 }

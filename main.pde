@@ -28,19 +28,19 @@ Header mainHead, jan1Head, jan2Head, jan3Head, jan4Head, jan5Head, jan6Head, jan
   jan25Head, jan26Head, jan27Head, jan28Head, jan29Head, jan30Head, jan31Head;
 Header lateHead, canHead, orgHead, destHead, airportHead;
 
-BarChart tAirportsBC, tDepBC, tArrBC;
+BarChart tAirportsBC, tStateOBC, tStateDBC;
 BarChart j1AirBC,j2AirBC,j3AirBC,j4AirBC,j5AirBC,j6AirBC,j7AirBC,j8AirBC,j9AirBC,
          j10AirBC,j11AirBC,j12AirBC,j13AirBC,j14AirBC,j15AirBC,j16AirBC,j17AirBC,j18AirBC,j19AirBC,
          j20AirBC,j21AirBC,j22AirBC,j23AirBC,j24AirBC,j25AirBC,j26AirBC,j27AirBC,j28AirBC,j29AirBC,
          j30AirBC,j31AirBC,
-         j1DepBC,j2DepBC,j3DepBC,j4DepBC,j5DepBC,j6DepBC,j7DepBC,j8DepBC,j9DepBC,
-         j10DepBC,j11DepBC,j12DepBC,j13DepBC,j14DepBC,j15DepBC,j16DepBC,j17DepBC,j18DepBC,j19DepBC,
-         j20DepBC,j21DepBC,j22DepBC,j23DepBC,j24DepBC,j25DepBC,j26DepBC,j27DepBC,j28DepBC,j29DepBC,
-         j30DepBC,j31DepBC,
-         j1ArrBC,j2ArrBC,j3ArrBC,j4ArrBC,j5ArrBC,j6ArrBC,j7ArrBC,j8ArrBC,j9ArrBC,
-         j10ArrBC,j11ArrBC,j12ArrBC,j13ArrBC,j14ArrBC,j15ArrBC,j16ArrBC,j17ArrBC,j18ArrBC,j19ArrBC,
-         j20ArrBC,j21ArrBC,j22ArrBC,j23ArrBC,j24ArrBC,j25ArrBC,j26ArrBC,j27ArrBC,j28ArrBC,j29ArrBC,
-         j30ArrBC,j31ArrBC;
+         j1StateOBC,j2StateOBC,j3StateOBC,j4StateOBC,j5StateOBC,j6StateOBC,j7StateOBC,j8StateOBC,j9StateOBC,
+         j10StateOBC,j11StateOBC,j12StateOBC,j13StateOBC,j14StateOBC,j15StateOBC,j16StateOBC,j17StateOBC,j18StateOBC,j19StateOBC,
+         j20StateOBC,j21StateOBC,j22StateOBC,j23StateOBC,j24StateOBC,j25StateOBC,j26StateOBC,j27StateOBC,j28StateOBC,j29StateOBC,
+         j30StateOBC,j31StateOBC,
+         j1StateDBC,j2StateDBC,j3StateDBC,j4StateDBC,j5StateDBC,j6StateDBC,j7StateDBC,j8StateDBC,j9StateDBC,
+         j10StateDBC,j11StateDBC,j12StateDBC,j13StateDBC,j14StateDBC,j15StateDBC,j16StateDBC,j17StateDBC,j18StateDBC,j19StateDBC,
+         j20StateDBC,j21StateDBC,j22StateDBC,j23StateDBC,j24StateDBC,j25StateDBC,j26StateDBC,j27StateDBC,j28StateDBC,j29StateDBC,
+         j30StateDBC,j31StateDBC;
          
  PieChart tCanPie, tLatePie;
  PieChart j1CanPie,j2CanPie,j3CanPie,j4CanPie,j5CanPie,j6CanPie,j7CanPie,j8CanPie,j9CanPie,
@@ -180,6 +180,10 @@ void setup()
   // pie charts 
   tLatePie = new PieChart (300, graph1, colsPC);
   tCanPie = new PieChart (300, graph2, colsPC);
+  
+  // bar charts 
+  
+  tStateDBC = new BarChart(currFlight.stateD);
 
   // screen headers
   mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont);
@@ -667,6 +671,11 @@ void mousePressed()
     case EVENT_DSTATE:
       currentScreen.addLabel(lDState);
       break;
+      
+    case T_ARR:
+      totalDestScreen.addBarChart(tStateDBC);
+      break;
+
     
     default:
       break;

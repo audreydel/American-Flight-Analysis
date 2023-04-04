@@ -2,7 +2,7 @@
 
 class Screen 
 {   
-  ArrayList widgets , headerList, labelList, pieChartList;
+  ArrayList widgets , headerList, labelList, pieChartList, barChartList;
   color backgroundColor;
   float perc1, perc2, perc3;
   
@@ -15,6 +15,7 @@ class Screen
     headerList = new ArrayList();
     labelList = new ArrayList();
     pieChartList = new ArrayList();
+    barChartList = new ArrayList();
   }
   
   // screen for lateness pie chart
@@ -28,6 +29,8 @@ class Screen
     headerList = new ArrayList();
     labelList = new ArrayList();
     pieChartList = new ArrayList();
+        barChartList = new ArrayList();
+
   }
   
   // screen for cancelled pie chart
@@ -40,6 +43,8 @@ class Screen
     headerList = new ArrayList();
     labelList = new ArrayList();
     pieChartList = new ArrayList();
+    barChartList = new ArrayList();
+
   }
   
 
@@ -148,6 +153,12 @@ class Screen
       Widget widget = (Widget) widgets.get(i);       
       widget.draw();
     }
+    
+    for (int i=0; i<barChartList.size(); i++)
+    {
+      BarChart barChart = (BarChart) barChartList.get(i);
+      barChart.draw();
+    }
 
   }
   
@@ -170,5 +181,10 @@ class Screen
   {
     pieChartList.add(pieChart);
   }
-
+  
+  void addBarChart (BarChart barChart)
+  {
+    barChartList.add(barChart);
+  }
+  
 } 
