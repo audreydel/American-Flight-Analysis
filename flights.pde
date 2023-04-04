@@ -27,8 +27,10 @@ class Flights
   int countLate=0;
   int notCanCount = 0;
   int cancelledCount = 0;
+  int airOCount = 0;
  
 
+  //Table table=loadTable("flights_full (1).csv", "header");
   Table table=loadTable("flights2k.csv", "header");
 
   void initialiseData()
@@ -92,6 +94,9 @@ class Flights
       }
     }
     
+
+    
+    
     ArrayList<Integer> subListSize = new ArrayList<Integer>(flights.values());
     
     int startIndex=0;
@@ -121,6 +126,23 @@ class Flights
     }
   }
   
+     void countAirp()
+    {
+      HashSet<String> airports = new HashSet<>();
+      for (String airport : airO)
+      {
+        if (!airports.contains(airport))
+        {
+          airports.add(airport);
+          airOCount++;
+        }
+        
+      }
+      println(airports);
+      println(airOCount);
+      
+    }
+  
   void countTime()
   {
     for (int i=0; i<airO.size(); i++)
@@ -139,10 +161,8 @@ class Flights
 
   void cancelledFlights()
   {
-
     for (int i=0; i<airO.size(); i++)
     {
-
       int isItCancelled=currFlight.cancelled.get(i);
       if (isItCancelled == 0)
       {

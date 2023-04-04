@@ -1,4 +1,5 @@
 // main
+import java.awt.Component;
 
 PFont stdFont, arrowFont, headFont, italicFont;
 PImage logo, logoHeader;
@@ -8,7 +9,7 @@ Flights currFlight;
 Label lCalendar, lLateness, lAirport, lOState, lDState, lCancelled;
 
 ArrayList widgetList;
-Widget bHomeScreen, bLateness, bAirport, bOState, bDState, bCancelled;
+Widget bHomeScreen, bLateness, bAirport, bOState, bDState, bCancelled, bBack;
 Widget jan1, jan2, jan3, jan4, jan5, jan6, jan7, jan8, jan9, jan10, jan11, jan12, jan13, jan14,
   jan15, jan16, jan17, jan18, jan19, jan20, jan21, jan22, jan23, jan24, jan25, jan26,
   jan27, jan28, jan29, jan30, jan31;
@@ -16,6 +17,7 @@ Widget tLate, tAirport, tDState, tOState, fullMonth, tCancelled;
 
 ArrayList screenList;
 Screen currentScreen, introScreen, mainScreen, totalLateScreen, totalCanScreen, totalOriginScreen, totalDestScreen, totalAirportScreen;
+Screen lateScreen, canScreen, airpScreen, origScreen, destScreen;
 Screen jan1Screen, jan2Screen, jan3Screen, jan4Screen, jan5Screen, jan6Screen, jan7Screen,
   jan8Screen, jan9Screen, jan10Screen, jan11Screen, jan12Screen, jan13Screen,
   jan14Screen, jan15Screen, jan16Screen, jan17Screen, jan18Screen, jan19Screen,
@@ -28,6 +30,7 @@ Header mainHead, jan1Head, jan2Head, jan3Head, jan4Head, jan5Head, jan6Head, jan
   jan25Head, jan26Head, jan27Head, jan28Head, jan29Head, jan30Head, jan31Head;
 Header lateHead, canHead, orgHead, destHead, airportHead;
 
+BarChart currAirBC, currStateOBC, currStateDBC;
 BarChart tAirportsBC, tStateOBC, tStateDBC;
 BarChart j1AirBC, j2AirBC, j3AirBC, j4AirBC, j5AirBC, j6AirBC, j7AirBC, j8AirBC, j9AirBC,
   j10AirBC, j11AirBC, j12AirBC, j13AirBC, j14AirBC, j15AirBC, j16AirBC, j17AirBC, j18AirBC, j19AirBC,
@@ -97,8 +100,10 @@ void setup()
     stdFont, EVENT_OSTATE, borderColor);
   bDState = new Widget (margin, tbY+(tbH*4), tbW, tbH, "Destination State", lCol,
     stdFont, EVENT_DSTATE, borderColor);
- bCancelled = new Widget (margin, tbY+(tbH*5), tbW, tbH, "Cancelled Flights", lCol,
-    stdFont, EVENT_CANCEL, borderColor); 
+  bCancelled = new Widget (margin, tbY+(tbH*5), tbW, tbH, "Cancelled Flights", lCol,
+    stdFont, EVENT_CANCEL, borderColor);
+  bBack = new Widget (margin, tbY, tbW, tbH, "Back", headColor,
+    stdFont, JAN1, borderColor);
 
   // stat table
   fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats", headColor,
@@ -188,6 +193,70 @@ void setup()
 
   tStateDBC = new BarChart(currFlight.stateD);
   tStateOBC = new BarChart(currFlight.stateO);
+
+  j1StateOBC = new BarChart(subListsStateO.get(0));
+  j2StateOBC = new BarChart(subListsStateO.get(1));
+  j3StateOBC = new BarChart(subListsStateO.get(2));
+  j4StateOBC = new BarChart(subListsStateO.get(3));
+  j5StateOBC = new BarChart(subListsStateO.get(4));
+  j6StateOBC = new BarChart(subListsStateO.get(5));
+  //j7StateOBC = new BarChart(subListsStateO.get(6));
+  //j8StateOBC = new BarChart(subListsStateO.get(7));
+  //j9StateOBC = new BarChart(subListsStateO.get(8));
+  //j10StateOBC = new BarChart(subListsStateO.get(9));
+  //j11StateOBC = new BarChart(subListsStateO.get(10));
+  //j12StateOBC = new BarChart(subListsStateO.get(11));
+  //j13StateOBC = new BarChart(subListsStateO.get(12));
+  //j14StateOBC = new BarChart(subListsStateO.get(13));
+  //j15StateOBC = new BarChart(subListsStateO.get(14));
+  //j16StateOBC = new BarChart(subListsStateO.get(15));
+  //j17StateOBC = new BarChart(subListsStateO.get(16));
+  //j18StateOBC = new BarChart(subListsStateO.get(17));
+  //j19StateOBC = new BarChart(subListsStateO.get(18));
+  //j20StateOBC = new BarChart(subListsStateO.get(19));
+  //j21StateOBC = new BarChart(subListsStateO.get(20));
+  //j22StateOBC = new BarChart(subListsStateO.get(21));
+  //j23StateOBC = new BarChart(subListsStateO.get(22));
+  //j24StateOBC = new BarChart(subListsStateO.get(23));
+  //j25StateOBC = new BarChart(subListsStateO.get(24));
+  //j26StateOBC = new BarChart(subListsStateO.get(25));
+  //j27StateOBC = new BarChart(subListsStateO.get(26));
+  //j28StateOBC = new BarChart(subListsStateO.get(27));
+  //j29StateOBC = new BarChart(subListsStateO.get(28));
+  //j30StateOBC = new BarChart(subListsStateO.get(29));
+  //j31StateOBC = new BarChart(subListsStateO.get(30));
+
+  j1StateDBC = new BarChart(subListsStateD.get(0));
+  j2StateDBC = new BarChart(subListsStateD.get(1));
+  j3StateDBC = new BarChart(subListsStateD.get(2));
+  j4StateDBC = new BarChart(subListsStateD.get(3));
+  j5StateDBC = new BarChart(subListsStateD.get(4));
+  j6StateDBC = new BarChart(subListsStateD.get(5));
+  //j7StateDBC = new BarChart(subListsStateD.get(6));
+  //j8StateDBC = new BarChart(subListsStateD.get(7));
+  //j9StateDBC = new BarChart(subListsStateD.get(8));
+  //j10StateDBC = new BarChart(subListsStateD.get(9));
+  //j11StateDBC = new BarChart(subListsStateD.get(10));
+  //j12StateDBC = new BarChart(subListsStateD.get(11));
+  //j13StateDBC = new BarChart(subListsStateD.get(12));
+  //j14StateDBC = new BarChart(subListsStateD.get(13));
+  //j15StateDBC = new BarChart(subListsStateD.get(14));
+  //j16StateDBC = new BarChart(subListsStateD.get(15));
+  //j17StateDBC = new BarChart(subListsStateD.get(16));
+  //j18StateDBC = new BarChart(subListsStateD.get(17));
+  //j19StateDBC = new BarChart(subListsStateD.get(18));
+  //j20StateDBC = new BarChart(subListsStateD.get(19));
+  //j21StateDBC = new BarChart(subListsStateD.get(20));
+  //j22StateDBC = new BarChart(subListsStateD.get(21));
+  //j23StateDBC = new BarChart(subListsStateD.get(22));
+  //j24StateDBC = new BarChart(subListsStateD.get(23));
+  //j25StateDBC = new BarChart(subListsStateD.get(24));
+  //j26StateDBC = new BarChart(subListsStateD.get(25));
+  //j27StateDBC = new BarChart(subListsStateD.get(26));
+  //j28StateDBC = new BarChart(subListsStateD.get(27));
+  //j29StateDBC = new BarChart(subListsStateD.get(28));
+  //j30StateDBC = new BarChart(subListsStateD.get(29));
+  //j31StateDBC = new BarChart(subListsStateD.get(30));
 
   // screen headers
   mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont);
@@ -285,6 +354,7 @@ void setup()
   jan1Screen.addWidget(bOState);
   jan1Screen.addWidget(bDState);
   jan1Screen.addWidget(bCancelled);
+  //jan1Screen.addBarChart(j1StateOBC);
 
   jan2Screen = new Screen(bgCol);
   jan2Screen.addHeader(jan2Head);
@@ -578,6 +648,16 @@ void setup()
   totalAirportScreen= new Screen(bgCol);
   totalAirportScreen.addHeader(airportHead);
   totalAirportScreen.addWidget(bHomeScreen);
+  
+  
+  lateScreen = new Screen(bgCol);
+  canScreen = new Screen(bgCol);
+  airpScreen = new Screen(bgCol);
+  origScreen = new Screen(bgCol);
+  origScreen.addWidget(bBack);
+  
+  destScreen = new Screen(bgCol);
+  destScreen.addWidget(bBack);
 
   // * creating Array list
   widgetList = new ArrayList();
@@ -588,7 +668,7 @@ void setup()
   widgetList.add(bOState);
   widgetList.add(bDState);
   widgetList.add(bCancelled);
-  
+
   widgetList.add(tLate);
   widgetList.add(tAirport);
   widgetList.add(tOState);
@@ -626,7 +706,7 @@ void setup()
   widgetList.add(jan29);
   widgetList.add(jan30);
   widgetList.add(jan31);
-  
+
 
   screenList = new ArrayList();
   screenList.add(currentScreen);
@@ -638,6 +718,12 @@ void setup()
   screenList.add(totalDestScreen);
   screenList.add(totalOriginScreen);
   screenList.add(totalCanScreen);
+  
+  screenList.add(lateScreen);
+  screenList.add(canScreen);
+  screenList.add(airpScreen);
+  screenList.add(origScreen);
+  screenList.add(destScreen);
 
   screenList.add(jan1Screen);
   screenList.add(jan2Screen);
@@ -670,9 +756,15 @@ void setup()
   screenList.add(jan29Screen);
   screenList.add(jan30Screen);
   screenList.add(jan31Screen);
+  
 
 
   currentScreen = introScreen;
+  currAirBC = j1AirBC;
+  currStateOBC = j1StateOBC;
+  currStateOBC = j1StateDBC;
+  
+  currFlight.countAirp();
 }
 
 void draw()
@@ -691,82 +783,30 @@ void draw()
 void mousePressed()
 {
   int event = currentScreen.getEvent();
-  switch (event)
-  {
-  case EVENT_LATE:
-    currentScreen.addLabel(lLateness);
-    break;
-
-  case EVENT_AIRPORT:
-    currentScreen.addLabel(lAirport);
-    break;
-
-  case EVENT_OSTATE:
-    currentScreen.addLabel(lOState);
-    break;
-
-  case EVENT_DSTATE:
-    currentScreen.addLabel(lDState);
-    break;
-    
-  case EVENT_CANCEL:
-    currentScreen.addLabel(lCancelled);
-    break;
-
-  case T_ARR:
-    totalDestScreen.addBarChart(tStateDBC);
-    break;
-
-  case T_DEP:
-    totalOriginScreen.addBarChart(tStateOBC);
-    break;
-
-  default:
-    break;
-  }
 
   switch(event)
   {
   case MAIN_SCREEN:
     currentScreen = mainScreen;
+    
     break;
 
   case JAN1:
     currentScreen = jan1Screen;
-    switch (event)
-    {
-    case EVENT_LATE:
-      currentScreen.addLabel(lLateness);
-      break;
-
-    case EVENT_AIRPORT:
-      currentScreen.addLabel(lAirport);
-      break;
-
-    case EVENT_OSTATE:
-      currentScreen.addLabel(lOState);
-      break;
-
-    case EVENT_DSTATE:
-      currentScreen.addLabel(lDState);
-      break;
-    
-    case EVENT_CANCEL:
-      currentScreen.addLabel(lCancelled);
-      break;
-
-    default:
-      break;
-    }
-
+    currStateOBC = j1StateOBC;
+    currStateDBC = j1StateDBC;
     break;
 
   case JAN2:
     currentScreen = jan2Screen;
+    currStateOBC = j2StateOBC;
+    currStateDBC = j2StateDBC;
     break;
 
   case JAN3:
     currentScreen = jan3Screen;
+    currStateOBC = j3StateOBC;
+    currStateDBC = j3StateDBC;
     break;
 
   case JAN4:
@@ -901,4 +941,62 @@ void mousePressed()
     currentScreen = totalDestScreen;
     break;
   }
+
+  switch (event)
+  {
+  case EVENT_LATE:
+    currentScreen.addLabel(lLateness);
+    break;
+
+  case EVENT_AIRPORT:
+    currentScreen.addLabel(lAirport);
+    break;
+
+  case EVENT_OSTATE:
+    //currentScreen = origScreen;
+    currentScreen.addLabel(lOState);
+    //currentScreen.removeAllCharts();
+    currentScreen.addBarChart(currStateOBC);
+    break;
+
+  case EVENT_DSTATE:
+    //currentScreen = destScreen;
+    currentScreen.addLabel(lDState);
+    //currentScreen.removeAllCharts();
+    currentScreen.addBarChart(currStateDBC);
+    break;
+
+  case EVENT_CANCEL:
+    currentScreen.addLabel(lCancelled);
+    break;
+
+  case T_ARR:
+    totalDestScreen.addBarChart(tStateDBC);
+    break;
+
+  case T_DEP:
+    totalOriginScreen.addBarChart(tStateOBC);
+    break;
+
+  default:
+    break;
+  }
+  
+  
+
+  
 }
+
+  //void removeAllCharts()
+  //{
+  //  for (Component c: currentScreen.getComponents())
+  //  {
+  //    if (c instanceof BarChart)
+  //    {
+  //      currentScreen.removeComponent(c);
+  //    }
+      
+  //  }
+    
+    
+  //}

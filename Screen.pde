@@ -163,6 +163,7 @@ class Screen
     {
       BarChart barChart = (BarChart) barChartList.get(i);
       barChart.draw();
+      
     }
   }
 

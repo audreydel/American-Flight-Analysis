@@ -3,12 +3,16 @@ class BarChart
   Flights currFlight;
 
   int[] statesCount = new int[50];
+  //int[] airCount = new int[];
   ArrayList<String> data;
+  //ArrayList<ArrayList<String>> data2;
   
   BarChart(ArrayList<String> data)
   {
     this.data = data;
   }
+
+  
 
   void countTState()
   {
@@ -222,6 +226,12 @@ class BarChart
         break;
       }
     }
+    
+    //void countAirp()
+    //{
+      
+    //}
+    
   }
 
   void draw()
