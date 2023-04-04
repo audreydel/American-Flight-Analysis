@@ -92,17 +92,17 @@ void setup()
 
   bHomeScreen = new Widget (margin, tbY, tbW, tbH, "Home Page", headColor,
     stdFont, MAIN_SCREEN, borderColor);
-  bLateness = new Widget (margin, tbY+tbH, tbW, tbH, "Lateness", lCol,
+  bLateness = new Widget (margin+tbW+margin+5, tbY, tbW, tbH, "Lateness", lCol,
     stdFont, EVENT_LATE, borderColor);
-  bAirport = new Widget (margin, tbY+(tbH*2), tbW, tbH, "Airports", lCol,
+  bAirport = new Widget (margin+((tbW+margin+5)*2), tbY, tbW, tbH, "Airports", lCol,
     stdFont, EVENT_AIRPORT, borderColor);
-  bOState = new Widget (margin, tbY+(tbH*3), tbW, tbH, "Origin State", lCol,
+  bOState = new Widget (margin+((tbW+margin+5)*3), tbY, tbW, tbH, "Origin State", lCol,
     stdFont, EVENT_OSTATE, borderColor);
-  bDState = new Widget (margin, tbY+(tbH*4), tbW, tbH, "Destination State", lCol,
+  bDState = new Widget (margin+((tbW+margin+5)*4), tbY, tbW, tbH, "Destination State", lCol,
     stdFont, EVENT_DSTATE, borderColor);
-  bCancelled = new Widget (margin, tbY+(tbH*5), tbW, tbH, "Cancelled Flights", lCol,
+  bCancelled = new Widget (margin+((tbW+margin+5)*5), tbY, tbW, tbH, "Cancelled Flights", lCol,
     stdFont, EVENT_CANCEL, borderColor);
-  bBack = new Widget (margin, tbY, tbW, tbH, "Back", headColor,
+  bBack = new Widget (margin+((tbW+margin+5)*6), tbY, tbW, tbH, "Back", headColor,
     stdFont, JAN1, borderColor);
 
   // stat table

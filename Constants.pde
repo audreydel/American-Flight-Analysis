@@ -23,7 +23,7 @@ final int hH = 100; // height
 final int lW = 440;
 final int lH = 50;
 final int lX = (SCREENX/2)-200;
-final int lY = tbY;
+final int lY = 200;
 
 final color lCol =  color(238,213,201);
 
