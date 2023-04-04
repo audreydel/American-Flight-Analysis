@@ -3,13 +3,13 @@ class BarChart
   Flights currFlight;
 
   int[] statesCount = new int[50];
-  
   ArrayList<String> data;
+  
   BarChart(ArrayList<String> data)
   {
     this.data = data;
   }
-  
+
   void countTState()
   {
 
@@ -235,7 +235,7 @@ class BarChart
     textFont(italicFont);
     textSize(15.6);
     text("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY", 60, 870);
-    
+
     fill(0);
     int maxHeight = max(statesCount)/3;
     for (int i = 0; i < statesCount.length; i++)
@@ -243,7 +243,5 @@ class BarChart
       fill(colsPC[i% colsPC.length]);
       rect(60+i*26, 850-(statesCount[i]*200/maxHeight), 25, 200*statesCount[i]/maxHeight); // adjust the y-coordinate for each state
     }
-    
-
   }
 }

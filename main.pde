@@ -676,9 +676,11 @@ void mousePressed()
     case T_ARR:
       totalDestScreen.addBarChart(tStateDBC);
       break;
+      
     case T_DEP:
       totalOriginScreen.addBarChart(tStateOBC);
       break;
+      
     default:
       break;
   }
