@@ -7,11 +7,14 @@ final int SCREENY = 900;
 final color headColor=color(186, 109, 104);
 final color borderColor = color(0);
 final color bgCol = color(247, 197, 173);
+
 // task bar values
 final int tbY= 110;    // ypos 
 final int tbW = 217;   // width
 final int tbH = 55;    // height
 final int margin = 10;
+final int wRad = 10;   // curved boxes 
+final int wRadNC = 0;
 
 // stat bar
 final int sbW = 275;   // width
