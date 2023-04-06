@@ -184,8 +184,8 @@ void setup()
   float notcanPercent=(canNum1*100)/total2;
 
   // pie charts
-  tLatePie = new PieChart (300, graph1, colsPC);
-  tCanPie = new PieChart (300, graph2, colsPC);
+  tLatePie = new PieChart (600, graph1, colsPC);
+  tCanPie = new PieChart (600, graph2, colsPC);
 
   // bar charts
 

@@ -211,17 +211,16 @@ class BarChart
       int x=60+i*25;
       int y=850-barHeight;
       int barWidth=25;
+      fill(255);
       if (mouseX >= x && mouseX <= x + barWidth && mouseY >= y && mouseY <= height-barWidth) {
-        // set the currentBar variable to the index of the bar that the mouse is hovering over
         currentBar = i;
-
-        // draw a text box that displays the data value for the current bar
-        fill(255);
-        textAlign(LEFT, CENTER);
         text(airportName.get(i)+":"+statesCount[i], 980, 220);
+        fill(255);
       }
+      else{
       fill(colsPC[i% colsPC.length]);
-      rect(x, y, barWidth, barHeight); // adjust the y-coordinate for each state
+      }
+      rect(x, y, barWidth, barHeight); 
     }
     if (currentBar==-2) {
       currentBar=-2;
