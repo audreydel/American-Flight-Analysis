@@ -191,4 +191,10 @@ class Screen
   {
     barChartList.add(barChart);
   }
+  
+  void removeBarChart(BarChart barChart)
+  {
+    barChartList.remove(barChart);
+  }
+  
 }

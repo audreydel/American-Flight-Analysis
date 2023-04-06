@@ -255,7 +255,7 @@ void setup()
   j30StateOBC.countTState();
   j31StateOBC = new BarChart(subListsStateO.get(30));
   j31StateOBC.countTState();
-  
+
   j1StateDBC = new BarChart(subListsStateD.get(0));
   j1StateDBC.countTState();
   j2StateDBC = new BarChart(subListsStateD.get(1));
@@ -684,15 +684,50 @@ void setup()
   totalAirportScreen= new Screen(bgCol);
   totalAirportScreen.addHeader(airportHead);
   totalAirportScreen.addWidget(bHomeScreen);
-  
-  
+
+
   lateScreen = new Screen(bgCol);
+  lateScreen.addWidget(bHomeScreen);
+  lateScreen.addWidget(bLateness);
+  lateScreen.addWidget(bAirport);
+  lateScreen.addWidget(bOState);
+  lateScreen.addWidget(bDState);
+  lateScreen.addWidget(bCancelled);
+
   canScreen = new Screen(bgCol);
+  canScreen.addWidget(bHomeScreen);
+  canScreen.addWidget(bLateness);
+  canScreen.addWidget(bAirport);
+  canScreen.addWidget(bOState);
+  canScreen.addWidget(bDState);
+  canScreen.addWidget(bCancelled);
+
   airpScreen = new Screen(bgCol);
+  airpScreen.addWidget(bHomeScreen);
+  airpScreen.addWidget(bLateness);
+  airpScreen.addWidget(bAirport);
+  airpScreen.addWidget(bOState);
+  airpScreen.addWidget(bDState);
+  airpScreen.addWidget(bCancelled);
+
   origScreen = new Screen(bgCol);
+  origScreen.addWidget(bHomeScreen);
+  origScreen.addWidget(bLateness);
+  origScreen.addWidget(bAirport);
+  origScreen.addWidget(bOState);
+  origScreen.addWidget(bDState);
+  origScreen.addWidget(bCancelled);
+
   origScreen.addWidget(bBack);
-  
+
   destScreen = new Screen(bgCol);
+  destScreen.addWidget(bHomeScreen);
+  destScreen.addWidget(bLateness);
+  destScreen.addWidget(bAirport);
+  destScreen.addWidget(bOState);
+  destScreen.addWidget(bDState);
+  destScreen.addWidget(bCancelled);
+
   destScreen.addWidget(bBack);
 
   // * creating Array list
@@ -754,7 +789,7 @@ void setup()
   screenList.add(totalDestScreen);
   screenList.add(totalOriginScreen);
   screenList.add(totalCanScreen);
-  
+
   screenList.add(lateScreen);
   screenList.add(canScreen);
   screenList.add(airpScreen);
@@ -792,14 +827,12 @@ void setup()
   screenList.add(jan29Screen);
   screenList.add(jan30Screen);
   screenList.add(jan31Screen);
-  
+
 
 
   currentScreen = introScreen;
   currAirBC = j1AirBC;
-  currStateOBC = j1StateOBC;
-  currStateDBC = j1StateDBC;
-  
+
   currFlight.countAirp();
 }
 
@@ -807,15 +840,12 @@ void draw()
 {
 
   currentScreen.draw();
- 
-
+  
   for (int i = 0; i<widgetList.size(); i++)
   {
     Widget aWidget = (Widget)widgetList.get(i);
     aWidget.mouseOnButton(mouseX, mouseY);
   }
-  
-  
 }
 
 
@@ -827,45 +857,89 @@ void mousePressed()
   {
   case MAIN_SCREEN:
     currentScreen = mainScreen;
-    
+
     break;
 
   case JAN1:
     currentScreen = jan1Screen;
+    lateScreen.addHeader(jan1Head);
+    canScreen.addHeader(jan1Head);
+    origScreen.addHeader(jan1Head);
+    destScreen.addHeader(jan1Head);
+    airpScreen.addHeader(jan1Head);
+    
     currStateOBC = j1StateOBC;
     currStateDBC = j1StateDBC;
     break;
 
   case JAN2:
     currentScreen = jan2Screen;
+    lateScreen.addHeader(jan2Head);
+    canScreen.addHeader(jan2Head);
+    origScreen.addHeader(jan2Head);
+    destScreen.addHeader(jan2Head);
+    airpScreen.addHeader(jan2Head);
+    
     currStateOBC = j2StateOBC;
     currStateDBC = j2StateDBC;
     break;
 
   case JAN3:
     currentScreen = jan3Screen;
+    lateScreen.addHeader(jan3Head);
+    canScreen.addHeader(jan3Head);
+    origScreen.addHeader(jan3Head);
+    destScreen.addHeader(jan3Head);
+    airpScreen.addHeader(jan3Head);
+    
     currStateOBC = j3StateOBC;
     currStateDBC = j3StateDBC;
     break;
 
   case JAN4:
     currentScreen = jan4Screen;
+    lateScreen.addHeader(jan4Head);
+    canScreen.addHeader(jan4Head);
+    origScreen.addHeader(jan4Head);
+    destScreen.addHeader(jan4Head);
+    airpScreen.addHeader(jan4Head);
+    
     break;
 
   case JAN5:
     currentScreen = jan5Screen;
+    lateScreen.addHeader(jan5Head);
+    canScreen.addHeader(jan5Head);
+    origScreen.addHeader(jan5Head);
+    destScreen.addHeader(jan5Head);
+    airpScreen.addHeader(jan5Head);
     break;
 
   case JAN6:
     currentScreen = jan6Screen;
+    lateScreen.addHeader(jan6Head);
+    canScreen.addHeader(jan6Head);
+    origScreen.addHeader(jan6Head);
+    destScreen.addHeader(jan6Head);
+    airpScreen.addHeader(jan6Head);
     break;
 
   case JAN7:
     currentScreen = jan7Screen;
+    lateScreen.addHeader(jan7Head);
+    canScreen.addHeader(jan7Head);
+    origScreen.addHeader(jan7Head);
+    destScreen.addHeader(jan7Head);
+    airpScreen.addHeader(jan7Head);
     break;
 
   case JAN8:
     currentScreen = jan8Screen;
+    lateScreen.addHeader(jan8Head);
+    canScreen.addHeader(jan8Head);
+    origScreen.addHeader(jan8Head);
+    destScreen.addHeader(jan8Head);
+    airpScreen.addHeader(jan8Head);
     break;
 
   case JAN9:
@@ -974,36 +1048,42 @@ void mousePressed()
 
   case T_DEP:
     currentScreen = totalOriginScreen;
+    totalOriginScreen.addBarChart(tStateOBC);
     break;
 
   case T_ARR:
     currentScreen = totalDestScreen;
+    totalDestScreen.addBarChart(tStateDBC);
+    break;
+
+  default:
     break;
   }
 
   switch (event)
   {
   case EVENT_LATE:
+    currentScreen=lateScreen;
     currentScreen.addLabel(lLateness);
     break;
 
   case EVENT_AIRPORT:
+    currentScreen=airpScreen;
     currentScreen.addLabel(lAirport);
     break;
 
   case EVENT_OSTATE:
-    //currentScreen = origScreen;
+    currentScreen = origScreen;
     currentScreen.addLabel(lOState);
-    currentScreen.addBarChart(currStateOBC);
     break;
 
   case EVENT_DSTATE:
-    //currentScreen = destScreen;
+    currentScreen = destScreen;
     currentScreen.addLabel(lDState);
-    currentScreen.addBarChart(currStateDBC);
     break;
 
   case EVENT_CANCEL:
+    currentScreen=canScreen;
     currentScreen.addLabel(lCancelled);
     break;
 
@@ -1019,7 +1099,36 @@ void mousePressed()
     break;
   }
   
-  
-
-  
+  if(currentScreen==mainScreen)
+  {
+    currentScreen.removeBarChart(currStateDBC);
+    currentScreen.removeBarChart(currStateOBC);
+    destScreen.removeBarChart(currStateDBC);
+    origScreen.removeBarChart(currStateOBC);
+  }
+  else if(currentScreen==destScreen)
+  {
+    origScreen.removeBarChart(currStateOBC);
+    currentScreen.addBarChart(currStateDBC);
+  }
+  else if(currentScreen==origScreen)
+  {
+    destScreen.removeBarChart(currStateDBC);
+    currentScreen.addBarChart(currStateOBC);
+  }
+  else if(currentScreen==lateScreen)
+  {
+    destScreen.removeBarChart(currStateDBC);
+    origScreen.removeBarChart(currStateOBC);
+  }
+  else if(currentScreen==canScreen)
+  {
+    destScreen.removeBarChart(currStateDBC);
+    origScreen.removeBarChart(currStateOBC);
+  }
+  else if(currentScreen==airpScreen)
+  {
+    destScreen.removeBarChart(currStateDBC);
+    origScreen.removeBarChart(currStateOBC);
+  }
 }
