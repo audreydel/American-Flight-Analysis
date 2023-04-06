@@ -84,7 +84,7 @@ class Screen
     if (currentScreen == mainScreen)
     {
       fill (186, 111, 96);
-      text("Click on a date to see the stats", 550, 250);
+      //text("Click on a date to see the stats", 550, 250);
     }
     if (currentScreen==totalLateScreen)
     {
@@ -132,7 +132,7 @@ class Screen
       fill(0);
       textFont(italicFont);
       textSize(15.6);
-      text("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY", 60, 870);
+      //text("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY", 60, 870);
     }
 
 

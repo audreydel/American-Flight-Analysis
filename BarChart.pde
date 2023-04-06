@@ -1,18 +1,15 @@
 class BarChart
 {
   Flights currFlight;
-
-  int[] statesCount = new int[50];
-  //int[] airCount = new int[];
+  TreeMap<String,Integer> count=new TreeMap<String,Integer>();
+  int[] statesCount=new int[53];
+  String[] placeNames=new String[50];
   ArrayList<String> data;
-  //ArrayList<ArrayList<String>> data2;
-  
+
   BarChart(ArrayList<String> data)
   {
     this.data = data;
   }
-
-  
 
   void countTState()
   {
@@ -20,206 +17,166 @@ class BarChart
     for (int i = 0; i < data.size(); i++)
     {
       String destSt = data.get(i);
-
       switch (destSt)
       {
-      case "AL" :
+      case "AK" :
         statesCount[0]++;
         break;
-      case "AK" :
+      case "AL" :
         statesCount[1]++;
         break;
-
-      case "AZ" :
+      case "AR" :
         statesCount[2]++;
         break;
-
-      case "AR" :
+      case "AZ" :
         statesCount[3]++;
         break;
-
       case "CA" :
         statesCount[4]++;
         break;
-
       case "CO" :
         statesCount[5]++;
         break;
-
       case "CT" :
         statesCount[6]++;
         break;
-
       case "DE" :
         statesCount[7]++;
         break;
-
       case "FL" :
         statesCount[8]++;
         break;
-
       case "GA" :
         statesCount[9]++;
         break;
-
       case "HI" :
         statesCount[10]++;
         break;
-
-      case "ID" :
+      case "IA" :
         statesCount[11]++;
         break;
-
-      case "IL" :
+      case "ID" :
         statesCount[12]++;
         break;
-
-      case "IN" :
+      case "IL" :
         statesCount[13]++;
         break;
-
-      case "IA" :
+      case "IN" :
         statesCount[14]++;
         break;
-
       case "KS" :
         statesCount[15]++;
         break;
-
       case "KY" :
         statesCount[16]++;
         break;
-
       case "LA" :
         statesCount[17]++;
         break;
-
-      case "ME" :
+      case "MA" :
         statesCount[18]++;
         break;
-
       case "MD" :
         statesCount[19]++;
         break;
-
-      case "MA" :
+      case "ME" :
         statesCount[20]++;
         break;
-
       case "MI" :
         statesCount[21]++;
         break;
-
       case "MN" :
         statesCount[22]++;
         break;
-
-      case "MS" :
+      case "MO" :
         statesCount[23]++;
         break;
-
-      case "MO" :
+      case "MS" :
         statesCount[24]++;
         break;
-
       case "MT" :
         statesCount[25]++;
         break;
-
-      case "NE" :
+      case "NC" :
         statesCount[26]++;
         break;
-
-      case "NV" :
+      case "ND" :
         statesCount[27]++;
         break;
-
-      case "NH" :
+      case "NE" :
         statesCount[28]++;
         break;
-
-      case "NJ" :
+      case "NH" :
         statesCount[29]++;
         break;
-
-      case "NM" :
+      case "NJ" :
         statesCount[30]++;
         break;
-
-      case "NY" :
+      case "NM" :
         statesCount[31]++;
         break;
-
-      case "NC" :
+      case "NV" :
         statesCount[32]++;
         break;
-
-      case "ND" :
+      case "NY" :
         statesCount[33]++;
         break;
-
       case "OH" :
         statesCount[34]++;
         break;
-
       case "OK" :
         statesCount[35]++;
         break;
-
       case "OR" :
         statesCount[36]++;
         break;
-
       case "PA" :
         statesCount[37]++;
         break;
-
-      case "RI" :
+      case "PR":
         statesCount[38]++;
         break;
-
-      case "SC" :
+      case "RI" :
         statesCount[39]++;
         break;
-
-      case "SD" :
+      case "SC" :
         statesCount[40]++;
         break;
-
-      case "TN" :
+      case "SD" :
         statesCount[41]++;
         break;
-
-      case "TX" :
+      case "TN" :
         statesCount[42]++;
         break;
-
-      case "UT" :
+      case "TT":
         statesCount[43]++;
         break;
-
-      case "VT" :
+      case "TX" :
         statesCount[44]++;
         break;
-
-      case "VA" :
+      case "UT" :
         statesCount[45]++;
         break;
-
-      case "WA" :
+      case "VA" :
         statesCount[46]++;
         break;
-
-      case "WV" :
+      case "VI" :
         statesCount[47]++;
         break;
-
-      case "WI" :
+      case "VT":
         statesCount[48]++;
         break;
-
-      case "WY" :
+      case "WA" :
         statesCount[49]++;
+        break;
+      case "WI" :
+        statesCount[50]++;
+        break;
+      case "WV" :
+        statesCount[51]++;
+        break;
+      case "WY" :
+        statesCount[52]++;
         break;
 
       default:
@@ -227,31 +184,62 @@ class BarChart
       }
     }
     
-    //void countAirp()
-    //{
-      
-    //}
-    
+  //  for (String airport : data)
+  //  {
+  //    if (count.containsKey(airport)) 
+  //    {
+  //      int countTot = count.get(airport);
+  //      count.put(airport, countTot + 1);
+  //    }
+  //    else 
+  //    {
+  //      count.put(airport, 1);
+  //    }
+  //  }
+  //  for (String key : count.keySet()) {
+  //  int value = count.get(key);
+  //  println(key + ": " + value);
+  //}
   }
+  
+  void drawBarChart(){
+    int currentBar=-2;
+    int maxHeight = max(statesCount)/3;
+    for (int i = 0; i < statesCount.length; i++)
+    {
+      int barHeight=200*statesCount[i]/maxHeight;
+      int x=60+i*25;
+      int y=850-barHeight;
+      int barWidth=25;
+      if (mouseX >= x && mouseX <= x + barWidth && mouseY >= y && mouseY <= height-barWidth) {
+        // set the currentBar variable to the index of the bar that the mouse is hovering over
+        currentBar = i;
 
+        // draw a text box that displays the data value for the current bar
+        fill(255);
+        textAlign(LEFT, CENTER);
+        text(airportName.get(i)+":"+statesCount[i], 980, 220);
+      }
+      fill(colsPC[i% colsPC.length]);
+      rect(x, y, barWidth, barHeight); // adjust the y-coordinate for each state
+    }
+    if (currentBar==-2) {
+      currentBar=-2;
+    }
+  }
   void draw()
   {
-    countTState();
+    fill(headColor);
+    rect(950,170,200,80);
     stroke(0);
     strokeWeight(2);
+    fill(255);
+    text("State:", 980, 190);
     line(60, 180, 60, 850); // y axis
     line(60, 850, 1340, 850); // x axis
     fill(0);
     textFont(italicFont);
-    textSize(15.6);
-    text("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY", 60, 870);
-
     fill(0);
-    int maxHeight = max(statesCount)/3;
-    for (int i = 0; i < statesCount.length; i++)
-    {
-      fill(colsPC[i% colsPC.length]);
-      rect(60+i*26, 850-(statesCount[i]*200/maxHeight), 25, 200*statesCount[i]/maxHeight); // adjust the y-coordinate for each state
-    }
+    drawBarChart();
   }
 }

@@ -4,7 +4,7 @@ PFont stdFont, arrowFont, headFont, italicFont;
 PImage logo, logoHeader;
 
 Flights currFlight;
-
+BarChart currBar;
 Label lCalendar, lLateness, lAirport, lOState, lDState, lCancelled;
 
 ArrayList widgetList;
@@ -66,7 +66,6 @@ void setup()
 {
 
   // flight info
-
   currFlight = new Flights();
   currFlight.initialiseData();
   currFlight.countTime();
@@ -192,45 +191,83 @@ void setup()
 
   tStateDBC = new BarChart(currFlight.stateD);
   tStateOBC = new BarChart(currFlight.stateO);
-
+  tStateDBC.countTState();
+  tStateOBC.countTState();
   j1StateOBC = new BarChart(subListsStateO.get(0));
+  j1StateOBC.countTState();
   j2StateOBC = new BarChart(subListsStateO.get(1));
+  j2StateOBC.countTState();
   j3StateOBC = new BarChart(subListsStateO.get(2));
+  j3StateOBC.countTState();
   j4StateOBC = new BarChart(subListsStateO.get(3));
+  j4StateOBC.countTState();
   j5StateOBC = new BarChart(subListsStateO.get(4));
+  j5StateOBC.countTState();
   j6StateOBC = new BarChart(subListsStateO.get(5));
-  //j7StateOBC = new BarChart(subListsStateO.get(6));
-  //j8StateOBC = new BarChart(subListsStateO.get(7));
-  //j9StateOBC = new BarChart(subListsStateO.get(8));
-  //j10StateOBC = new BarChart(subListsStateO.get(9));
-  //j11StateOBC = new BarChart(subListsStateO.get(10));
-  //j12StateOBC = new BarChart(subListsStateO.get(11));
-  //j13StateOBC = new BarChart(subListsStateO.get(12));
-  //j14StateOBC = new BarChart(subListsStateO.get(13));
-  //j15StateOBC = new BarChart(subListsStateO.get(14));
-  //j16StateOBC = new BarChart(subListsStateO.get(15));
-  //j17StateOBC = new BarChart(subListsStateO.get(16));
-  //j18StateOBC = new BarChart(subListsStateO.get(17));
-  //j19StateOBC = new BarChart(subListsStateO.get(18));
-  //j20StateOBC = new BarChart(subListsStateO.get(19));
-  //j21StateOBC = new BarChart(subListsStateO.get(20));
-  //j22StateOBC = new BarChart(subListsStateO.get(21));
-  //j23StateOBC = new BarChart(subListsStateO.get(22));
-  //j24StateOBC = new BarChart(subListsStateO.get(23));
-  //j25StateOBC = new BarChart(subListsStateO.get(24));
-  //j26StateOBC = new BarChart(subListsStateO.get(25));
-  //j27StateOBC = new BarChart(subListsStateO.get(26));
-  //j28StateOBC = new BarChart(subListsStateO.get(27));
-  //j29StateOBC = new BarChart(subListsStateO.get(28));
-  //j30StateOBC = new BarChart(subListsStateO.get(29));
-  //j31StateOBC = new BarChart(subListsStateO.get(30));
-
+  j6StateOBC.countTState();
+  j7StateOBC = new BarChart(subListsStateO.get(6));
+  j6StateOBC.countTState();
+  j8StateOBC = new BarChart(subListsStateO.get(7));
+  j8StateOBC.countTState();
+  j9StateOBC = new BarChart(subListsStateO.get(8));
+  j9StateOBC.countTState();
+  j10StateOBC = new BarChart(subListsStateO.get(9));
+  j10StateOBC.countTState();
+  j11StateOBC = new BarChart(subListsStateO.get(10));
+  j11StateOBC.countTState();
+  j12StateOBC = new BarChart(subListsStateO.get(11));
+  j12StateOBC.countTState();
+  j13StateOBC = new BarChart(subListsStateO.get(12));
+  j13StateOBC.countTState();
+  j14StateOBC = new BarChart(subListsStateO.get(13));
+  j14StateOBC.countTState();
+  j15StateOBC = new BarChart(subListsStateO.get(14));
+  j15StateOBC.countTState();
+  j16StateOBC = new BarChart(subListsStateO.get(15));
+  j16StateOBC.countTState();
+  j17StateOBC = new BarChart(subListsStateO.get(16));
+  j17StateOBC.countTState();
+  j18StateOBC = new BarChart(subListsStateO.get(17));
+  j18StateOBC.countTState();
+  j19StateOBC = new BarChart(subListsStateO.get(18));
+  j19StateOBC.countTState();
+  j20StateOBC = new BarChart(subListsStateO.get(19));
+  j20StateOBC.countTState();
+  j21StateOBC = new BarChart(subListsStateO.get(20));
+  j21StateOBC.countTState();
+  j22StateOBC = new BarChart(subListsStateO.get(21));
+  j22StateOBC.countTState();
+  j23StateOBC = new BarChart(subListsStateO.get(22));
+  j23StateOBC.countTState();
+  j24StateOBC = new BarChart(subListsStateO.get(23));
+  j24StateOBC.countTState();
+  j25StateOBC = new BarChart(subListsStateO.get(24));
+  j25StateOBC.countTState();
+  j26StateOBC = new BarChart(subListsStateO.get(25));
+  j26StateOBC.countTState();
+  j27StateOBC = new BarChart(subListsStateO.get(26));
+  j27StateOBC.countTState();
+  j28StateOBC = new BarChart(subListsStateO.get(27));
+  j28StateOBC.countTState();
+  j29StateOBC = new BarChart(subListsStateO.get(28));
+  j29StateOBC.countTState();
+  j30StateOBC = new BarChart(subListsStateO.get(29));
+  j30StateOBC.countTState();
+  j31StateOBC = new BarChart(subListsStateO.get(30));
+  j31StateOBC.countTState();
+  
   j1StateDBC = new BarChart(subListsStateD.get(0));
+  j1StateDBC.countTState();
   j2StateDBC = new BarChart(subListsStateD.get(1));
+  j2StateDBC.countTState();
   j3StateDBC = new BarChart(subListsStateD.get(2));
+  j3StateDBC.countTState();
   j4StateDBC = new BarChart(subListsStateD.get(3));
+  j4StateDBC.countTState();
   j5StateDBC = new BarChart(subListsStateD.get(4));
+  j5StateDBC.countTState();
   j6StateDBC = new BarChart(subListsStateD.get(5));
+  j6StateDBC.countTState();
   //j7StateDBC = new BarChart(subListsStateD.get(6));
   //j8StateDBC = new BarChart(subListsStateD.get(7));
   //j9StateDBC = new BarChart(subListsStateD.get(8));
