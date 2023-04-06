@@ -268,31 +268,56 @@ void setup()
   j5StateDBC.countTState();
   j6StateDBC = new BarChart(subListsStateD.get(5));
   j6StateDBC.countTState();
-  //j7StateDBC = new BarChart(subListsStateD.get(6));
-  //j8StateDBC = new BarChart(subListsStateD.get(7));
-  //j9StateDBC = new BarChart(subListsStateD.get(8));
-  //j10StateDBC = new BarChart(subListsStateD.get(9));
-  //j11StateDBC = new BarChart(subListsStateD.get(10));
-  //j12StateDBC = new BarChart(subListsStateD.get(11));
-  //j13StateDBC = new BarChart(subListsStateD.get(12));
-  //j14StateDBC = new BarChart(subListsStateD.get(13));
-  //j15StateDBC = new BarChart(subListsStateD.get(14));
-  //j16StateDBC = new BarChart(subListsStateD.get(15));
-  //j17StateDBC = new BarChart(subListsStateD.get(16));
-  //j18StateDBC = new BarChart(subListsStateD.get(17));
-  //j19StateDBC = new BarChart(subListsStateD.get(18));
-  //j20StateDBC = new BarChart(subListsStateD.get(19));
-  //j21StateDBC = new BarChart(subListsStateD.get(20));
-  //j22StateDBC = new BarChart(subListsStateD.get(21));
-  //j23StateDBC = new BarChart(subListsStateD.get(22));
-  //j24StateDBC = new BarChart(subListsStateD.get(23));
-  //j25StateDBC = new BarChart(subListsStateD.get(24));
-  //j26StateDBC = new BarChart(subListsStateD.get(25));
-  //j27StateDBC = new BarChart(subListsStateD.get(26));
-  //j28StateDBC = new BarChart(subListsStateD.get(27));
-  //j29StateDBC = new BarChart(subListsStateD.get(28));
-  //j30StateDBC = new BarChart(subListsStateD.get(29));
-  //j31StateDBC = new BarChart(subListsStateD.get(30));
+  j7StateDBC = new BarChart(subListsStateD.get(6));
+  j7StateDBC.countTState();
+  j8StateDBC = new BarChart(subListsStateD.get(7));
+  j8StateDBC.countTState();
+  j9StateDBC = new BarChart(subListsStateD.get(8));
+  j9StateDBC.countTState();
+  j10StateDBC = new BarChart(subListsStateD.get(9));
+  j10StateDBC.countTState();
+  j11StateDBC = new BarChart(subListsStateD.get(10));
+  j11StateDBC.countTState();
+  j12StateDBC = new BarChart(subListsStateD.get(11));
+  j12StateDBC.countTState();
+  j13StateDBC = new BarChart(subListsStateD.get(12));
+  j13StateDBC.countTState();
+  j14StateDBC = new BarChart(subListsStateD.get(13));
+  j14StateDBC.countTState();
+  j15StateDBC = new BarChart(subListsStateD.get(14));
+  j15StateDBC.countTState();
+  j16StateDBC = new BarChart(subListsStateD.get(15));
+  j16StateDBC.countTState();
+  j17StateDBC = new BarChart(subListsStateD.get(16));
+  j17StateDBC.countTState();
+  j18StateDBC = new BarChart(subListsStateD.get(17));
+  j18StateDBC.countTState();
+  j19StateDBC = new BarChart(subListsStateD.get(18));
+  j19StateDBC.countTState();
+  j20StateDBC = new BarChart(subListsStateD.get(19));
+  j20StateDBC.countTState();
+  j21StateDBC = new BarChart(subListsStateD.get(20));
+  j21StateDBC.countTState();
+  j22StateDBC = new BarChart(subListsStateD.get(21));
+  j22StateDBC.countTState();
+  j23StateDBC = new BarChart(subListsStateD.get(22));
+  j23StateDBC.countTState();
+  j24StateDBC = new BarChart(subListsStateD.get(23));
+  j24StateDBC.countTState();
+  j25StateDBC = new BarChart(subListsStateD.get(24));
+  j25StateDBC.countTState();
+  j26StateDBC = new BarChart(subListsStateD.get(25));
+  j26StateDBC.countTState();
+  j27StateDBC = new BarChart(subListsStateD.get(26));
+  j27StateDBC.countTState();
+  j28StateDBC = new BarChart(subListsStateD.get(27));
+  j28StateDBC.countTState();
+  j29StateDBC = new BarChart(subListsStateD.get(28));
+  j29StateDBC.countTState();
+  j30StateDBC = new BarChart(subListsStateD.get(29));
+  j30StateDBC.countTState();
+  j31StateDBC = new BarChart(subListsStateD.get(30));
+  j31StateDBC.countTState();
 
   // screen headers
   mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont);
@@ -904,6 +929,8 @@ void mousePressed()
     destScreen.addHeader(jan4Head);
     airpScreen.addHeader(jan4Head);
     
+    currStateOBC = j4StateOBC;
+    currStateDBC = j4StateDBC;
     break;
 
   case JAN5:
@@ -913,6 +940,9 @@ void mousePressed()
     origScreen.addHeader(jan5Head);
     destScreen.addHeader(jan5Head);
     airpScreen.addHeader(jan5Head);
+    
+    currStateOBC = j5StateOBC;
+    currStateDBC = j5StateDBC;
     break;
 
   case JAN6:
@@ -922,6 +952,9 @@ void mousePressed()
     origScreen.addHeader(jan6Head);
     destScreen.addHeader(jan6Head);
     airpScreen.addHeader(jan6Head);
+    
+    currStateOBC = j6StateOBC;
+    currStateDBC = j6StateDBC;
     break;
 
   case JAN7:
@@ -931,6 +964,9 @@ void mousePressed()
     origScreen.addHeader(jan7Head);
     destScreen.addHeader(jan7Head);
     airpScreen.addHeader(jan7Head);
+    
+    currStateOBC = j7StateOBC;
+    currStateDBC = j7StateDBC;
     break;
 
   case JAN8:
@@ -940,98 +976,285 @@ void mousePressed()
     origScreen.addHeader(jan8Head);
     destScreen.addHeader(jan8Head);
     airpScreen.addHeader(jan8Head);
+    
+    currStateOBC = j8StateOBC;
+    currStateDBC = j8StateDBC;
     break;
 
   case JAN9:
     currentScreen = jan9Screen;
+    lateScreen.addHeader(jan9Head);
+    canScreen.addHeader(jan9Head);
+    origScreen.addHeader(jan9Head);
+    destScreen.addHeader(jan9Head);
+    airpScreen.addHeader(jan9Head);
+    
+    currStateOBC = j9StateOBC;
+    currStateDBC = j9StateDBC;
     break;
 
   case JAN10:
     currentScreen = jan10Screen;
+    lateScreen.addHeader(jan10Head);
+    canScreen.addHeader(jan10Head);
+    origScreen.addHeader(jan10Head);
+    destScreen.addHeader(jan10Head);
+    airpScreen.addHeader(jan10Head);
+    
+    currStateOBC = j10StateOBC;
+    currStateDBC = j10StateDBC;
     break;
 
   case JAN11:
     currentScreen = jan11Screen;
+    lateScreen.addHeader(jan11Head);
+    canScreen.addHeader(jan11Head);
+    origScreen.addHeader(jan11Head);
+    destScreen.addHeader(jan11Head);
+    airpScreen.addHeader(jan11Head);
+    
+    currStateOBC = j11StateOBC;
+    currStateDBC = j11StateDBC;
     break;
 
   case JAN12:
     currentScreen = jan12Screen;
+    lateScreen.addHeader(jan12Head);
+    canScreen.addHeader(jan12Head);
+    origScreen.addHeader(jan12Head);
+    destScreen.addHeader(jan12Head);
+    airpScreen.addHeader(jan12Head);
+    
+    currStateOBC = j12StateOBC;
+    currStateDBC = j12StateDBC;
     break;
 
   case JAN13:
     currentScreen = jan13Screen;
+    lateScreen.addHeader(jan13Head);
+    canScreen.addHeader(jan13Head);
+    origScreen.addHeader(jan13Head);
+    destScreen.addHeader(jan13Head);
+    airpScreen.addHeader(jan13Head);
+    
+    currStateOBC = j13StateOBC;
+    currStateDBC = j13StateDBC;
     break;
 
   case JAN14:
     currentScreen = jan14Screen;
+    lateScreen.addHeader(jan14Head);
+    canScreen.addHeader(jan14Head);
+    origScreen.addHeader(jan14Head);
+    destScreen.addHeader(jan14Head);
+    airpScreen.addHeader(jan14Head);
+    
+    currStateOBC = j14StateOBC;
+    currStateDBC = j14StateDBC;
     break;
 
   case JAN15:
     currentScreen = jan15Screen;
+    lateScreen.addHeader(jan15Head);
+    canScreen.addHeader(jan15Head);
+    origScreen.addHeader(jan15Head);
+    destScreen.addHeader(jan15Head);
+    airpScreen.addHeader(jan15Head);
+    
+    currStateOBC = j15StateOBC;
+    currStateDBC = j15StateDBC;
     break;
 
   case JAN16:
     currentScreen = jan16Screen;
+    lateScreen.addHeader(jan16Head);
+    canScreen.addHeader(jan16Head);
+    origScreen.addHeader(jan16Head);
+    destScreen.addHeader(jan16Head);
+    airpScreen.addHeader(jan16Head);
+    
+    currStateOBC = j16StateOBC;
+    currStateDBC = j16StateDBC;
     break;
 
   case JAN17:
     currentScreen = jan17Screen;
+    lateScreen.addHeader(jan17Head);
+    canScreen.addHeader(jan17Head);
+    origScreen.addHeader(jan17Head);
+    destScreen.addHeader(jan17Head);
+    airpScreen.addHeader(jan17Head);
+    
+    currStateOBC = j17StateOBC;
+    currStateDBC = j17StateDBC;
     break;
 
   case JAN18:
     currentScreen = jan18Screen;
+    lateScreen.addHeader(jan18Head);
+    canScreen.addHeader(jan18Head);
+    origScreen.addHeader(jan18Head);
+    destScreen.addHeader(jan18Head);
+    airpScreen.addHeader(jan18Head);
+    
+    currStateOBC = j18StateOBC;
+    currStateDBC = j18StateDBC;
     break;
 
   case JAN19:
     currentScreen = jan19Screen;
+    lateScreen.addHeader(jan19Head);
+    canScreen.addHeader(jan19Head);
+    origScreen.addHeader(jan19Head);
+    destScreen.addHeader(jan19Head);
+    airpScreen.addHeader(jan19Head);
+    
+    currStateOBC = j19StateOBC;
+    currStateDBC = j19StateDBC;
     break;
 
   case JAN20:
     currentScreen = jan20Screen;
+    lateScreen.addHeader(jan20Head);
+    canScreen.addHeader(jan20Head);
+    origScreen.addHeader(jan20Head);
+    destScreen.addHeader(jan20Head);
+    airpScreen.addHeader(jan20Head);
+    
+    currStateOBC = j20StateOBC;
+    currStateDBC = j20StateDBC;
     break;
 
   case JAN21:
     currentScreen = jan21Screen;
+    lateScreen.addHeader(jan21Head);
+    canScreen.addHeader(jan21Head);
+    origScreen.addHeader(jan21Head);
+    destScreen.addHeader(jan21Head);
+    airpScreen.addHeader(jan21Head);
+    
+    currStateOBC = j21StateOBC;
+    currStateDBC = j21StateDBC;
     break;
 
   case JAN22:
     currentScreen = jan22Screen;
+    lateScreen.addHeader(jan22Head);
+    canScreen.addHeader(jan22Head);
+    origScreen.addHeader(jan22Head);
+    destScreen.addHeader(jan22Head);
+    airpScreen.addHeader(jan22Head);
+    
+    currStateOBC = j22StateOBC;
+    currStateDBC = j22StateDBC;
     break;
 
   case JAN23:
     currentScreen = jan23Screen;
+    lateScreen.addHeader(jan23Head);
+    canScreen.addHeader(jan23Head);
+    origScreen.addHeader(jan23Head);
+    destScreen.addHeader(jan23Head);
+    airpScreen.addHeader(jan23Head);
+    
+    currStateOBC = j23StateOBC;
+    currStateDBC = j23StateDBC;
     break;
 
   case JAN24:
     currentScreen = jan24Screen;
+    lateScreen.addHeader(jan24Head);
+    canScreen.addHeader(jan24Head);
+    origScreen.addHeader(jan24Head);
+    destScreen.addHeader(jan24Head);
+    airpScreen.addHeader(jan24Head);
+    
+    currStateOBC = j24StateOBC;
+    currStateDBC = j24StateDBC;
     break;
 
   case JAN25:
     currentScreen = jan25Screen;
+    lateScreen.addHeader(jan25Head);
+    canScreen.addHeader(jan25Head);
+    origScreen.addHeader(jan25Head);
+    destScreen.addHeader(jan25Head);
+    airpScreen.addHeader(jan25Head);
+    
+    currStateOBC = j25StateOBC;
+    currStateDBC = j25StateDBC;
     break;
 
   case JAN26:
     currentScreen = jan26Screen;
+    lateScreen.addHeader(jan26Head);
+    canScreen.addHeader(jan26Head);
+    origScreen.addHeader(jan26Head);
+    destScreen.addHeader(jan26Head);
+    airpScreen.addHeader(jan26Head);
+    
+    currStateOBC = j26StateOBC;
+    currStateDBC = j26StateDBC;
     break;
 
   case JAN27:
     currentScreen = jan27Screen;
+    lateScreen.addHeader(jan27Head);
+    canScreen.addHeader(jan27Head);
+    origScreen.addHeader(jan27Head);
+    destScreen.addHeader(jan27Head);
+    airpScreen.addHeader(jan27Head);
+    
+    currStateOBC = j27StateOBC;
+    currStateDBC = j27StateDBC;
     break;
 
   case JAN28:
     currentScreen = jan28Screen;
+    lateScreen.addHeader(jan28Head);
+    canScreen.addHeader(jan28Head);
+    origScreen.addHeader(jan28Head);
+    destScreen.addHeader(jan28Head);
+    airpScreen.addHeader(jan28Head);
+    
+    currStateOBC = j28StateOBC;
+    currStateDBC = j28StateDBC;
     break;
 
   case JAN29:
     currentScreen = jan29Screen;
+    lateScreen.addHeader(jan29Head);
+    canScreen.addHeader(jan29Head);
+    origScreen.addHeader(jan29Head);
+    destScreen.addHeader(jan29Head);
+    airpScreen.addHeader(jan29Head);
+    
+    currStateOBC = j29StateOBC;
+    currStateDBC = j29StateDBC;
     break;
 
   case JAN30:
     currentScreen = jan30Screen;
+    lateScreen.addHeader(jan30Head);
+    canScreen.addHeader(jan30Head);
+    origScreen.addHeader(jan30Head);
+    destScreen.addHeader(jan30Head);
+    airpScreen.addHeader(jan30Head);
+    
+    currStateOBC = j30StateOBC;
+    currStateDBC = j30StateDBC;
     break;
 
   case JAN31:
     currentScreen = jan31Screen;
+    lateScreen.addHeader(jan31Head);
+    canScreen.addHeader(jan31Head);
+    origScreen.addHeader(jan31Head);
+    destScreen.addHeader(jan31Head);
+    airpScreen.addHeader(jan31Head);
+    
+    currStateOBC = j31StateOBC;
+    currStateDBC = j31StateDBC;
     break;
 
   case T_LATE:
