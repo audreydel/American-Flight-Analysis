@@ -1,7 +1,7 @@
 // widget
 class Widget
 {
-  int x, y, width, height, cRad;
+  int x, y, width, height, cRad, txtX, txtY;
   String label;
   int event;
   color widgetColor, labelColor, borderColor;
@@ -9,8 +9,24 @@ class Widget
   boolean isMouseOnButton;
 
 
+//  Widget(int x, int y, int width, int height, String label,
+//    color widgetColor, PFont widgetFont, int event, color borderColor, int cRad)
+//  {
+//    this.x=x;
+//    this.y=y;
+//    this.width = width;
+//    this.height= height;
+//    this.label=label;
+//    this.event=event;
+//    this.widgetColor=widgetColor;
+//    this.widgetFont=widgetFont;
+//    this.borderColor = borderColor;
+//    this.cRad = cRad;
+  
+//}
+
   Widget(int x, int y, int width, int height, String label,
-    color widgetColor, PFont widgetFont, int event, color borderColor, int cRad)
+    color widgetColor, PFont widgetFont, int event, color borderColor, int cRad, int txtX, int txtY)
   {
     this.x=x;
     this.y=y;
@@ -22,9 +38,10 @@ class Widget
     this.widgetFont=widgetFont;
     this.borderColor = borderColor;
     this.cRad = cRad;
+    this.txtX = txtX;
+    this.txtY = txtY;
   
 }
-
   void draw()
   {
     noStroke();
@@ -33,7 +50,8 @@ class Widget
 
     fill(labelColor);
     textFont(stdFont);
-    text(label, x+15, y+height-20);
+    //text(label, x+15, y+height-20);
+    text(label, txtX, txtY);
   }
 
   int getEvent(int mouseX, int mouseY)

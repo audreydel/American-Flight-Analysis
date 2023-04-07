@@ -1,11 +1,11 @@
 class Label
 {
-  int x,y,width, height, textSize, cRad;
+  int x,y,width, height, textSize, cRad, txtX, txtY;
   color labelCol;
   String label;
   PFont headFont;
   
-  Label (int x, int y, int width, int height, color labelCol, String label, PFont headFont, int cRad)
+  Label (int x, int y, int width, int height, color labelCol, String label, PFont headFont, int cRad, int txtX, int txtY)
   {
     this.x = x; 
     this.y = y;
@@ -15,6 +15,8 @@ class Label
     this.label = label;
     this.headFont=headFont;
     this.cRad = cRad;
+    this.txtX = txtX;
+    this.txtY = txtY;
   }
   
   void draw()
@@ -26,7 +28,7 @@ class Label
     
     fill(0);
     textFont(italicFont);
-    text(label, lX+170, lY+35);
+    text(label, txtX, txtY);
     
     
   }

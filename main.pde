@@ -86,78 +86,77 @@ void setup()
   logoHeader = loadImage("AF-header.png");
   logoHeader.resize(170, 100);
 
-  // task bar
-
-  bHomeScreen = new Widget (margin, tbY, tbW, tbH, "Home Page", headColor,
-    stdFont, MAIN_SCREEN, borderColor, wRad);
+  bHomeScreen = new Widget (margin, tbY, tbW, calH, "Home Page", headColor,
+    stdFont, MAIN_SCREEN, borderColor, wRad, margin+43, tbY+tbH-20);
   bLateness = new Widget (margin+tbW+margin+5, tbY, tbW, tbH, "Lateness", lCol,
-    stdFont, EVENT_LATE, borderColor, wRad);
+    stdFont, EVENT_LATE, borderColor, wRad, margin+tbW+margin+5+60, tbY+tbH-20);
   bAirport = new Widget (margin+((tbW+margin+5)*2), tbY, tbW, tbH, "Airports", lCol,
-    stdFont, EVENT_AIRPORT, borderColor, wRad);
+    stdFont, EVENT_AIRPORT, borderColor, wRad, margin+((tbW+margin+5)*2)+60, tbY+tbH-20);
   bOState = new Widget (margin+((tbW+margin+5)*3), tbY, tbW, tbH, "Origin State", lCol,
-    stdFont, EVENT_OSTATE, borderColor, wRad);
+    stdFont, EVENT_OSTATE, borderColor, wRad, margin+((tbW+margin+5)*3)+40, tbY+tbH-20);
   bDState = new Widget (margin+((tbW+margin+5)*4), tbY, tbW, tbH, "Destination State", lCol,
-    stdFont, EVENT_DSTATE, borderColor, wRad);
+    stdFont, EVENT_DSTATE, borderColor, wRad, margin+((tbW+margin+5)*4)+15, tbY+tbH-20);
   bCancelled = new Widget (margin+((tbW+margin+5)*5), tbY, tbW, tbH, "Cancelled Flights", lCol,
-    stdFont, EVENT_CANCEL, borderColor, wRad);
+    stdFont, EVENT_CANCEL, borderColor, wRad, margin+((tbW+margin+5)*5)+15, tbY+tbH-20);
   bBack = new Widget (margin+((tbW+margin+5)*6), tbY, tbW, tbH, "Back", headColor,
-    stdFont, JAN1, borderColor, wRad);
+    stdFont, JAN1, borderColor, wRad, margin+((tbW+margin+5)*6)+15, tbY+tbH-20);
 
   // stat table
   fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats", headColor,
-    italicFont, EVENT_NULL, borderColor, wRadNC);
+                      italicFont, EVENT_NULL, borderColor, wRadNC, margin+15, tbY+tbH-20);
   tLate = new Widget(margin, tbY+tbH, sbW, tbH, "Flight departure stats", lCol,
-    italicFont, T_LATE, borderColor, wRadNC);
+    italicFont, T_LATE, borderColor, wRadNC, margin+15, tbY+(tbH*2)-20);
   tAirport = new Widget(margin, tbY+(tbH*2), sbW, tbH, "Total airports", lCol,
-    italicFont, T_AIRPORT, borderColor, wRadNC);
+    italicFont, T_AIRPORT, borderColor, wRadNC, margin+15, tbY+(tbH*3)-20);
   tCancelled = new Widget(margin, tbY+(tbH*3), sbW, tbH, "Total flights cancelled", lCol,
-    italicFont, T_CAN, borderColor, wRadNC);
+    italicFont, T_CAN, borderColor, wRadNC, margin+15, tbY+(tbH*4)-20);
   tDState = new Widget(margin, tbY+(tbH*4), sbW, tbH, "Total flights arriving", lCol,
-    italicFont, T_ARR, borderColor, wRadNC);
+    italicFont, T_ARR, borderColor, wRadNC, margin+15, tbY+(tbH*5)-20);
   tOState = new Widget(margin, tbY+(tbH*5), sbW, tbH, "Total flights departing", lCol,
-    italicFont, T_DEP, borderColor, wRadNC);
+    italicFont, T_DEP, borderColor, wRadNC, margin+15, tbY+(tbH*6)-20);
+
 
   // labels
-  lCalendar = new Label (lX, lY, lW, lH, lCol, "Calendar", stdFont, wRad);
-  lLateness = new Label (lX, lY, lW, lH, lCol, "Lateness", stdFont, wRad);
-  lAirport = new Label (lX, lY, lW, lH, lCol, "Airport", stdFont, wRad);
-  lOState = new Label (lX, lY, lW, lH, lCol, "Origin State", stdFont, wRad);
-  lDState = new Label (lX, lY, lW, lH, lCol, "Destination State", stdFont, wRad);
-  lCancelled = new Label (lX, lY, lW, lH, lCol, "Flights cancelled", stdFont, wRad);
+  lCalendar = new Label (lX, lY, lW, lH, lCol, "Calendar", stdFont, wRad, 660, 235);
+  lLateness = new Label (lX, lY, lW, lH, lCol, "Lateness", stdFont, wRad, 660, 235);
+  lAirport = new Label (lX, lY, lW, lH, lCol, "Airport", stdFont, wRad, 665, 235);
+  lOState = new Label (lX, lY, lW, lH, lCol, "Origin State", stdFont, wRad, 650, 235);
+  lDState = new Label (lX, lY, lW, lH, lCol, "Destination State", stdFont, wRad, 610, 235);
+  lCancelled = new Label (lX, lY, lW, lH, lCol, "Flights cancelled", stdFont, wRad, 620, 235);
 
 
   // calendar buttons
-  jan1=new Widget(col6X, row1Y, calW, calH, "1", headColor, arrowFont, JAN1, borderColor, wRad);
-  jan2=new Widget(col7X, row1Y, calW, calH, "2", headColor, arrowFont, JAN2, borderColor, wRad);
-  jan3=new Widget(col1X, row2Y, calW, calH, "3", headColor, arrowFont, JAN3, borderColor, wRad);
-  jan4=new Widget(col2X, row2Y, calW, calH, "4", headColor, arrowFont, JAN4, borderColor, wRad);
-  jan5=new Widget(col3X, row2Y, calW, calH, "5", headColor, arrowFont, JAN5, borderColor, wRad);
-  jan6=new Widget(col4X, row2Y, calW, calH, "6", headColor, arrowFont, JAN6, borderColor, wRad);
-  jan7=new Widget(col5X, row2Y, calW, calH, "7", headColor, arrowFont, JAN7, borderColor, wRad);
-  jan8=new Widget(col6X, row2Y, calW, calH, "8", headColor, arrowFont, JAN8, borderColor, wRad);
-  jan9=new Widget(col7X, row2Y, calW, calH, "9", headColor, arrowFont, JAN9, borderColor, wRad);
-  jan10=new Widget(col1X, row3Y, calW, calH, "10", headColor, arrowFont, JAN10, borderColor, wRad);
-  jan11=new Widget(col2X, row3Y, calW, calH, "11", headColor, arrowFont, JAN11, borderColor, wRad);
-  jan12=new Widget(col3X, row3Y, calW, calH, "12", headColor, arrowFont, JAN12, borderColor, wRad);
-  jan13=new Widget(col4X, row3Y, calW, calH, "13", headColor, arrowFont, JAN13, borderColor, wRad);
-  jan14=new Widget(col5X, row3Y, calW, calH, "14", headColor, arrowFont, JAN14, borderColor, wRad);
-  jan15=new Widget(col6X, row3Y, calW, calH, "15", headColor, arrowFont, JAN15, borderColor, wRad);
-  jan16=new Widget(col7X, row3Y, calW, calH, "16", headColor, arrowFont, JAN16, borderColor, wRad);
-  jan17=new Widget(col1X, row4Y, calW, calH, "17", headColor, arrowFont, JAN17, borderColor, wRad);
-  jan18=new Widget(col2X, row4Y, calW, calH, "18", headColor, arrowFont, JAN18, borderColor, wRad);
-  jan19=new Widget(col3X, row4Y, calW, calH, "19", headColor, arrowFont, JAN19, borderColor, wRad);
-  jan20=new Widget(col4X, row4Y, calW, calH, "20", headColor, arrowFont, JAN20, borderColor, wRad);
-  jan21=new Widget(col5X, row4Y, calW, calH, "21", headColor, arrowFont, JAN21, borderColor, wRad);
-  jan22=new Widget(col6X, row4Y, calW, calH, "22", headColor, arrowFont, JAN22, borderColor, wRad);
-  jan23=new Widget(col7X, row4Y, calW, calH, "23", headColor, arrowFont, JAN23, borderColor, wRad);
-  jan24=new Widget(col1X, row5Y, calW, calH, "24", headColor, arrowFont, JAN24, borderColor, wRad);
-  jan25=new Widget(col2X, row5Y, calW, calH, "25", headColor, arrowFont, JAN25, borderColor, wRad);
-  jan26=new Widget(col3X, row5Y, calW, calH, "26", headColor, arrowFont, JAN26, borderColor, wRad);
-  jan27=new Widget(col4X, row5Y, calW, calH, "27", headColor, arrowFont, JAN27, borderColor, wRad);
-  jan28=new Widget(col5X, row5Y, calW, calH, "28", headColor, arrowFont, JAN28, borderColor, wRad);
-  jan29=new Widget(col6X, row5Y, calW, calH, "29", headColor, arrowFont, JAN29, borderColor, wRad);
-  jan30=new Widget(col7X, row5Y, calW, calH, "30", headColor, arrowFont, JAN30, borderColor, wRad);
-  jan31=new Widget(col1X, row6Y, calW, calH, "31", headColor, arrowFont, JAN31, borderColor, wRad);
+  jan1=new Widget(col6X, row1Y, calW, calH, "1", headColor, arrowFont, JAN1, borderColor, wRad, col6X+27, row1Y+calH-20);
+  jan2=new Widget(col7X, row1Y, calW, calH, "2", headColor, arrowFont, JAN2, borderColor, wRad, col7X+23, row1Y+calH-20);
+  jan3=new Widget(col1X, row2Y, calW, calH, "3", headColor, arrowFont, JAN3, borderColor, wRad, col1X+23, row2Y+calH-20);
+  jan4=new Widget(col2X, row2Y, calW, calH, "4", headColor, arrowFont, JAN4, borderColor, wRad, col2X+23, row2Y+calH-20);
+  jan5=new Widget(col3X, row2Y, calW, calH, "5", headColor, arrowFont, JAN5, borderColor, wRad, col3X+23, row2Y+calH-20);
+  jan6=new Widget(col4X, row2Y, calW, calH, "6", headColor, arrowFont, JAN6, borderColor, wRad, col4X+23, row2Y+calH-20);
+  jan7=new Widget(col5X, row2Y, calW, calH, "7", headColor, arrowFont, JAN7, borderColor, wRad, col5X+20, row2Y+calH-20);
+  jan8=new Widget(col6X, row2Y, calW, calH, "8", headColor, arrowFont, JAN8, borderColor, wRad, col6X+22, row2Y+calH-20);
+  jan9=new Widget(col7X, row2Y, calW, calH, "9", headColor, arrowFont, JAN9, borderColor, wRad, col7X+20, row2Y+calH-20);
+  jan10=new Widget(col1X, row3Y, calW, calH, "10", headColor, arrowFont, JAN10, borderColor, wRad, col1X+17, row3Y+calH-20);
+  jan11=new Widget(col2X, row3Y, calW, calH, "11", headColor, arrowFont, JAN11, borderColor, wRad, col2X+19, row3Y+calH-20);
+  jan12=new Widget(col3X, row3Y, calW, calH, "12", headColor, arrowFont, JAN12, borderColor, wRad, col3X+18, row3Y+calH-20);
+  jan13=new Widget(col4X, row3Y, calW, calH, "13", headColor, arrowFont, JAN13, borderColor, wRad, col4X+18, row3Y+calH-20);
+  jan14=new Widget(col5X, row3Y, calW, calH, "14", headColor, arrowFont, JAN14, borderColor, wRad, col5X+18, row3Y+calH-20);
+  jan15=new Widget(col6X, row3Y, calW, calH, "15", headColor, arrowFont, JAN15, borderColor, wRad, col6X+18, row3Y+calH-20);
+  jan16=new Widget(col7X, row3Y, calW, calH, "16", headColor, arrowFont, JAN16, borderColor, wRad, col7X+16, row3Y+calH-20);
+  jan17=new Widget(col1X, row4Y, calW, calH, "17", headColor, arrowFont, JAN17, borderColor, wRad, col1X+18, row4Y+calH-20);
+  jan18=new Widget(col2X, row4Y, calW, calH, "18", headColor, arrowFont, JAN18, borderColor, wRad, col2X+18, row4Y+calH-20);
+  jan19=new Widget(col3X, row4Y, calW, calH, "19", headColor, arrowFont, JAN19, borderColor, wRad, col3X+18, row4Y+calH-20);
+  jan20=new Widget(col4X, row4Y, calW, calH, "20", headColor, arrowFont, JAN20, borderColor, wRad, col4X+15, row4Y+calH-20);
+  jan21=new Widget(col5X, row4Y, calW, calH, "21", headColor, arrowFont, JAN21, borderColor, wRad, col5X+18, row4Y+calH-20);
+  jan22=new Widget(col6X, row4Y, calW, calH, "22", headColor, arrowFont, JAN22, borderColor, wRad, col6X+15, row4Y+calH-20);
+  jan23=new Widget(col7X, row4Y, calW, calH, "23", headColor, arrowFont, JAN23, borderColor, wRad, col7X+15, row4Y+calH-20);
+  jan24=new Widget(col1X, row5Y, calW, calH, "24", headColor, arrowFont, JAN24, borderColor, wRad, col1X+15, row5Y+calH-20);
+  jan25=new Widget(col2X, row5Y, calW, calH, "25", headColor, arrowFont, JAN25, borderColor, wRad, col2X+15, row5Y+calH-20);
+  jan26=new Widget(col3X, row5Y, calW, calH, "26", headColor, arrowFont, JAN26, borderColor, wRad, col3X+15, row5Y+calH-20);
+  jan27=new Widget(col4X, row5Y, calW, calH, "27", headColor, arrowFont, JAN27, borderColor, wRad, col4X+16, row5Y+calH-20);
+  jan28=new Widget(col5X, row5Y, calW, calH, "28", headColor, arrowFont, JAN28, borderColor, wRad, col5X+15, row5Y+calH-20);
+  jan29=new Widget(col6X, row5Y, calW, calH, "29", headColor, arrowFont, JAN29, borderColor, wRad, col6X+15, row5Y+calH-20);
+  jan30=new Widget(col7X, row5Y, calW, calH, "30", headColor, arrowFont, JAN30, borderColor, wRad, col7X+15, row5Y+calH-20);
+  jan31=new Widget(col1X, row6Y, calW, calH, "31", headColor, arrowFont, JAN31, borderColor, wRad, col1X+15, row6Y+calH-20);
 
   // pie charts data
   float countTime=currFlight.countOnTime;
@@ -320,43 +319,43 @@ void setup()
   j31StateDBC.countTState();
 
   // screen headers
-  mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont);
-  jan1Head = new Header (SCREENX, hH, headColor, "January 1", headFont);
-  jan2Head = new Header (SCREENX, hH, headColor, "January 2", headFont);
-  jan3Head = new Header (SCREENX, hH, headColor, "January 3", headFont);
-  jan4Head = new Header (SCREENX, hH, headColor, "January 4", headFont);
-  jan5Head = new Header (SCREENX, hH, headColor, "January 5", headFont);
-  jan6Head = new Header (SCREENX, hH, headColor, "January 6", headFont);
-  jan7Head = new Header (SCREENX, hH, headColor, "January 7", headFont);
-  jan8Head = new Header (SCREENX, hH, headColor, "January 8", headFont);
-  jan9Head = new Header (SCREENX, hH, headColor, "January 9", headFont);
-  jan10Head = new Header (SCREENX, hH, headColor, "January 10", headFont);
-  jan11Head = new Header (SCREENX, hH, headColor, "January 11", headFont);
-  jan12Head = new Header (SCREENX, hH, headColor, "January 12", headFont);
-  jan13Head = new Header (SCREENX, hH, headColor, "January 13", headFont);
-  jan14Head = new Header (SCREENX, hH, headColor, "January 14", headFont);
-  jan15Head = new Header (SCREENX, hH, headColor, "January 15", headFont);
-  jan16Head = new Header (SCREENX, hH, headColor, "January 16", headFont);
-  jan17Head = new Header (SCREENX, hH, headColor, "January 17", headFont);
-  jan18Head = new Header (SCREENX, hH, headColor, "January 18", headFont);
-  jan19Head = new Header (SCREENX, hH, headColor, "January 19", headFont);
-  jan20Head = new Header (SCREENX, hH, headColor, "January 20", headFont);
-  jan21Head = new Header (SCREENX, hH, headColor, "January 21", headFont);
-  jan22Head = new Header (SCREENX, hH, headColor, "January 22", headFont);
-  jan23Head = new Header (SCREENX, hH, headColor, "January 23", headFont);
-  jan24Head = new Header (SCREENX, hH, headColor, "January 24", headFont);
-  jan25Head = new Header (SCREENX, hH, headColor, "January 25", headFont);
-  jan26Head = new Header (SCREENX, hH, headColor, "January 26", headFont);
-  jan27Head = new Header (SCREENX, hH, headColor, "January 27", headFont);
-  jan28Head = new Header (SCREENX, hH, headColor, "January 28", headFont);
-  jan29Head = new Header (SCREENX, hH, headColor, "January 29", headFont);
-  jan30Head = new Header (SCREENX, hH, headColor, "January 30", headFont);
-  jan31Head = new Header (SCREENX, hH, headColor, "January 31", headFont);
-  lateHead= new Header (SCREENX, hH, headColor, "Total Late Flights", headFont);
-  canHead=new Header (SCREENX, hH, headColor, "Total Cancelled Flights", headFont);
-  orgHead=new Header (SCREENX, hH, headColor, "Total Departures", headFont);
-  destHead=new Header (SCREENX, hH, headColor, "Total Arrivals", headFont);
-  airportHead =new Header (SCREENX, hH, headColor, "Total Flights Per Airport", headFont);
+  mainHead = new Header (SCREENX, hH, headColor, "Airy Fairy", headFont, SCREENX/2-150, hH-30);
+  jan1Head = new Header (SCREENX, hH, headColor, "January 1", headFont, SCREENX/2-150, hH-30);
+  jan2Head = new Header (SCREENX, hH, headColor, "January 2", headFont, SCREENX/2-150, hH-30);
+  jan3Head = new Header (SCREENX, hH, headColor, "January 3", headFont, SCREENX/2-150, hH-30);
+  jan4Head = new Header (SCREENX, hH, headColor, "January 4", headFont, SCREENX/2-150, hH-30);
+  jan5Head = new Header (SCREENX, hH, headColor, "January 5", headFont, SCREENX/2-150, hH-30);
+  jan6Head = new Header (SCREENX, hH, headColor, "January 6", headFont, SCREENX/2-150, hH-30);
+  jan7Head = new Header (SCREENX, hH, headColor, "January 7", headFont, SCREENX/2-150, hH-30);
+  jan8Head = new Header (SCREENX, hH, headColor, "January 8", headFont, SCREENX/2-150, hH-30);
+  jan9Head = new Header (SCREENX, hH, headColor, "January 9", headFont, SCREENX/2-150, hH-30);
+  jan10Head = new Header (SCREENX, hH, headColor, "January 10", headFont, SCREENX/2-150, hH-30);
+  jan11Head = new Header (SCREENX, hH, headColor, "January 11", headFont, SCREENX/2-150, hH-30);
+  jan12Head = new Header (SCREENX, hH, headColor, "January 12", headFont, SCREENX/2-150, hH-30);
+  jan13Head = new Header (SCREENX, hH, headColor, "January 13", headFont, SCREENX/2-150, hH-30);
+  jan14Head = new Header (SCREENX, hH, headColor, "January 14", headFont, SCREENX/2-150, hH-30);
+  jan15Head = new Header (SCREENX, hH, headColor, "January 15", headFont, SCREENX/2-150, hH-30);
+  jan16Head = new Header (SCREENX, hH, headColor, "January 16", headFont, SCREENX/2-150, hH-30);
+  jan17Head = new Header (SCREENX, hH, headColor, "January 17", headFont, SCREENX/2-150, hH-30);
+  jan18Head = new Header (SCREENX, hH, headColor, "January 18", headFont, SCREENX/2-150, hH-30);
+  jan19Head = new Header (SCREENX, hH, headColor, "January 19", headFont, SCREENX/2-150, hH-30);
+  jan20Head = new Header (SCREENX, hH, headColor, "January 20", headFont, SCREENX/2-150, hH-30);
+  jan21Head = new Header (SCREENX, hH, headColor, "January 21", headFont, SCREENX/2-150, hH-30);
+  jan22Head = new Header (SCREENX, hH, headColor, "January 22", headFont, SCREENX/2-150, hH-30);
+  jan23Head = new Header (SCREENX, hH, headColor, "January 23", headFont, SCREENX/2-150, hH-30);
+  jan24Head = new Header (SCREENX, hH, headColor, "January 24", headFont, SCREENX/2-150, hH-30);
+  jan25Head = new Header (SCREENX, hH, headColor, "January 25", headFont, SCREENX/2-150, hH-30);
+  jan26Head = new Header (SCREENX, hH, headColor, "January 26", headFont, SCREENX/2-150, hH-30);
+  jan27Head = new Header (SCREENX, hH, headColor, "January 27", headFont, SCREENX/2-150, hH-30);
+  jan28Head = new Header (SCREENX, hH, headColor, "January 28", headFont, SCREENX/2-150, hH-30);
+  jan29Head = new Header (SCREENX, hH, headColor, "January 29", headFont, SCREENX/2-150, hH-30);
+  jan30Head = new Header (SCREENX, hH, headColor, "January 30", headFont, SCREENX/2-150, hH-30);
+  jan31Head = new Header (SCREENX, hH, headColor, "January 31", headFont, SCREENX/2-150, hH-30);
+  lateHead= new Header (SCREENX, hH, headColor, "Total Late Flights", headFont, SCREENX/2-280, hH-30);
+  canHead=new Header (SCREENX, hH, headColor, "Total Cancelled Flights", headFont, SCREENX/2-300, hH-30);
+  orgHead=new Header (SCREENX, hH, headColor, "Total Departures", headFont, SCREENX/2-280, hH-30);
+  destHead=new Header (SCREENX, hH, headColor, "Total Arrivals", headFont, SCREENX/2-200, hH-30);
+  airportHead =new Header (SCREENX, hH, headColor, "Total Flights Per Airport", headFont, SCREENX/2-300, hH-30);
 
   // screens
   introScreen = new Screen(bgCol);
