@@ -181,6 +181,8 @@ void setup()
 
   float canPercent=(canNum2*100)/total2;
   float notcanPercent=(canNum1*100)/total2;
+  
+  
 
   // pie charts
   tLatePie = new PieChart (600, graph1, colsPC);
@@ -1354,3 +1356,25 @@ void mousePressed()
     origScreen.removeBarChart(currStateOBC);
   }
 }
+  void dailyCancellation(ArrayList<Integer> canPie) {                  //idk
+    for (int i=0; i<canPie.size(); i++)                                           //idk
+    {                                                                           //idk
+      int notCanDaily = 0;                                                      //idk
+      int canDaily = 0;                                                         //idk
+      int date = canPie.get(i);                                    //idk                                      //idk
+      if (date == 0)                                                 //idk
+      {                                                                       //idk
+         notCanDaily += 1;                                                     //idk
+      }                                                                       //idk
+      else if (date == 1)                                            //idk
+      {                                                                       //idk
+         canDaily += 1;                                                        //idk
+      }                                                                       //idk                                                                         //idk
+      float totalPerDay=notCanDaily+canDaily;                                   //idk
+      float ang1GraphDay=(notCanDaily*360)/totalPerDay;                         //idk
+      float ang2GraphDay=(canDaily*360)/totalPerDay;                            //idk
+      float[] graphDay={ang1GraphDay, ang2GraphDay};                            //idk
+      PieChart dayChart = new PieChart(300, graphDay, colsPC);                  //idk
+      pieCharts.add(dayChart);                                                  //idk
+    }                                                                           //idk
+  } 
