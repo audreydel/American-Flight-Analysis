@@ -9,6 +9,7 @@ ArrayList<ArrayList<String>> subListsStateD = new ArrayList<ArrayList<String>>()
 TreeMap<String, Integer> airportData;
 ArrayList<Integer> airportCount;
 ArrayList<String> airportName;
+
 class Flights
 {
 
@@ -163,42 +164,9 @@ class Flights
         }
         
       }
-      println(airports);
-      println(airOCount);
-      
+   
     }
   
-  void countTime()
-  {
-    for (int i=0; i<airO.size(); i++)
-    {
-      int scheduledTime=currFlight.schDept.get(i);
-      int actualTime=currFlight.accDept.get(i);
-      if ((actualTime>scheduledTime-5)&&(actualTime<scheduledTime+5))
-        countOnTime++;
-      else if (scheduledTime<actualTime)
-        countLate++;
-      else if (scheduledTime>actualTime)
-        countEarly++;
-    }
-  }
-
-
-  void cancelledFlights()
-  {
-    for (int i=0; i<airO.size(); i++)
-    {
-      int isItCancelled=currFlight.cancelled.get(i);
-      if (isItCancelled == 0)
-      {
-        notCanCount += 1;
-      } 
-      else if (isItCancelled == 1)
-      {
-        cancelledCount += 1;
-      }
-    }
-  }
 
   
 }

@@ -24,7 +24,6 @@ class Header
     fill(255);
     textFont(headFont);
     textSize(60);
-    //text(label, SCREENX/2-150, height-30);
     text(label, txtX, txtY);
     image(logoHeader, 0, 0);
   }
