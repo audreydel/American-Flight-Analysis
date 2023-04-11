@@ -42,7 +42,7 @@ class Screen
     return EVENT_NULL;
   }
 
-
+  //SF
   void draw()
   {
     if (currentScreen == introScreen)
@@ -140,7 +140,8 @@ class Screen
       barChart.draw();
     }
   }
-
+  
+  //ADR
   void addWidget(Widget widget)
   {
     widgets.add(widget);

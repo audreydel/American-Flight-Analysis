@@ -1,3 +1,5 @@
+//ADR
+
 class Header 
 {
   int width, height, cRad, txtX, txtY;

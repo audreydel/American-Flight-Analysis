@@ -1,3 +1,5 @@
+//SF AND ADR
+
 class BarChart
 {
   Flights currFlight;
@@ -196,6 +198,7 @@ class BarChart
       int y=850-barHeight;
       int barWidth=25;
       fill(255);
+      //SF
       if (mouseX >= x && mouseX <= x + barWidth && mouseY >= y && mouseY <= height-barWidth) 
       {
         currentBar = i;
