@@ -101,12 +101,12 @@ void setup()
     italicFont, EVENT_NULL, borderColor, wRadNC, margin+15, tbY+tbH-20);
   tLate = new Widget(margin, tbY+tbH, sbW, tbH, "Flight departure stats", lCol,
     italicFont, T_LATE, borderColor, wRadNC, margin+15, tbY+(tbH*2)-20);
-  tCancelled = new Widget(margin, tbY+(tbH*3), sbW, tbH, "Total flights cancelled", lCol,
-    italicFont, T_CAN, borderColor, wRadNC, margin+15, tbY+(tbH*4)-20);
-  tDState = new Widget(margin, tbY+(tbH*4), sbW, tbH, "Total flights arriving", lCol,
-    italicFont, T_ARR, borderColor, wRadNC, margin+15, tbY+(tbH*5)-20);
-  tOState = new Widget(margin, tbY+(tbH*5), sbW, tbH, "Total flights departing", lCol,
-    italicFont, T_DEP, borderColor, wRadNC, margin+15, tbY+(tbH*6)-20);
+  tCancelled = new Widget(margin, tbY+(tbH*2), sbW, tbH, "Total flights cancelled", lCol,
+    italicFont, T_CAN, borderColor, wRadNC, margin+15, tbY+(tbH*3)-20);
+  tDState = new Widget(margin, tbY+(tbH*3), sbW, tbH, "Total flights arriving", lCol,
+    italicFont, T_ARR, borderColor, wRadNC, margin+15, tbY+(tbH*4)-20);
+  tOState = new Widget(margin, tbY+(tbH*4), sbW, tbH, "Total flights departing", lCol,
+    italicFont, T_DEP, borderColor, wRadNC, margin+15, tbY+(tbH*5)-20);
 
 
   // labels
@@ -456,6 +456,7 @@ void setup()
   canHead=new Header (SCREENX, hH, headColor, "Total Cancelled Flights", headFont, SCREENX/2-300, hH-30);
   orgHead=new Header (SCREENX, hH, headColor, "Total Departures", headFont, SCREENX/2-280, hH-30);
   destHead=new Header (SCREENX, hH, headColor, "Total Arrivals", headFont, SCREENX/2-200, hH-30);
+  airportHead =new Header (SCREENX, hH, headColor, "Total Flights Per Airport", headFont, SCREENX/2-300, hH-30);
 
   // screens
   introScreen = new Screen(bgCol);
