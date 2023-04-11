@@ -44,6 +44,7 @@ BarChart j1AirBC, j2AirBC, j3AirBC, j4AirBC, j5AirBC, j6AirBC, j7AirBC, j8AirBC,
   j20StateDBC, j21StateDBC, j22StateDBC, j23StateDBC, j24StateDBC, j25StateDBC, j26StateDBC, j27StateDBC, j28StateDBC, j29StateDBC,
   j30StateDBC, j31StateDBC;
 
+PieChart currCanPie, currLatePie;
 PieChart tCanPie, tLatePie;
 PieChart j1CanPie, j2CanPie, j3CanPie, j4CanPie, j5CanPie, j6CanPie, j7CanPie, j8CanPie, j9CanPie,
   j10CanPie, j11CanPie, j12CanPie, j13CanPie, j14CanPie, j15CanPie, j16CanPie, j17CanPie, j18CanPie, j19CanPie,
@@ -54,7 +55,7 @@ PieChart j1CanPie, j2CanPie, j3CanPie, j4CanPie, j5CanPie, j6CanPie, j7CanPie, j
   j20LatePie, j21LatePie, j22LatePie, j23LatePie, j24LatePie, j25LatePie, j26LatePie, j27LatePie, j28LatePie, j29LatePie,
   j30LatePie, j31LatePie;
 
-
+float currOnTimePerc, currLatePerc, currEarlyPerc, currCanPerc, currNotCanPerc;
 
 
 void settings()
@@ -68,8 +69,8 @@ void setup()
   // flight info
   currFlight = new Flights();
   currFlight.initialiseData();
-  currFlight.countTime();
-  currFlight.cancelledFlights();
+  //currFlight.countTime();
+  //currFlight.cancelledFlights();
 
   // fonts
   stdFont = loadFont("BodoniSvtyTwoOSITCTT-BookIt-30.vlw");
@@ -103,7 +104,7 @@ void setup()
 
   // stat table
   fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats", headColor,
-                      italicFont, EVENT_NULL, borderColor, wRadNC, margin+15, tbY+tbH-20);
+    italicFont, EVENT_NULL, borderColor, wRadNC, margin+15, tbY+tbH-20);
   tLate = new Widget(margin, tbY+tbH, sbW, tbH, "Flight departure stats", lCol,
     italicFont, T_LATE, borderColor, wRadNC, margin+15, tbY+(tbH*2)-20);
   tAirport = new Widget(margin, tbY+(tbH*2), sbW, tbH, "Total airports", lCol,
@@ -158,35 +159,142 @@ void setup()
   jan30=new Widget(col7X, row5Y, calW, calH, "30", headColor, arrowFont, JAN30, borderColor, wRad, col7X+15, row5Y+calH-20);
   jan31=new Widget(col1X, row6Y, calW, calH, "31", headColor, arrowFont, JAN31, borderColor, wRad, col1X+15, row6Y+calH-20);
 
-  // pie charts data
-  float countTime=currFlight.countOnTime;
-  float countErly=currFlight.countEarly;
-  float countLte=currFlight.countLate;
-  float total=currFlight.countLate+currFlight.countEarly+currFlight.countOnTime;
-  float ang1=(countTime*360)/total;
-  float ang2=(countErly/total)*360;
-  float ang3=(countLte/total)*360;
-  float[] graph1 = {ang1, ang2, ang3};
-
-  float countTimePercent=(countTime*100)/total;
-  float countErlyPercent=(countErly*100)/total;
-  float countLtePercent=(countLte*100)/total;
-
-  float canNum1=currFlight.notCanCount;
-  float canNum2=currFlight.cancelledCount;
-  float total2=currFlight.notCanCount+currFlight.cancelledCount;
-  float ang1Graph2=(canNum1*360)/total2;
-  float ang2Graph2=(canNum2*360)/total2;
-  float[] graph2={ang1Graph2, ang2Graph2};
-
-  float canPercent=(canNum2*100)/total2;
-  float notcanPercent=(canNum1*100)/total2;
-  
-  
-
   // pie charts
-  tLatePie = new PieChart (600, graph1, colsPC);
-  tCanPie = new PieChart (600, graph2, colsPC);
+
+  tLatePie = new PieChart (600, currFlight.schDept, currFlight.accDept, colsPC);
+  tLatePie.countTime();
+  tCanPie = new PieChart (600, currFlight.cancelled, colsPC);
+  tCanPie.countCancelled();
+
+  j1LatePie = new PieChart (600, subListsSchDept.get(0), subListsAccDept.get(0), colsPC);
+  j1LatePie.countTime();
+  j2LatePie = new PieChart (600, subListsSchDept.get(1), subListsAccDept.get(1), colsPC);
+  j2LatePie.countTime();
+  j3LatePie = new PieChart (600, subListsSchDept.get(2), subListsAccDept.get(2), colsPC);
+  j3LatePie.countTime();
+  j4LatePie = new PieChart (600, subListsSchDept.get(3), subListsAccDept.get(3), colsPC);
+  j4LatePie.countTime();
+  j5LatePie = new PieChart (600, subListsSchDept.get(4), subListsAccDept.get(4), colsPC);
+  j5LatePie.countTime();
+  j6LatePie = new PieChart (600, subListsSchDept.get(5), subListsAccDept.get(5), colsPC);
+  j6LatePie.countTime();
+  j7LatePie = new PieChart (600, subListsSchDept.get(6), subListsAccDept.get(6), colsPC);
+  j7LatePie.countTime();
+  j8LatePie = new PieChart (600, subListsSchDept.get(7), subListsAccDept.get(7), colsPC);
+  j8LatePie.countTime();
+  j9LatePie = new PieChart (600, subListsSchDept.get(8), subListsAccDept.get(8), colsPC);
+  j9LatePie.countTime();
+  j10LatePie = new PieChart (600, subListsSchDept.get(9), subListsAccDept.get(9), colsPC);
+  j10LatePie.countTime();
+  j11LatePie = new PieChart (600, subListsSchDept.get(10), subListsAccDept.get(10), colsPC);
+  j11LatePie.countTime();
+  j12LatePie = new PieChart (600, subListsSchDept.get(11), subListsAccDept.get(11), colsPC);
+  j12LatePie.countTime();
+  j13LatePie = new PieChart (600, subListsSchDept.get(12), subListsAccDept.get(12), colsPC);
+  j13LatePie.countTime();
+  j14LatePie = new PieChart (600, subListsSchDept.get(13), subListsAccDept.get(13), colsPC);
+  j14LatePie.countTime();
+  j15LatePie = new PieChart (600, subListsSchDept.get(14), subListsAccDept.get(14), colsPC);
+  j15LatePie.countTime();
+  j16LatePie = new PieChart (600, subListsSchDept.get(15), subListsAccDept.get(15), colsPC);
+  j16LatePie.countTime();
+  j17LatePie = new PieChart (600, subListsSchDept.get(16), subListsAccDept.get(16), colsPC);
+  j17LatePie.countTime();
+  j18LatePie = new PieChart (600, subListsSchDept.get(17), subListsAccDept.get(17), colsPC);
+  j18LatePie.countTime();
+  j19LatePie = new PieChart (600, subListsSchDept.get(18), subListsAccDept.get(18), colsPC);
+  j19LatePie.countTime();
+  j20LatePie = new PieChart (600, subListsSchDept.get(19), subListsAccDept.get(19), colsPC);
+  j20LatePie.countTime();
+  j21LatePie = new PieChart (600, subListsSchDept.get(20), subListsAccDept.get(20), colsPC);
+  j21LatePie.countTime();
+  j22LatePie = new PieChart (600, subListsSchDept.get(21), subListsAccDept.get(21), colsPC);
+  j22LatePie.countTime();
+  j23LatePie = new PieChart (600, subListsSchDept.get(22), subListsAccDept.get(22), colsPC);
+  j23LatePie.countTime();
+  j24LatePie = new PieChart (600, subListsSchDept.get(23), subListsAccDept.get(23), colsPC);
+  j24LatePie.countTime();
+  j25LatePie = new PieChart (600, subListsSchDept.get(24), subListsAccDept.get(24), colsPC);
+  j25LatePie.countTime();
+  j26LatePie = new PieChart (600, subListsSchDept.get(25), subListsAccDept.get(25), colsPC);
+  j26LatePie.countTime();
+  j27LatePie = new PieChart (600, subListsSchDept.get(26), subListsAccDept.get(26), colsPC);
+  j27LatePie.countTime();
+  j28LatePie = new PieChart (600, subListsSchDept.get(27), subListsAccDept.get(27), colsPC);
+  j28LatePie.countTime();
+  j29LatePie = new PieChart (600, subListsSchDept.get(28), subListsAccDept.get(28), colsPC);
+  j29LatePie.countTime();
+  j30LatePie = new PieChart (600, subListsSchDept.get(29), subListsAccDept.get(29), colsPC);
+  j30LatePie.countTime();
+  j31LatePie = new PieChart (600, subListsSchDept.get(30), subListsAccDept.get(30), colsPC);
+  j31LatePie.countTime();
+
+  j1CanPie = new PieChart (600, subListsCancelled.get(0), colsPC);
+  j1CanPie.countCancelled();
+  j2CanPie = new PieChart (600, subListsCancelled.get(1), colsPC);
+  j2CanPie.countCancelled();
+  j3CanPie = new PieChart (600, subListsCancelled.get(2), colsPC);
+  j3CanPie.countCancelled();
+  j4CanPie = new PieChart (600, subListsCancelled.get(3), colsPC);
+  j4CanPie.countCancelled();
+  j5CanPie = new PieChart (600, subListsCancelled.get(4), colsPC);
+  j5CanPie.countCancelled();
+  j6CanPie = new PieChart (600, subListsCancelled.get(5), colsPC);
+  j6CanPie.countCancelled();
+  j7CanPie = new PieChart (600, subListsCancelled.get(6), colsPC);
+  j7CanPie.countCancelled();
+  j8CanPie = new PieChart (600, subListsCancelled.get(7), colsPC);
+  j8CanPie.countCancelled();
+  j9CanPie = new PieChart (600, subListsCancelled.get(8), colsPC);
+  j9CanPie.countCancelled();
+  j10CanPie = new PieChart (600, subListsCancelled.get(9), colsPC);
+  j10CanPie.countCancelled();
+  j11CanPie = new PieChart (600, subListsCancelled.get(10), colsPC);
+  j11CanPie.countCancelled();
+  j12CanPie = new PieChart (600, subListsCancelled.get(11), colsPC);
+  j12CanPie.countCancelled();
+  j13CanPie = new PieChart (600, subListsCancelled.get(12), colsPC);
+  j13CanPie.countCancelled();
+  j14CanPie = new PieChart (600, subListsCancelled.get(13), colsPC);
+  j14CanPie.countCancelled();
+  j15CanPie = new PieChart (600, subListsCancelled.get(14), colsPC);
+  j15CanPie.countCancelled();
+  j16CanPie = new PieChart (600, subListsCancelled.get(15), colsPC);
+  j16CanPie.countCancelled();
+  j17CanPie = new PieChart (600, subListsCancelled.get(16), colsPC);
+  j17CanPie.countCancelled();
+  j18CanPie = new PieChart (600, subListsCancelled.get(17), colsPC);
+  j18CanPie.countCancelled();
+  j19CanPie = new PieChart (600, subListsCancelled.get(18), colsPC);
+  j19CanPie.countCancelled();
+  j20CanPie = new PieChart (600, subListsCancelled.get(19), colsPC);
+  j20CanPie.countCancelled();
+  j21CanPie = new PieChart (600, subListsCancelled.get(20), colsPC);
+  j21CanPie.countCancelled();
+  j22CanPie = new PieChart (600, subListsCancelled.get(21), colsPC);
+  j22CanPie.countCancelled();
+  j23CanPie = new PieChart (600, subListsCancelled.get(22), colsPC);
+  j23CanPie.countCancelled();
+  j24CanPie = new PieChart (600, subListsCancelled.get(23), colsPC);
+  j24CanPie.countCancelled();
+  j25CanPie = new PieChart (600, subListsCancelled.get(24), colsPC);
+  j25CanPie.countCancelled();
+  j26CanPie = new PieChart (600, subListsCancelled.get(25), colsPC);
+  j26CanPie.countCancelled();
+  j27CanPie = new PieChart (600, subListsCancelled.get(26), colsPC);
+  j27CanPie.countCancelled();
+  j28CanPie = new PieChart (600, subListsCancelled.get(27), colsPC);
+  j28CanPie.countCancelled();
+  j29CanPie = new PieChart (600, subListsCancelled.get(28), colsPC);
+  j29CanPie.countCancelled();
+  j30CanPie = new PieChart (600, subListsCancelled.get(29), colsPC);
+  j30CanPie.countCancelled();
+  j31CanPie = new PieChart (600, subListsCancelled.get(30), colsPC);
+  j31CanPie.countCancelled();
+
+
+  currLatePie =tLatePie;
+  currCanPie = tCanPie;
 
   // bar charts
 
@@ -366,14 +474,12 @@ void setup()
   mainScreen.addHeader(mainHead);
   mainScreen.addLabel(lCalendar);
 
-
   mainScreen.addWidget(tLate);
   mainScreen.addWidget(tAirport);
   mainScreen.addWidget(tOState);
   mainScreen.addWidget(tDState);
   mainScreen.addWidget(fullMonth);
   mainScreen.addWidget(tCancelled);
-
 
   mainScreen.addWidget(jan1);
   mainScreen.addWidget(jan2);
@@ -407,7 +513,6 @@ void setup()
   mainScreen.addWidget(jan30);
   mainScreen.addWidget(jan31);
 
-
   jan1Screen = new Screen(bgCol);
   jan1Screen.addHeader(jan1Head);
   jan1Screen.addWidget(bHomeScreen);
@@ -416,7 +521,6 @@ void setup()
   jan1Screen.addWidget(bOState);
   jan1Screen.addWidget(bDState);
   jan1Screen.addWidget(bCancelled);
-  //jan1Screen.addBarChart(j1StateOBC);
 
   jan2Screen = new Screen(bgCol);
   jan2Screen.addHeader(jan2Head);
@@ -689,12 +793,12 @@ void setup()
   jan31Screen.addWidget(bCancelled);
 
 
-  totalLateScreen=new Screen(bgCol, countTimePercent, countErlyPercent, countLtePercent);
+  totalLateScreen=new Screen(bgCol);
   totalLateScreen.addHeader(lateHead);
   totalLateScreen.addWidget(bHomeScreen);
   totalLateScreen.addPieChart(tLatePie);
 
-  totalCanScreen= new Screen(bgCol, notcanPercent, canPercent);
+  totalCanScreen= new Screen(bgCol);
   totalCanScreen.addHeader(canHead);
   totalCanScreen.addWidget(bHomeScreen);
   totalCanScreen.addPieChart(tCanPie);
@@ -711,8 +815,8 @@ void setup()
   totalAirportScreen.addHeader(airportHead);
   totalAirportScreen.addWidget(bHomeScreen);
 
-
   lateScreen = new Screen(bgCol);
+
   lateScreen.addWidget(bHomeScreen);
   lateScreen.addWidget(bLateness);
   lateScreen.addWidget(bAirport);
@@ -854,19 +958,16 @@ void setup()
   screenList.add(jan30Screen);
   screenList.add(jan31Screen);
 
-
-
   currentScreen = introScreen;
   currAirBC = j1AirBC;
 
-  currFlight.countAirp();
 }
 
 void draw()
 {
 
   currentScreen.draw();
-  
+
   for (int i = 0; i<widgetList.size(); i++)
   {
     Widget aWidget = (Widget)widgetList.get(i);
@@ -893,9 +994,18 @@ void mousePressed()
     origScreen.addHeader(jan1Head);
     destScreen.addHeader(jan1Head);
     airpScreen.addHeader(jan1Head);
-    
+
     currStateOBC = j1StateOBC;
     currStateDBC = j1StateDBC;
+    currCanPie = j1CanPie;
+    currLatePie = j1LatePie;
+
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
+
     break;
 
   case JAN2:
@@ -905,9 +1015,17 @@ void mousePressed()
     origScreen.addHeader(jan2Head);
     destScreen.addHeader(jan2Head);
     airpScreen.addHeader(jan2Head);
-    
+
     currStateOBC = j2StateOBC;
     currStateDBC = j2StateDBC;
+    currCanPie = j2CanPie;
+    currLatePie = j2LatePie;
+
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN3:
@@ -917,9 +1035,18 @@ void mousePressed()
     origScreen.addHeader(jan3Head);
     destScreen.addHeader(jan3Head);
     airpScreen.addHeader(jan3Head);
-    
+
     currStateOBC = j3StateOBC;
     currStateDBC = j3StateDBC;
+    currCanPie = j3CanPie;
+    currLatePie = j3LatePie;
+
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
+
     break;
 
   case JAN4:
@@ -929,9 +1056,16 @@ void mousePressed()
     origScreen.addHeader(jan4Head);
     destScreen.addHeader(jan4Head);
     airpScreen.addHeader(jan4Head);
-    
+
     currStateOBC = j4StateOBC;
     currStateDBC = j4StateDBC;
+    currCanPie = j4CanPie;
+    currLatePie = j4LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN5:
@@ -941,9 +1075,16 @@ void mousePressed()
     origScreen.addHeader(jan5Head);
     destScreen.addHeader(jan5Head);
     airpScreen.addHeader(jan5Head);
-    
+
     currStateOBC = j5StateOBC;
     currStateDBC = j5StateDBC;
+    currCanPie = j5CanPie;
+    currLatePie = j5LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN6:
@@ -953,9 +1094,17 @@ void mousePressed()
     origScreen.addHeader(jan6Head);
     destScreen.addHeader(jan6Head);
     airpScreen.addHeader(jan6Head);
-    
+
     currStateOBC = j6StateOBC;
     currStateDBC = j6StateDBC;
+    
+    currCanPie = j6CanPie;
+    currLatePie = j6LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN7:
@@ -965,9 +1114,18 @@ void mousePressed()
     origScreen.addHeader(jan7Head);
     destScreen.addHeader(jan7Head);
     airpScreen.addHeader(jan7Head);
+
     
     currStateOBC = j7StateOBC;
     currStateDBC = j7StateDBC;
+    
+    currCanPie = j7CanPie;
+    currLatePie = j7LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN8:
@@ -977,9 +1135,17 @@ void mousePressed()
     origScreen.addHeader(jan8Head);
     destScreen.addHeader(jan8Head);
     airpScreen.addHeader(jan8Head);
+
     
     currStateOBC = j8StateOBC;
     currStateDBC = j8StateDBC;
+    currCanPie = j8CanPie;
+    currLatePie = j8LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN9:
@@ -989,9 +1155,16 @@ void mousePressed()
     origScreen.addHeader(jan9Head);
     destScreen.addHeader(jan9Head);
     airpScreen.addHeader(jan9Head);
-    
+
     currStateOBC = j9StateOBC;
     currStateDBC = j9StateDBC;
+    currCanPie = j9CanPie;
+    currLatePie = j9LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN10:
@@ -1001,9 +1174,17 @@ void mousePressed()
     origScreen.addHeader(jan10Head);
     destScreen.addHeader(jan10Head);
     airpScreen.addHeader(jan10Head);
+
     
     currStateOBC = j10StateOBC;
     currStateDBC = j10StateDBC;
+    currCanPie = j10CanPie;
+    currLatePie = j10LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN11:
@@ -1013,9 +1194,17 @@ void mousePressed()
     origScreen.addHeader(jan11Head);
     destScreen.addHeader(jan11Head);
     airpScreen.addHeader(jan11Head);
+
     
     currStateOBC = j11StateOBC;
     currStateDBC = j11StateDBC;
+    currCanPie = j11CanPie;
+    currLatePie = j11LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN12:
@@ -1025,9 +1214,16 @@ void mousePressed()
     origScreen.addHeader(jan12Head);
     destScreen.addHeader(jan12Head);
     airpScreen.addHeader(jan12Head);
-    
+
     currStateOBC = j12StateOBC;
     currStateDBC = j12StateDBC;
+    currCanPie = j12CanPie;
+    currLatePie = j12LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN13:
@@ -1037,9 +1233,17 @@ void mousePressed()
     origScreen.addHeader(jan13Head);
     destScreen.addHeader(jan13Head);
     airpScreen.addHeader(jan13Head);
+
     
     currStateOBC = j13StateOBC;
     currStateDBC = j13StateDBC;
+    currCanPie = j13CanPie;
+    currLatePie = j13LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN14:
@@ -1049,9 +1253,16 @@ void mousePressed()
     origScreen.addHeader(jan14Head);
     destScreen.addHeader(jan14Head);
     airpScreen.addHeader(jan14Head);
-    
+
     currStateOBC = j14StateOBC;
     currStateDBC = j14StateDBC;
+    currCanPie = j14CanPie;
+    currLatePie = j14LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN15:
@@ -1061,9 +1272,16 @@ void mousePressed()
     origScreen.addHeader(jan15Head);
     destScreen.addHeader(jan15Head);
     airpScreen.addHeader(jan15Head);
-    
+
     currStateOBC = j15StateOBC;
     currStateDBC = j15StateDBC;
+    currCanPie = j15CanPie;
+    currLatePie = j15LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN16:
@@ -1073,9 +1291,17 @@ void mousePressed()
     origScreen.addHeader(jan16Head);
     destScreen.addHeader(jan16Head);
     airpScreen.addHeader(jan16Head);
+
     
     currStateOBC = j16StateOBC;
     currStateDBC = j16StateDBC;
+    currCanPie = j16CanPie;
+    currLatePie = j16LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN17:
@@ -1088,6 +1314,13 @@ void mousePressed()
     
     currStateOBC = j17StateOBC;
     currStateDBC = j17StateDBC;
+    currCanPie = j17CanPie;
+    currLatePie = j17LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN18:
@@ -1097,9 +1330,16 @@ void mousePressed()
     origScreen.addHeader(jan18Head);
     destScreen.addHeader(jan18Head);
     airpScreen.addHeader(jan18Head);
-    
+
     currStateOBC = j18StateOBC;
     currStateDBC = j18StateDBC;
+    currCanPie = j18CanPie;
+    currLatePie = j18LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN19:
@@ -1109,9 +1349,16 @@ void mousePressed()
     origScreen.addHeader(jan19Head);
     destScreen.addHeader(jan19Head);
     airpScreen.addHeader(jan19Head);
-    
+
     currStateOBC = j19StateOBC;
     currStateDBC = j19StateDBC;
+    currCanPie = j19CanPie;
+    currLatePie = j19LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN20:
@@ -1121,9 +1368,17 @@ void mousePressed()
     origScreen.addHeader(jan20Head);
     destScreen.addHeader(jan20Head);
     airpScreen.addHeader(jan20Head);
+
     
     currStateOBC = j20StateOBC;
     currStateDBC = j20StateDBC;
+    currCanPie = j20CanPie;
+    currLatePie = j20LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN21:
@@ -1133,9 +1388,16 @@ void mousePressed()
     origScreen.addHeader(jan21Head);
     destScreen.addHeader(jan21Head);
     airpScreen.addHeader(jan21Head);
-    
+
     currStateOBC = j21StateOBC;
     currStateDBC = j21StateDBC;
+    currCanPie = j21CanPie;
+    currLatePie = j21LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN22:
@@ -1145,9 +1407,17 @@ void mousePressed()
     origScreen.addHeader(jan22Head);
     destScreen.addHeader(jan22Head);
     airpScreen.addHeader(jan22Head);
+
     
     currStateOBC = j22StateOBC;
     currStateDBC = j22StateDBC;
+    currCanPie = j22CanPie;
+    currLatePie = j22LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN23:
@@ -1157,9 +1427,17 @@ void mousePressed()
     origScreen.addHeader(jan23Head);
     destScreen.addHeader(jan23Head);
     airpScreen.addHeader(jan23Head);
+
     
     currStateOBC = j23StateOBC;
     currStateDBC = j23StateDBC;
+    currCanPie = j23CanPie;
+    currLatePie = j23LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN24:
@@ -1169,9 +1447,17 @@ void mousePressed()
     origScreen.addHeader(jan24Head);
     destScreen.addHeader(jan24Head);
     airpScreen.addHeader(jan24Head);
+
     
     currStateOBC = j24StateOBC;
     currStateDBC = j24StateDBC;
+    currCanPie = j24CanPie;
+    currLatePie = j24LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN25:
@@ -1181,9 +1467,16 @@ void mousePressed()
     origScreen.addHeader(jan25Head);
     destScreen.addHeader(jan25Head);
     airpScreen.addHeader(jan25Head);
-    
+
     currStateOBC = j25StateOBC;
     currStateDBC = j25StateDBC;
+    currCanPie = j25CanPie;
+    currLatePie = j25LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN26:
@@ -1193,9 +1486,16 @@ void mousePressed()
     origScreen.addHeader(jan26Head);
     destScreen.addHeader(jan26Head);
     airpScreen.addHeader(jan26Head);
-    
+
     currStateOBC = j26StateOBC;
     currStateDBC = j26StateDBC;
+    currCanPie = j26CanPie;
+    currLatePie = j26LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN27:
@@ -1205,9 +1505,17 @@ void mousePressed()
     origScreen.addHeader(jan27Head);
     destScreen.addHeader(jan27Head);
     airpScreen.addHeader(jan27Head);
+
     
     currStateOBC = j27StateOBC;
     currStateDBC = j27StateDBC;
+    currCanPie = j27CanPie;
+    currLatePie = j27LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN28:
@@ -1217,9 +1525,16 @@ void mousePressed()
     origScreen.addHeader(jan28Head);
     destScreen.addHeader(jan28Head);
     airpScreen.addHeader(jan28Head);
-    
+
     currStateOBC = j28StateOBC;
     currStateDBC = j28StateDBC;
+    currCanPie = j28CanPie;
+    currLatePie = j28LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN29:
@@ -1229,9 +1544,19 @@ void mousePressed()
     origScreen.addHeader(jan29Head);
     destScreen.addHeader(jan29Head);
     airpScreen.addHeader(jan29Head);
+
+    currStateOBC = j29StateOBC;
+    currStateDBC = j29StateDBC;
     
     currStateOBC = j29StateOBC;
     currStateDBC = j29StateDBC;
+    currCanPie = j29CanPie;
+    currLatePie = j29LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN30:
@@ -1241,9 +1566,17 @@ void mousePressed()
     origScreen.addHeader(jan30Head);
     destScreen.addHeader(jan30Head);
     airpScreen.addHeader(jan30Head);
-    
+
     currStateOBC = j30StateOBC;
     currStateDBC = j30StateDBC;
+    
+    currCanPie = j30CanPie;
+    currLatePie = j30LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case JAN31:
@@ -1253,17 +1586,39 @@ void mousePressed()
     origScreen.addHeader(jan31Head);
     destScreen.addHeader(jan31Head);
     airpScreen.addHeader(jan31Head);
-    
+
     currStateOBC = j31StateOBC;
     currStateDBC = j31StateDBC;
+    currCanPie = j31CanPie;
+    currLatePie = j31LatePie;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
     break;
 
   case T_LATE:
+    currLatePie = tLatePie;
     currentScreen = totalLateScreen;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
+
     break;
 
   case T_CAN:
+
+    currCanPie = tCanPie;
     currentScreen=totalCanScreen;
+    currOnTimePerc = currLatePie.onTimePerc;
+    currLatePerc = currLatePie.latePerc;
+    currEarlyPerc = currLatePie.earlyPerc;
+    currCanPerc = currCanPie.canPerc;
+    currNotCanPerc = currCanPie.notCanPerc;
+
     break;
 
   case T_AIRPORT:
@@ -1322,59 +1677,34 @@ void mousePressed()
   default:
     break;
   }
-  
-  if(currentScreen==mainScreen)
+
+  if (currentScreen==mainScreen)
   {
     currentScreen.removeBarChart(currStateDBC);
     currentScreen.removeBarChart(currStateOBC);
     destScreen.removeBarChart(currStateDBC);
     origScreen.removeBarChart(currStateOBC);
-  }
-  else if(currentScreen==destScreen)
+  } else if (currentScreen==destScreen)
   {
     origScreen.removeBarChart(currStateOBC);
     currentScreen.addBarChart(currStateDBC);
-  }
-  else if(currentScreen==origScreen)
+  } else if (currentScreen==origScreen)
   {
     destScreen.removeBarChart(currStateDBC);
     currentScreen.addBarChart(currStateOBC);
-  }
-  else if(currentScreen==lateScreen)
+  } else if (currentScreen==lateScreen)
   {
     destScreen.removeBarChart(currStateDBC);
     origScreen.removeBarChart(currStateOBC);
-  }
-  else if(currentScreen==canScreen)
+    currentScreen.addPieChart(currLatePie);
+  } else if (currentScreen==canScreen)
   {
     destScreen.removeBarChart(currStateDBC);
     origScreen.removeBarChart(currStateOBC);
-  }
-  else if(currentScreen==airpScreen)
+    currentScreen.addPieChart(currCanPie);
+  } else if (currentScreen==airpScreen)
   {
     destScreen.removeBarChart(currStateDBC);
     origScreen.removeBarChart(currStateOBC);
   }
 }
-  void dailyCancellation(ArrayList<Integer> canPie) {                  //idk
-    for (int i=0; i<canPie.size(); i++)                                           //idk
-    {                                                                           //idk
-      int notCanDaily = 0;                                                      //idk
-      int canDaily = 0;                                                         //idk
-      int date = canPie.get(i);                                    //idk                                      //idk
-      if (date == 0)                                                 //idk
-      {                                                                       //idk
-         notCanDaily += 1;                                                     //idk
-      }                                                                       //idk
-      else if (date == 1)                                            //idk
-      {                                                                       //idk
-         canDaily += 1;                                                        //idk
-      }                                                                       //idk                                                                         //idk
-      float totalPerDay=notCanDaily+canDaily;                                   //idk
-      float ang1GraphDay=(notCanDaily*360)/totalPerDay;                         //idk
-      float ang2GraphDay=(canDaily*360)/totalPerDay;                            //idk
-      float[] graphDay={ang1GraphDay, ang2GraphDay};                            //idk
-      PieChart dayChart = new PieChart(300, graphDay, colsPC);                  //idk
-      pieCharts.add(dayChart);                                                  //idk
-    }                                                                           //idk
-  } 

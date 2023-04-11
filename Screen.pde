@@ -5,39 +5,13 @@ class Screen
   ArrayList widgets, headerList, labelList, pieChartList, barChartList;
   color backgroundColor;
   float perc1, perc2, perc3;
+  PieChart currPie;
 
   // normal screeen
   Screen(color backgroundColor)
   {
     this.backgroundColor = backgroundColor;
 
-    widgets = new ArrayList();
-    headerList = new ArrayList();
-    labelList = new ArrayList();
-    pieChartList = new ArrayList();
-    barChartList = new ArrayList();
-  }
-
-  // screen for lateness pie chart
-  Screen(color backgroundColor, float perc1, float perc2, float perc3)
-  {
-    this.backgroundColor = backgroundColor;
-    this.perc1 = perc1;
-    this.perc2 = perc2;
-    this.perc3 = perc3;
-    widgets = new ArrayList();
-    headerList = new ArrayList();
-    labelList = new ArrayList();
-    pieChartList = new ArrayList();
-    barChartList = new ArrayList();
-  }
-
-  // screen for cancelled pie chart
-  Screen (color backgroundColor, float perc1, float perc2)
-  {
-    this.backgroundColor = backgroundColor;
-    this.perc1 = perc1;
-    this.perc2 = perc2;
     widgets = new ArrayList();
     headerList = new ArrayList();
     labelList = new ArrayList();
@@ -56,7 +30,6 @@ class Screen
       }
     }
 
-
     for (int i = 0; i < widgets.size(); i++)
     {
       Widget widget = (Widget) widgets.get(i);
@@ -68,6 +41,7 @@ class Screen
     }
     return EVENT_NULL;
   }
+
 
   void draw()
   {
@@ -84,47 +58,49 @@ class Screen
     if (currentScreen == mainScreen)
     {
       fill (186, 111, 96);
-      //text("Click on a date to see the stats", 550, 250);
+      text("Click on a date to see the stats", 550, 295);
     }
-    if (currentScreen==totalLateScreen)
+    if (currentScreen==totalLateScreen || currentScreen == lateScreen)
     {
       stroke(0);
       fill(0);
       textFont(italicFont);
       textSize(30);
-      text("Key:", 900, 150);
-      fill(#FBE29F);
-      rect(900, 165, 40, 40);
-      fill(0);
+      text("Key:", 910, 300);
 
+      fill(#FBE29F);
+      rect(910, 300+15, 40, 40);
+      fill(0);
       textSize(23);
-      text("Flights departing on time (±5 mins) "+ round(perc1) +"%", 950, 190);
+      text("Flights departing on time (±5 mins): "+ round(currOnTimePerc) +"%", 960, 300+40);
+      
       fill(#E8A09A);
-      rect(900, 250, 40, 40);
+      rect(910, 300+100, 40, 40);
       fill(0);
-      text("Flights departing early "+ round(perc2) +"%", 950, 280);
+      text("Flights departing early: "+ round(currEarlyPerc) +"%", 960, 300+130);
+      
       fill(#9BBFE0);
-      rect(900, 330, 40, 40);
+      rect(910, 300+170, 40, 40);
       fill(0);
-      text("Flights departing late "+ round(perc3) +"%", 950, 360);
+      text("Flights departing late: "+ round(currLatePerc) +"%", 960, 300+200);
     }
 
-    if (currentScreen==totalCanScreen)
+    if (currentScreen==totalCanScreen || currentScreen == canScreen)
     {
       stroke(0);
       fill(0);
       textFont(italicFont);
       textSize(30);
-      text("Key:", 900, 150);
+      text("Key:", 910, 300);
       fill(#FBE29F);
-      rect(900, 165, 40, 40);
+      rect(910, 315, 40, 40);
       fill(0);
       textSize(25);
-      text("Flights not cancelled "+ round(perc1) +"%", 950, 190);
+      text("Flights not cancelled: "+ round(currNotCanPerc) +"%", 960, 340);
       fill(#E8A09A);
-      rect(900, 250, 40, 40);
+      rect(910, 400, 40, 40);
       fill(0);
-      text("Flights cancelled "+ round(perc2) +"%", 950, 280);
+      text("Flights cancelled: "+ round(currCanPerc) +"%", 960, 430);
     }
 
     if (currentScreen == totalOriginScreen || currentScreen == totalDestScreen)
@@ -132,7 +108,6 @@ class Screen
       fill(0);
       textFont(italicFont);
       textSize(15.6);
-      //text("AL AK AZ AR CA CO CT DE FL GA HI ID IL IN IA KS KY LA ME MD MA MI MN MS MO MT NE NV NH NJ NM NY NC ND OH OK OR PA RI SC SD TN TX UT VT VA WA WV WI WY", 60, 870);
     }
 
 
@@ -163,7 +138,6 @@ class Screen
     {
       BarChart barChart = (BarChart) barChartList.get(i);
       barChart.draw();
-      
     }
   }
 
@@ -191,10 +165,9 @@ class Screen
   {
     barChartList.add(barChart);
   }
-  
+
   void removeBarChart(BarChart barChart)
   {
     barChartList.remove(barChart);
   }
-  
 }

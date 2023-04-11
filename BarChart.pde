@@ -183,26 +183,10 @@ class BarChart
         break;
       }
     }
-    
-  //  for (String airport : data)
-  //  {
-  //    if (count.containsKey(airport)) 
-  //    {
-  //      int countTot = count.get(airport);
-  //      count.put(airport, countTot + 1);
-  //    }
-  //    else 
-  //    {
-  //      count.put(airport, 1);
-  //    }
-  //  }
-  //  for (String key : count.keySet()) {
-  //  int value = count.get(key);
-  //  println(key + ": " + value);
-  //}
-  }
-  
-  void drawBarChart(){
+  }  
+
+  void drawBarChart()
+  {
     int currentBar=-2;
     int maxHeight = max(statesCount)/3;
     for (int i = 0; i < statesCount.length; i++)
@@ -212,32 +196,38 @@ class BarChart
       int y=850-barHeight;
       int barWidth=25;
       fill(255);
-      if (mouseX >= x && mouseX <= x + barWidth && mouseY >= y && mouseY <= height-barWidth) {
+      if (mouseX >= x && mouseX <= x + barWidth && mouseY >= y && mouseY <= height-barWidth) 
+      {
         currentBar = i;
-        text(airportName.get(i)+":"+statesCount[i], 980, 220);
+        textFont(italicFont);
+        text(airportName.get(i)+":"+statesCount[i], 980, 250);
         fill(255);
       }
-      else{
+      else
+      {
       fill(colsPC[i% colsPC.length]);
       }
       rect(x, y, barWidth, barHeight); 
     }
-    if (currentBar==-2) {
+    if (currentBar==-2) 
+    {
       currentBar=-2;
     }
   }
+  
   void draw()
   {
     fill(headColor);
-    rect(950,170,200,80);
     stroke(0);
     strokeWeight(2);
+    rect(950,190,200,70,30);
     fill(255);
-    text("State:", 980, 190);
+    textFont(italicFont);
+    text("State:", 980, 220);
     line(60, 180, 60, 850); // y axis
     line(60, 850, 1340, 850); // x axis
     fill(0);
-    textFont(italicFont);
+    
     fill(0);
     drawBarChart();
   }

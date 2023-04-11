@@ -22,7 +22,7 @@ class Label
   void draw()
   {
     stroke(0);
-    strokeWeight(1);
+    strokeWeight(2);
     fill(labelCol);
     rect (lX,lY, width, height, cRad);
     
