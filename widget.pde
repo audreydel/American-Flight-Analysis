@@ -1,7 +1,7 @@
 // widget
 class Widget
 {
-  int x, y, width, height, cRad, txtX, txtY;
+  int x, y, width, height, cRad, txtX, txtY, tL,tR,bL,bR;
   String label;
   int event;
   color widgetColor, labelColor, borderColor;
@@ -10,7 +10,7 @@ class Widget
 
 
   Widget(int x, int y, int width, int height, String label,
-    color widgetColor, PFont widgetFont, int event, color borderColor, int cRad, int txtX, int txtY)
+    color widgetColor, PFont widgetFont, int event, color borderColor, int txtX, int txtY, int tL, int tR, int bL, int bR)
   {
     this.x=x;
     this.y=y;
@@ -24,13 +24,17 @@ class Widget
     this.cRad = cRad;
     this.txtX = txtX;
     this.txtY = txtY;
+    this.tL = tL;
+    this.tR = tR; 
+    this.bL = bL;
+    this.bR = bR;
   
 }
   void draw()
   {
     noStroke();
     fill(widgetColor);
-    rect(x, y, width, height, cRad);
+    rect(x, y, width, height, tL,tR, bL,bR);
 
     fill(labelColor);
     textFont(stdFont);
