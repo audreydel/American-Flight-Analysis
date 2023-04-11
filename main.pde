@@ -83,30 +83,31 @@ void setup()
   logoHeader = loadImage("AF-header.png");
   logoHeader.resize(170, 100);
 
-  bHomeScreen = new Widget (margin, tbY, tbW, calH, "Home Page", headColor,
-    stdFont, MAIN_SCREEN, borderColor, wRad, margin+43, tbY+tbH-20);
-  bLateness = new Widget (margin+tbW+margin+5, tbY, tbW, tbH, "Lateness", lCol,
-    stdFont, EVENT_LATE, borderColor, wRad, margin+tbW+margin+5+60, tbY+tbH-20);
-  bOState = new Widget (margin+((tbW+margin+5)*3), tbY, tbW, tbH, "Origin State", lCol,
-    stdFont, EVENT_OSTATE, borderColor, wRad, margin+((tbW+margin+5)*3)+40, tbY+tbH-20);
-  bDState = new Widget (margin+((tbW+margin+5)*4), tbY, tbW, tbH, "Destination State", lCol,
-    stdFont, EVENT_DSTATE, borderColor, wRad, margin+((tbW+margin+5)*4)+15, tbY+tbH-20);
-  bCancelled = new Widget (margin+((tbW+margin+5)*5), tbY, tbW, tbH, "Cancelled Flights", lCol,
-    stdFont, EVENT_CANCEL, borderColor, wRad, margin+((tbW+margin+5)*5)+15, tbY+tbH-20);
-  bBack = new Widget (margin+((tbW+margin+5)*6), tbY, tbW, tbH, "Back", headColor,
-    stdFont, JAN1, borderColor, wRad, margin+((tbW+margin+5)*6)+15, tbY+tbH-20);
+  bHomeScreen = new Widget (tbX, tbY, tbW, calH, "Home Page", headColor,
+                            stdFont, MAIN_SCREEN, borderColor, wRad, tbX+43, tbY+tbH-20);
+  bLateness = new Widget (tbX+tbW+tbX+5, tbY, tbW, tbH, "Lateness", lCol,
+                          stdFont, EVENT_LATE, borderColor, wRad, tbX+tbW+tbX+5+60, tbY+tbH-20);
+  bOState = new Widget (tbX+((tbW+tbX+5)*2), tbY, tbW, tbH, "Origin State", lCol,
+                        stdFont, EVENT_OSTATE, borderColor, wRad, tbX+((tbW+tbX+5)*2)+40, tbY+tbH-20);
+  bDState = new Widget (tbX+((tbW+tbX+5)*3), tbY, tbW, tbH, "Destination State", lCol,
+                        stdFont, EVENT_DSTATE, borderColor, wRad, tbX+((tbW+tbX+5)*3)+15, tbY+tbH-20);
+  bCancelled = new Widget (tbX+((tbW+tbX+5)*4), tbY, tbW, tbH, "Cancelled Flights", lCol,
+                            stdFont, EVENT_CANCEL, borderColor, wRad, tbX+((tbW+tbX+5)*4)+15, tbY+tbH-20);
+  bBack = new Widget (tbX+((tbW+tbX+5)*5), tbY, tbW, tbH, "Back", headColor,
+                      stdFont, JAN1, borderColor, wRad, tbX+((tbW+tbX+5)*5)+15, tbY+tbH-20);
+
 
   // stat table
   fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats", headColor,
-    italicFont, EVENT_NULL, borderColor, wRadNC, margin+15, tbY+tbH-20);
+                        italicFont, EVENT_NULL, borderColor, wRadNC, margin+15, tbY+tbH-20);
   tLate = new Widget(margin, tbY+tbH, sbW, tbH, "Flight departure stats", lCol,
-    italicFont, T_LATE, borderColor, wRadNC, margin+15, tbY+(tbH*2)-20);
+                      italicFont, T_LATE, borderColor, wRadNC, margin+15, tbY+(tbH*2)-20);
   tCancelled = new Widget(margin, tbY+(tbH*2), sbW, tbH, "Total flights cancelled", lCol,
-    italicFont, T_CAN, borderColor, wRadNC, margin+15, tbY+(tbH*3)-20);
+                          italicFont, T_CAN, borderColor, wRadNC, margin+15, tbY+(tbH*3)-20);
   tDState = new Widget(margin, tbY+(tbH*3), sbW, tbH, "Total flights arriving", lCol,
-    italicFont, T_ARR, borderColor, wRadNC, margin+15, tbY+(tbH*4)-20);
+                       italicFont, T_ARR, borderColor, wRadNC, margin+15, tbY+(tbH*4)-20);
   tOState = new Widget(margin, tbY+(tbH*4), sbW, tbH, "Total flights departing", lCol,
-    italicFont, T_DEP, borderColor, wRadNC, margin+15, tbY+(tbH*5)-20);
+                        italicFont, T_DEP, borderColor, wRadNC, margin+15, tbY+(tbH*5)-20);
 
 
   // labels

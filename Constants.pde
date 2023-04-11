@@ -9,6 +9,7 @@ final color borderColor = color(0);
 final color bgCol = color(247, 197, 173);
 
 // task bar values
+final int tbX = 50; // xpos
 final int tbY= 110;    // ypos 
 final int tbW = 217;   // width
 final int tbH = 55;    // height
