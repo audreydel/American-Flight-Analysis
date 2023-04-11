@@ -57,6 +57,7 @@ class Screen
 
     if (currentScreen == mainScreen)
     {
+      textSize(30);
       fill (186, 111, 96);
       text("Click on a date to see the stats", 550, 295);
     }
@@ -74,12 +75,12 @@ class Screen
       textSize(23);
       text("Flights departing on time (±5 mins): "+ round(currOnTimePerc) +"%", 960, 300+40);
       
-      fill(#E8A09A);
+      fill(#9BBFE0);
       rect(910, 300+100, 40, 40,10);
       fill(0);
       text("Flights departing early: "+ round(currEarlyPerc) +"%", 960, 300+130);
       
-      fill(#9BBFE0);
+      fill(#E8A09A);
       rect(910, 300+170, 40, 40,10);
       fill(0);
       text("Flights departing late: "+ round(currLatePerc) +"%", 960, 300+200);

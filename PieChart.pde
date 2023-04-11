@@ -34,7 +34,7 @@ class PieChart
 
   void countTime()
   {
-    println("airO size: " + currFlight.airO.size());
+
     float countOnTime=0;
     float countLate=0;
     float countEarly=0;
@@ -52,29 +52,19 @@ class PieChart
     }
     
     float total = countOnTime + countLate + countEarly;
-    println("late total: " + total);
-    println("on time: " + countOnTime);
-    println("late: " + countLate);
-    println("early: " + countEarly);
     
     float angOT = countOnTime*360/total;
     float angL = countLate*360/total;
     float angE = countEarly*360/total;
     float [] lateData = {angOT, angL, angE};
-    println("angOT: " + angOT);
-    println("angL: " + angL);
-    println("angE: " + angE);
 
-    println("late data: ");
-    println(lateData);
+  
     this.data = lateData;
-    println("global data: " + this.data);
+ 
     this.onTimePerc = (countOnTime*100)/total;
     this.earlyPerc = (countEarly*100)/total;
     this.latePerc = (countLate*100)/total;
-    println("onTime %: " + this.onTimePerc);
-    println("Late %: " + this.latePerc);
-    println("Early %: " + this.earlyPerc);
+
     
     
   }
@@ -97,9 +87,7 @@ class PieChart
       
     }
     float total = notCanCount + canCount;
-    println("cancelled total: " + total);
-    println("not cancelled: " + notCanCount);
-    println("cancelled: " + canCount);
+
 
     float angNC = notCanCount*360/total;
     float angC = canCount*360/total;

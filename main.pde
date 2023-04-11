@@ -6,10 +6,11 @@
 
 
 // main
-
+import controlP5.*;
 //ADR
 PFont stdFont, arrowFont, headFont, italicFont;
 PImage logo, logoHeader;
+
 
 Flights currFlight;
 BarChart currBar;
@@ -22,6 +23,7 @@ Widget jan1, jan2, jan3, jan4, jan5, jan6, jan7, jan8, jan9, jan10, jan11, jan12
   jan15, jan16, jan17, jan18, jan19, jan20, jan21, jan22, jan23, jan24, jan25, jan26,
   jan27, jan28, jan29, jan30, jan31;
 Widget tLate, tDState, tOState, fullMonth, tCancelled;
+Widget check1, check2;
 
 //ADR
 ArrayList screenList;
@@ -62,7 +64,7 @@ PieChart j1CanPie, j2CanPie, j3CanPie, j4CanPie, j5CanPie, j6CanPie, j7CanPie, j
   j30LatePie, j31LatePie;
 
 float currOnTimePerc, currLatePerc, currEarlyPerc, currCanPerc, currNotCanPerc;
-
+float angle=0.0;
 
 void settings()
 {
@@ -75,8 +77,7 @@ void setup()
   // flight info
   currFlight = new Flights();
   currFlight.initialiseData();
-  //currFlight.countTime();
-  //currFlight.cancelledFlights();
+
   // fonts
   stdFont = loadFont("BodoniSvtyTwoOSITCTT-BookIt-30.vlw");
   textFont(stdFont);
@@ -94,45 +95,49 @@ void setup()
 
   //SF
   bHomeScreen = new Widget (margin, tbY, tbW, calH, "Home Page", headColor,
-    stdFont, MAIN_SCREEN, borderColor, margin+43, tbY+tbH-20,20,20,20,20);
+    stdFont, MAIN_SCREEN, borderColor, margin+43, tbY+tbH-20, 20, 20, 20, 20);
   bLateness = new Widget (margin+tbW+margin+5, tbY, tbW, tbH, "Lateness", lCol,
-    stdFont, EVENT_LATE, borderColor, margin+tbW+margin+5+60, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_LATE, borderColor, margin+tbW+margin+5+60, tbY+tbH-20, 20, 20, 20, 20);
   bOState = new Widget (margin+((tbW+margin+5)*3), tbY, tbW, tbH, "Origin State", lCol,
-    stdFont, EVENT_OSTATE, borderColor, margin+((tbW+margin+5)*3)+40, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_OSTATE, borderColor, margin+((tbW+margin+5)*3)+40, tbY+tbH-20, 20, 20, 20, 20);
   bDState = new Widget (margin+((tbW+margin+5)*4), tbY, tbW, tbH, "Destination State", lCol,
-    stdFont, EVENT_DSTATE, borderColor, margin+((tbW+margin+5)*4)+15, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_DSTATE, borderColor, margin+((tbW+margin+5)*4)+15, tbY+tbH-20, 20, 20, 20, 20);
   bCancelled = new Widget (margin+((tbW+margin+5)*5), tbY, tbW, tbH, "Cancelled Flights", lCol,
-    stdFont, EVENT_CANCEL, borderColor, margin+((tbW+margin+5)*5)+15, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_CANCEL, borderColor, margin+((tbW+margin+5)*5)+15, tbY+tbH-20, 20, 20, 20, 20);
   bBack = new Widget (margin+((tbW+margin+5)*6), tbY, tbW, tbH, "Back", headColor,
-    stdFont, JAN1, borderColor, margin+((tbW+margin+5)*6)+15, tbY+tbH-20,20,20,20,20);
-  
+    stdFont, JAN1, borderColor, margin+((tbW+margin+5)*6)+15, tbY+tbH-20, 20, 20, 20, 20);
+
   //SF
 
   bHomeScreen = new Widget (tbX, tbY, tbW, calH, "Home Page", headColor,
-                            stdFont, MAIN_SCREEN, borderColor,  tbX+43, tbY+tbH-20,20,20,20,20);
+    stdFont, MAIN_SCREEN, borderColor, tbX+43, tbY+tbH-20, 20, 20, 20, 20);
   bLateness = new Widget (tbX+tbW+tbX+5, tbY, tbW, tbH, "Lateness", lCol,
-                          stdFont, EVENT_LATE, borderColor,  tbX+tbW+tbX+5+60, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_LATE, borderColor, tbX+tbW+tbX+5+60, tbY+tbH-20, 20, 20, 20, 20);
   bOState = new Widget (tbX+((tbW+tbX+5)*2), tbY, tbW, tbH, "Origin State", lCol,
-                        stdFont, EVENT_OSTATE, borderColor,  tbX+((tbW+tbX+5)*2)+40, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_OSTATE, borderColor, tbX+((tbW+tbX+5)*2)+40, tbY+tbH-20, 20, 20, 20, 20);
   bDState = new Widget (tbX+((tbW+tbX+5)*3), tbY, tbW, tbH, "Destination State", lCol,
-                        stdFont, EVENT_DSTATE, borderColor,  tbX+((tbW+tbX+5)*3)+15, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_DSTATE, borderColor, tbX+((tbW+tbX+5)*3)+15, tbY+tbH-20, 20, 20, 20, 20);
   bCancelled = new Widget (tbX+((tbW+tbX+5)*4), tbY, tbW, tbH, "Cancelled Flights", lCol,
-                            stdFont, EVENT_CANCEL, borderColor,  tbX+((tbW+tbX+5)*4)+15, tbY+tbH-20,20,20,20,20);
+    stdFont, EVENT_CANCEL, borderColor, tbX+((tbW+tbX+5)*4)+15, tbY+tbH-20, 20, 20, 20, 20);
   bBack = new Widget (tbX+((tbW+tbX+5)*5), tbY, tbW, tbH, "Back", headColor,
-                      stdFont, JAN1, borderColor,  tbX+((tbW+tbX+5)*5)+15, tbY+tbH-20,20,20,20,20);
+    stdFont, JAN1, borderColor, tbX+((tbW+tbX+5)*5)+15, tbY+tbH-20, 20, 20, 20, 20);
 
+
+  //checkBox
+  check1=new Widget(margin, tbY+(tbH*6), 20, 20, " ", headColor, italicFont, CHECK1, borderColor, margin+15, tbY+(tbH*7)-20, 20, 20, 20, 20);
+  check2=new Widget(margin, tbY+(tbH*7), 20, 20, " ", headColor, italicFont, CHECK2, borderColor, margin+15, tbY+(tbH*8)-20, 20, 20, 20, 20);
 
   // stat table
   fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats", headColor,
-                        italicFont, EVENT_NULL, borderColor, margin+15, tbY+tbH-20, 20,20,0,0);
+    italicFont, EVENT_NULL, borderColor, margin+15, tbY+tbH-20, 20, 20, 0, 0);
   tLate = new Widget(margin, tbY+tbH, sbW, tbH, "Flight departure stats", lCol,
-                      italicFont, T_LATE, borderColor, margin+15, tbY+(tbH*2)-20,0,0,0,0);
+    italicFont, T_LATE, borderColor, margin+15, tbY+(tbH*2)-20, 0, 0, 0, 0);
   tCancelled = new Widget(margin, tbY+(tbH*2), sbW, tbH, "Total flights cancelled", lCol,
-                          italicFont, T_CAN, borderColor,margin+15, tbY+(tbH*3)-20,0,0,0,0);
+    italicFont, T_CAN, borderColor, margin+15, tbY+(tbH*3)-20, 0, 0, 0, 0);
   tDState = new Widget(margin, tbY+(tbH*3), sbW, tbH, "Total flights arriving", lCol,
-                       italicFont, T_ARR, borderColor, margin+15, tbY+(tbH*4)-20,0,0,0,0);
+    italicFont, T_ARR, borderColor, margin+15, tbY+(tbH*4)-20, 0, 0, 0, 0);
   tOState = new Widget(margin, tbY+(tbH*4), sbW, tbH, "Total flights departing", lCol,
-                        italicFont, T_DEP, borderColor,margin+15, tbY+(tbH*5)-20,0,0,20,20);
+    italicFont, T_DEP, borderColor, margin+15, tbY+(tbH*5)-20, 0, 0, 20, 20);
 
 
   // labels
@@ -144,37 +149,37 @@ void setup()
 
   //SF
   // calendar buttons
-  jan1=new Widget(col6X, row1Y, calW, calH, "1", headColor, arrowFont, JAN1, borderColor,  col6X+27, row1Y+calH-20,20,20,20,20);
-  jan2=new Widget(col7X, row1Y, calW, calH, "2", headColor, arrowFont, JAN2, borderColor,  col7X+23, row1Y+calH-20,20,20,20,20);
-  jan3=new Widget(col1X, row2Y, calW, calH, "3", headColor, arrowFont, JAN3, borderColor,  col1X+23, row2Y+calH-20,20,20,20,20);
-  jan4=new Widget(col2X, row2Y, calW, calH, "4", headColor, arrowFont, JAN4, borderColor,  col2X+23, row2Y+calH-20,20,20,20,20);
-  jan5=new Widget(col3X, row2Y, calW, calH, "5", headColor, arrowFont, JAN5, borderColor,  col3X+23, row2Y+calH-20,20,20,20,20);
-  jan6=new Widget(col4X, row2Y, calW, calH, "6", headColor, arrowFont, JAN6, borderColor,  col4X+23, row2Y+calH-20,20,20,20,20);
-  jan7=new Widget(col5X, row2Y, calW, calH, "7", headColor, arrowFont, JAN7, borderColor,  col5X+20, row2Y+calH-20,20,20,20,20);
-  jan8=new Widget(col6X, row2Y, calW, calH, "8", headColor, arrowFont, JAN8, borderColor,  col6X+22, row2Y+calH-20,20,20,20,20);
-  jan9=new Widget(col7X, row2Y, calW, calH, "9", headColor, arrowFont, JAN9, borderColor,  col7X+20, row2Y+calH-20,20,20,20,20);
-  jan10=new Widget(col1X, row3Y, calW, calH, "10", headColor, arrowFont, JAN10, borderColor,  col1X+17, row3Y+calH-20,20,20,20,20);
-  jan11=new Widget(col2X, row3Y, calW, calH, "11", headColor, arrowFont, JAN11, borderColor,  col2X+19, row3Y+calH-20,20,20,20,20);
-  jan12=new Widget(col3X, row3Y, calW, calH, "12", headColor, arrowFont, JAN12, borderColor,  col3X+18, row3Y+calH-20,20,20,20,20);
-  jan13=new Widget(col4X, row3Y, calW, calH, "13", headColor, arrowFont, JAN13, borderColor,  col4X+18, row3Y+calH-20,20,20,20,20);
-  jan14=new Widget(col5X, row3Y, calW, calH, "14", headColor, arrowFont, JAN14, borderColor,  col5X+18, row3Y+calH-20,20,20,20,20);
-  jan15=new Widget(col6X, row3Y, calW, calH, "15", headColor, arrowFont, JAN15, borderColor,  col6X+18, row3Y+calH-20,20,20,20,20);
-  jan16=new Widget(col7X, row3Y, calW, calH, "16", headColor, arrowFont, JAN16, borderColor,  col7X+16, row3Y+calH-20,20,20,20,20);
-  jan17=new Widget(col1X, row4Y, calW, calH, "17", headColor, arrowFont, JAN17, borderColor,  col1X+18, row4Y+calH-20,20,20,20,20);
-  jan18=new Widget(col2X, row4Y, calW, calH, "18", headColor, arrowFont, JAN18, borderColor,  col2X+18, row4Y+calH-20,20,20,20,20);
-  jan19=new Widget(col3X, row4Y, calW, calH, "19", headColor, arrowFont, JAN19, borderColor,  col3X+18, row4Y+calH-20,20,20,20,20);
-  jan20=new Widget(col4X, row4Y, calW, calH, "20", headColor, arrowFont, JAN20, borderColor,  col4X+15, row4Y+calH-20,20,20,20,20);
-  jan21=new Widget(col5X, row4Y, calW, calH, "21", headColor, arrowFont, JAN21, borderColor,  col5X+18, row4Y+calH-20,20,20,20,20);
-  jan22=new Widget(col6X, row4Y, calW, calH, "22", headColor, arrowFont, JAN22, borderColor,  col6X+15, row4Y+calH-20,20,20,20,20);
-  jan23=new Widget(col7X, row4Y, calW, calH, "23", headColor, arrowFont, JAN23, borderColor,  col7X+15, row4Y+calH-20,20,20,20,20);
-  jan24=new Widget(col1X, row5Y, calW, calH, "24", headColor, arrowFont, JAN24, borderColor,  col1X+15, row5Y+calH-20,20,20,20,20);
-  jan25=new Widget(col2X, row5Y, calW, calH, "25", headColor, arrowFont, JAN25, borderColor,  col2X+15, row5Y+calH-20,20,20,20,20);
-  jan26=new Widget(col3X, row5Y, calW, calH, "26", headColor, arrowFont, JAN26, borderColor,  col3X+15, row5Y+calH-20,20,20,20,20);
-  jan27=new Widget(col4X, row5Y, calW, calH, "27", headColor, arrowFont, JAN27, borderColor,  col4X+16, row5Y+calH-20,20,20,20,20);
-  jan28=new Widget(col5X, row5Y, calW, calH, "28", headColor, arrowFont, JAN28, borderColor,  col5X+15, row5Y+calH-20,20,20,20,20);
-  jan29=new Widget(col6X, row5Y, calW, calH, "29", headColor, arrowFont, JAN29, borderColor,  col6X+15, row5Y+calH-20,20,20,20,20);
-  jan30=new Widget(col7X, row5Y, calW, calH, "30", headColor, arrowFont, JAN30, borderColor,  col7X+15, row5Y+calH-20,20,20,20,20);
-  jan31=new Widget(col1X, row6Y, calW, calH, "31", headColor, arrowFont, JAN31, borderColor,  col1X+15, row6Y+calH-20,20,20,20,20);
+  jan1=new Widget(col6X, row1Y, calW, calH, "1", headColor, arrowFont, JAN1, borderColor, col6X+27, row1Y+calH-20, 20, 20, 20, 20);
+  jan2=new Widget(col7X, row1Y, calW, calH, "2", headColor, arrowFont, JAN2, borderColor, col7X+23, row1Y+calH-20, 20, 20, 20, 20);
+  jan3=new Widget(col1X, row2Y, calW, calH, "3", headColor, arrowFont, JAN3, borderColor, col1X+23, row2Y+calH-20, 20, 20, 20, 20);
+  jan4=new Widget(col2X, row2Y, calW, calH, "4", headColor, arrowFont, JAN4, borderColor, col2X+23, row2Y+calH-20, 20, 20, 20, 20);
+  jan5=new Widget(col3X, row2Y, calW, calH, "5", headColor, arrowFont, JAN5, borderColor, col3X+23, row2Y+calH-20, 20, 20, 20, 20);
+  jan6=new Widget(col4X, row2Y, calW, calH, "6", headColor, arrowFont, JAN6, borderColor, col4X+23, row2Y+calH-20, 20, 20, 20, 20);
+  jan7=new Widget(col5X, row2Y, calW, calH, "7", headColor, arrowFont, JAN7, borderColor, col5X+20, row2Y+calH-20, 20, 20, 20, 20);
+  jan8=new Widget(col6X, row2Y, calW, calH, "8", headColor, arrowFont, JAN8, borderColor, col6X+22, row2Y+calH-20, 20, 20, 20, 20);
+  jan9=new Widget(col7X, row2Y, calW, calH, "9", headColor, arrowFont, JAN9, borderColor, col7X+20, row2Y+calH-20, 20, 20, 20, 20);
+  jan10=new Widget(col1X, row3Y, calW, calH, "10", headColor, arrowFont, JAN10, borderColor, col1X+17, row3Y+calH-20, 20, 20, 20, 20);
+  jan11=new Widget(col2X, row3Y, calW, calH, "11", headColor, arrowFont, JAN11, borderColor, col2X+19, row3Y+calH-20, 20, 20, 20, 20);
+  jan12=new Widget(col3X, row3Y, calW, calH, "12", headColor, arrowFont, JAN12, borderColor, col3X+18, row3Y+calH-20, 20, 20, 20, 20);
+  jan13=new Widget(col4X, row3Y, calW, calH, "13", headColor, arrowFont, JAN13, borderColor, col4X+18, row3Y+calH-20, 20, 20, 20, 20);
+  jan14=new Widget(col5X, row3Y, calW, calH, "14", headColor, arrowFont, JAN14, borderColor, col5X+18, row3Y+calH-20, 20, 20, 20, 20);
+  jan15=new Widget(col6X, row3Y, calW, calH, "15", headColor, arrowFont, JAN15, borderColor, col6X+18, row3Y+calH-20, 20, 20, 20, 20);
+  jan16=new Widget(col7X, row3Y, calW, calH, "16", headColor, arrowFont, JAN16, borderColor, col7X+16, row3Y+calH-20, 20, 20, 20, 20);
+  jan17=new Widget(col1X, row4Y, calW, calH, "17", headColor, arrowFont, JAN17, borderColor, col1X+18, row4Y+calH-20, 20, 20, 20, 20);
+  jan18=new Widget(col2X, row4Y, calW, calH, "18", headColor, arrowFont, JAN18, borderColor, col2X+18, row4Y+calH-20, 20, 20, 20, 20);
+  jan19=new Widget(col3X, row4Y, calW, calH, "19", headColor, arrowFont, JAN19, borderColor, col3X+18, row4Y+calH-20, 20, 20, 20, 20);
+  jan20=new Widget(col4X, row4Y, calW, calH, "20", headColor, arrowFont, JAN20, borderColor, col4X+15, row4Y+calH-20, 20, 20, 20, 20);
+  jan21=new Widget(col5X, row4Y, calW, calH, "21", headColor, arrowFont, JAN21, borderColor, col5X+18, row4Y+calH-20, 20, 20, 20, 20);
+  jan22=new Widget(col6X, row4Y, calW, calH, "22", headColor, arrowFont, JAN22, borderColor, col6X+15, row4Y+calH-20, 20, 20, 20, 20);
+  jan23=new Widget(col7X, row4Y, calW, calH, "23", headColor, arrowFont, JAN23, borderColor, col7X+15, row4Y+calH-20, 20, 20, 20, 20);
+  jan24=new Widget(col1X, row5Y, calW, calH, "24", headColor, arrowFont, JAN24, borderColor, col1X+15, row5Y+calH-20, 20, 20, 20, 20);
+  jan25=new Widget(col2X, row5Y, calW, calH, "25", headColor, arrowFont, JAN25, borderColor, col2X+15, row5Y+calH-20, 20, 20, 20, 20);
+  jan26=new Widget(col3X, row5Y, calW, calH, "26", headColor, arrowFont, JAN26, borderColor, col3X+15, row5Y+calH-20, 20, 20, 20, 20);
+  jan27=new Widget(col4X, row5Y, calW, calH, "27", headColor, arrowFont, JAN27, borderColor, col4X+16, row5Y+calH-20, 20, 20, 20, 20);
+  jan28=new Widget(col5X, row5Y, calW, calH, "28", headColor, arrowFont, JAN28, borderColor, col5X+15, row5Y+calH-20, 20, 20, 20, 20);
+  jan29=new Widget(col6X, row5Y, calW, calH, "29", headColor, arrowFont, JAN29, borderColor, col6X+15, row5Y+calH-20, 20, 20, 20, 20);
+  jan30=new Widget(col7X, row5Y, calW, calH, "30", headColor, arrowFont, JAN30, borderColor, col7X+15, row5Y+calH-20, 20, 20, 20, 20);
+  jan31=new Widget(col1X, row6Y, calW, calH, "31", headColor, arrowFont, JAN31, borderColor, col1X+15, row6Y+calH-20, 20, 20, 20, 20);
 
   // pie charts
   //ADR
@@ -498,6 +503,10 @@ void setup()
   mainScreen.addWidget(tDState);
   mainScreen.addWidget(fullMonth);
   mainScreen.addWidget(tCancelled);
+
+  mainScreen.addWidget(check1);
+  mainScreen.addWidget(check2);
+
 
   mainScreen.addWidget(jan1);
   mainScreen.addWidget(jan2);
@@ -856,6 +865,9 @@ void setup()
   widgetList.add(tDState);
   widgetList.add(tCancelled);
 
+  widgetList.add(check1);
+  widgetList.add(check2);
+
   widgetList.add(jan1);
   widgetList.add(jan2);
   widgetList.add(jan3);
@@ -938,9 +950,10 @@ void setup()
   screenList.add(jan31Screen);
 
   currentScreen = introScreen;
- // currAirBC = j1AirBC;
-
+  // currAirBC = j1AirBC;
 }
+boolean check1Bool=false;
+boolean check2Bool=false;
 
 void draw()
 {
@@ -952,10 +965,45 @@ void draw()
     Widget aWidget = (Widget)widgetList.get(i);
     aWidget.mouseOnButton(mouseX, mouseY);
   }
+
+  if (currentScreen==mainScreen)
+  {
+    fill(headColor);
+    text("Average Distance", margin+25, tbY+(tbH*6)+20);
+    text("Carriers", margin+25, tbY+(tbH*7)+25);
+    if (check1Bool)
+    {
+      check2Bool=false;
+      fill(0);
+      text("*", margin, tbY+(tbH*6)+27);
+      fill(headColor);
+      rect(margin, tbY+(tbH*6)+100, 220, 100, 20);
+      fill(0);
+      text("Average Distance:\n"+distTotal+" km", margin+5, tbY+(tbH*6)+130);
+    } else if (check2Bool)
+    {
+      check1Bool=false;
+      fill(0);
+      text("*", margin, tbY+(tbH*6)+82);
+      fill(headColor);
+      rect(margin, tbY+(tbH*6)+100, 200, 300, 20);
+      fill(0);
+      text("Carriers:", margin+5, tbY+(tbH*6)+130);
+      int y=tbY+(tbH*6)+155;
+      for (String key : carrierInfo.keySet()) {
+        int value = carrierInfo.get(key);
+        textSize(25);
+        text(key + ": " + value+" flights", margin+5, y);
+        y+=25;
+      }
+    }
+  } else {
+    check1Bool=false;
+    check2Bool=false;
+  }
 }
 
 //ADR AND SF
-
 void mousePressed()
 {
   int event = currentScreen.getEvent();
@@ -1077,7 +1125,7 @@ void mousePressed()
 
     currStateOBC = j6StateOBC;
     currStateDBC = j6StateDBC;
-    
+
     currCanPie = j6CanPie;
     currLatePie = j6LatePie;
     currOnTimePerc = currLatePie.onTimePerc;
@@ -1095,10 +1143,10 @@ void mousePressed()
     destScreen.addHeader(jan7Head);
     airpScreen.addHeader(jan7Head);
 
-    
+
     currStateOBC = j7StateOBC;
     currStateDBC = j7StateDBC;
-    
+
     currCanPie = j7CanPie;
     currLatePie = j7LatePie;
     currOnTimePerc = currLatePie.onTimePerc;
@@ -1116,7 +1164,7 @@ void mousePressed()
     destScreen.addHeader(jan8Head);
     airpScreen.addHeader(jan8Head);
 
-    
+
     currStateOBC = j8StateOBC;
     currStateDBC = j8StateDBC;
     currCanPie = j8CanPie;
@@ -1155,7 +1203,7 @@ void mousePressed()
     destScreen.addHeader(jan10Head);
     airpScreen.addHeader(jan10Head);
 
-    
+
     currStateOBC = j10StateOBC;
     currStateDBC = j10StateDBC;
     currCanPie = j10CanPie;
@@ -1175,7 +1223,7 @@ void mousePressed()
     destScreen.addHeader(jan11Head);
     airpScreen.addHeader(jan11Head);
 
-    
+
     currStateOBC = j11StateOBC;
     currStateDBC = j11StateDBC;
     currCanPie = j11CanPie;
@@ -1214,7 +1262,7 @@ void mousePressed()
     destScreen.addHeader(jan13Head);
     airpScreen.addHeader(jan13Head);
 
-    
+
     currStateOBC = j13StateOBC;
     currStateDBC = j13StateDBC;
     currCanPie = j13CanPie;
@@ -1272,7 +1320,7 @@ void mousePressed()
     destScreen.addHeader(jan16Head);
     airpScreen.addHeader(jan16Head);
 
-    
+
     currStateOBC = j16StateOBC;
     currStateDBC = j16StateDBC;
     currCanPie = j16CanPie;
@@ -1291,7 +1339,7 @@ void mousePressed()
     origScreen.addHeader(jan17Head);
     destScreen.addHeader(jan17Head);
     airpScreen.addHeader(jan17Head);
-    
+
     currStateOBC = j17StateOBC;
     currStateDBC = j17StateDBC;
     currCanPie = j17CanPie;
@@ -1349,7 +1397,7 @@ void mousePressed()
     destScreen.addHeader(jan20Head);
     airpScreen.addHeader(jan20Head);
 
-    
+
     currStateOBC = j20StateOBC;
     currStateDBC = j20StateDBC;
     currCanPie = j20CanPie;
@@ -1388,7 +1436,7 @@ void mousePressed()
     destScreen.addHeader(jan22Head);
     airpScreen.addHeader(jan22Head);
 
-    
+
     currStateOBC = j22StateOBC;
     currStateDBC = j22StateDBC;
     currCanPie = j22CanPie;
@@ -1408,7 +1456,7 @@ void mousePressed()
     destScreen.addHeader(jan23Head);
     airpScreen.addHeader(jan23Head);
 
-    
+
     currStateOBC = j23StateOBC;
     currStateDBC = j23StateDBC;
     currCanPie = j23CanPie;
@@ -1428,7 +1476,7 @@ void mousePressed()
     destScreen.addHeader(jan24Head);
     airpScreen.addHeader(jan24Head);
 
-    
+
     currStateOBC = j24StateOBC;
     currStateDBC = j24StateDBC;
     currCanPie = j24CanPie;
@@ -1486,7 +1534,7 @@ void mousePressed()
     destScreen.addHeader(jan27Head);
     airpScreen.addHeader(jan27Head);
 
-    
+
     currStateOBC = j27StateOBC;
     currStateDBC = j27StateDBC;
     currCanPie = j27CanPie;
@@ -1527,7 +1575,7 @@ void mousePressed()
 
     currStateOBC = j29StateOBC;
     currStateDBC = j29StateDBC;
-    
+
     currStateOBC = j29StateOBC;
     currStateDBC = j29StateDBC;
     currCanPie = j29CanPie;
@@ -1549,7 +1597,7 @@ void mousePressed()
 
     currStateOBC = j30StateOBC;
     currStateDBC = j30StateDBC;
-    
+
     currCanPie = j30CanPie;
     currLatePie = j30LatePie;
     currOnTimePerc = currLatePie.onTimePerc;
@@ -1613,6 +1661,16 @@ void mousePressed()
   case T_ARR:
     currentScreen = totalDestScreen;
     totalDestScreen.addBarChart(tStateDBC);
+    break;
+
+  case CHECK1:
+    check1Bool=true;
+    check2Bool=false;
+    break;
+
+  case CHECK2:
+    check1Bool=false;
+    check2Bool=true;
     break;
 
   default:

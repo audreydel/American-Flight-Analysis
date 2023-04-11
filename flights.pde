@@ -9,8 +9,11 @@ ArrayList<ArrayList<Integer>> subListsDistance = new ArrayList<ArrayList<Integer
 ArrayList<ArrayList<String>> subListsStateO = new ArrayList<ArrayList<String>>();
 ArrayList<ArrayList<String>> subListsStateD = new ArrayList<ArrayList<String>>();
 TreeMap<String, Integer> airportData;
+TreeMap<String,Integer> carrierInfo;
 ArrayList<Integer> airportCount;
 ArrayList<String> airportName;
+
+int distTotal=0;
 
 class Flights
 {
@@ -26,6 +29,7 @@ class Flights
   ArrayList<Integer> distance;
   ArrayList<String> stateO;
   ArrayList<String> stateD;
+  ArrayList<String> carrier;
   
   int countOnTime=0;
   int countEarly=0;
@@ -49,6 +53,7 @@ class Flights
     distance=new ArrayList<Integer>();
     stateO=new ArrayList<String>();
     stateD=new ArrayList<String>();
+    carrier=new ArrayList<String>();
 
     for (int i=0; i<table.getRowCount(); i++)
     {
@@ -82,11 +87,20 @@ class Flights
       
       String stateDInfo = row.getString("DEST_STATE_ABR");
       stateD.add(stateDInfo);
+      
+      String car=row.getString("MKT_CARRIER");
+      carrier.add(car);
     }
-
+    for(int i=0; i<distance.size(); i++)
+    {
+      int val=distance.get(i);
+      distTotal+=val;
+    }
+    distTotal=distTotal/distance.size();
+    
     flights=new TreeMap<Integer, Integer>();
     airportData=new TreeMap<String,Integer>();
-
+    carrierInfo=new TreeMap<String,Integer>();
     for (int date : flightDates)
     {
       if (flights.containsKey(date)) 
@@ -97,6 +111,19 @@ class Flights
       else 
       {
         flights.put(date, 1);
+      }
+    }
+    
+    for (String countC : carrier)
+    {
+      if (carrierInfo.containsKey(countC)) 
+      {
+        int count = carrierInfo.get(countC);
+        carrierInfo.put(countC, count + 1);
+      }
+      else 
+      {
+        carrierInfo.put(countC, 1);
       }
     }
     
@@ -119,7 +146,6 @@ class Flights
     int value = airportData.get(key);
     airportCount.add(value);
     airportName.add(key);
-    println(key + ": " + value);
   }
     
 

@@ -109,3 +109,6 @@ final int JAN28=29;
 final int JAN29=30;
 final int JAN30=31;
 final int JAN31=32;
+
+final int CHECK1=69;
+final int CHECK2=70;
