@@ -93,23 +93,22 @@ void setup()
   logoHeader = loadImage("AF-header.png");
   logoHeader.resize(170, 100);
 
-<<<<<<< HEAD
   //SF
   bHomeScreen = new Widget (margin, tbY, tbW, calH, "Home Page", headColor,
-    stdFont, MAIN_SCREEN, borderColor, wRad, margin+43, tbY+tbH-20);
+    stdFont, MAIN_SCREEN, borderColor, margin+43, tbY+tbH-20,20,20,20,20);
   bLateness = new Widget (margin+tbW+margin+5, tbY, tbW, tbH, "Lateness", lCol,
-    stdFont, EVENT_LATE, borderColor, wRad, margin+tbW+margin+5+60, tbY+tbH-20);
+    stdFont, EVENT_LATE, borderColor, margin+tbW+margin+5+60, tbY+tbH-20,20,20,20,20);
   bOState = new Widget (margin+((tbW+margin+5)*3), tbY, tbW, tbH, "Origin State", lCol,
-    stdFont, EVENT_OSTATE, borderColor, wRad, margin+((tbW+margin+5)*3)+40, tbY+tbH-20);
+    stdFont, EVENT_OSTATE, borderColor, margin+((tbW+margin+5)*3)+40, tbY+tbH-20,20,20,20,20);
   bDState = new Widget (margin+((tbW+margin+5)*4), tbY, tbW, tbH, "Destination State", lCol,
-    stdFont, EVENT_DSTATE, borderColor, wRad, margin+((tbW+margin+5)*4)+15, tbY+tbH-20);
+    stdFont, EVENT_DSTATE, borderColor, margin+((tbW+margin+5)*4)+15, tbY+tbH-20,20,20,20,20);
   bCancelled = new Widget (margin+((tbW+margin+5)*5), tbY, tbW, tbH, "Cancelled Flights", lCol,
-    stdFont, EVENT_CANCEL, borderColor, wRad, margin+((tbW+margin+5)*5)+15, tbY+tbH-20);
+    stdFont, EVENT_CANCEL, borderColor, margin+((tbW+margin+5)*5)+15, tbY+tbH-20,20,20,20,20);
   bBack = new Widget (margin+((tbW+margin+5)*6), tbY, tbW, tbH, "Back", headColor,
-    stdFont, JAN1, borderColor, wRad, margin+((tbW+margin+5)*6)+15, tbY+tbH-20);
+    stdFont, JAN1, borderColor, margin+((tbW+margin+5)*6)+15, tbY+tbH-20,20,20,20,20);
   
   //SF
-=======
+
   bHomeScreen = new Widget (tbX, tbY, tbW, calH, "Home Page", headColor,
                             stdFont, MAIN_SCREEN, borderColor,  tbX+43, tbY+tbH-20,20,20,20,20);
   bLateness = new Widget (tbX+tbW+tbX+5, tbY, tbW, tbH, "Lateness", lCol,
@@ -124,7 +123,6 @@ void setup()
                       stdFont, JAN1, borderColor,  tbX+((tbW+tbX+5)*5)+15, tbY+tbH-20,20,20,20,20);
 
 
->>>>>>> 7007bfab2d26b2348b72d2362feeca6ca7154e0b
   // stat table
   fullMonth=new Widget(margin, tbY, sbW, tbH, "Full month stats", headColor,
                         italicFont, EVENT_NULL, borderColor, margin+15, tbY+tbH-20, 20,20,0,0);

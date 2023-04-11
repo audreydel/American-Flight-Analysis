@@ -69,18 +69,18 @@ class Screen
       text("Key:", 910, 300);
 
       fill(#FBE29F);
-      rect(910, 300+15, 40, 40);
+      rect(910, 300+15, 40, 40,10);
       fill(0);
       textSize(23);
       text("Flights departing on time (±5 mins): "+ round(currOnTimePerc) +"%", 960, 300+40);
       
       fill(#E8A09A);
-      rect(910, 300+100, 40, 40);
+      rect(910, 300+100, 40, 40,10);
       fill(0);
       text("Flights departing early: "+ round(currEarlyPerc) +"%", 960, 300+130);
       
       fill(#9BBFE0);
-      rect(910, 300+170, 40, 40);
+      rect(910, 300+170, 40, 40,10);
       fill(0);
       text("Flights departing late: "+ round(currLatePerc) +"%", 960, 300+200);
     }
@@ -93,12 +93,12 @@ class Screen
       textSize(30);
       text("Key:", 910, 300);
       fill(#FBE29F);
-      rect(910, 315, 40, 40);
+      rect(910, 315, 40, 40,10);
       fill(0);
       textSize(25);
       text("Flights not cancelled: "+ round(currNotCanPerc) +"%", 960, 340);
       fill(#E8A09A);
-      rect(910, 400, 40, 40);
+      rect(910, 400, 40, 40,10);
       fill(0);
       text("Flights cancelled: "+ round(currCanPerc) +"%", 960, 430);
     }
