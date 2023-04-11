@@ -1,3 +1,5 @@
+//ADR
+
 class Label
 {
   int x,y,width, height, textSize, cRad, txtX, txtY;
