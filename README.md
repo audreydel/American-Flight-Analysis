@@ -24,7 +24,11 @@ Audrey DEL ROSARIO
 * Fixed first draft of departure bar charts 
 
 Leela Murphy 
-* First draft of bar chart for total departures 
+* First draft of bar chart for total departures
+* Count for total cancelled vs. not cancelled flights
+* Count for daily cancelled vs. not cancelled flights
+* Pie charts for daily flight cancellations
+* First draft for loading data into table (Flights Class)
 * Report 
 
 Maheen Ather
