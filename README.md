@@ -31,7 +31,8 @@ Leela Murphy
 * First draft for loading data into table (Flights Class)
 * Report 
 
-Maheen Ather
+Maaheen Ather
 * Report
-
-
+* Widget Taskbar
+* Draft for Histogram
+* First draft of Pie chart
