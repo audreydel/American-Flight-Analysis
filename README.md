@@ -25,7 +25,7 @@ Audrey DEL ROSARIO
 
 Leela Murphy 
 * First draft of bar chart for total departures
-* Count for total cancelled vs. not cancelled flights
+* Count for cancelled vs. not cancelled flights
 * First draft for loading data into table (Flights Class)
 * Report 
 
