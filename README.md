@@ -32,5 +32,5 @@ Leela Murphy
 Maaheen Ather
 * Report
 * First draft of Widget Taskbar
-* Draft for Histogram
+* Draft for Histogram (unfinished)
 * First draft of Pie chart
